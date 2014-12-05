@@ -57,4 +57,35 @@ class SymmetricTree
 		return true;
 	}
 
+
+	//Iteration solution
+	public boolean isSymmetricIteration(TreeNode root)
+	{
+		if(root == null)
+			return true;
+
+		LinkedList<TreeNode> l = new LinkedList<TreeNode>();
+		LinkedList<TreeNode> r = new LinkedList<TreeNode>();
+		l.add(root.left);
+		r.add(root.right);
+
+		while(!l.isEmpty() && !r.isEmpty())
+		{
+			TreeNode tmp1 = l.poll();
+			TreeNode tmp2 = r.poll();
+			if(tmp1 == null && tmp2 != null || tmp1 != null && tmp2 == null)
+				return false;
+
+			if(tmp1 != null)
+			{
+				if(tmp1.val != tmp2.val)
+					return false;
+				l.add(tmp1.left);
+				l.add(tmp1.right);
+				r.add(tmp2.right);
+				r.add(tmp2.left);
+			}
+		}
+		return true;
+	}
 }
