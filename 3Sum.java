@@ -76,8 +76,6 @@ class 3Sum
 				h.add(l);
 			}
 		}
-
-
 		return r;
 	}
 }
