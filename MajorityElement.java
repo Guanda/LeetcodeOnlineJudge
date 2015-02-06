@@ -5,7 +5,14 @@ You may assume that the array is non-empty and the majority element always exist
 
 Analysis:
 1. Sort array and find the median.
+
 2. Use hashmap.
+
+3. One loop:
+Set the first element of the array as the majority  and count=1, and go to the next element,
+~if the next element is same with the majority, set the count +1 and if the count>n/2, return majority;
+~if different, set the count-1, if the count=0, set next element as the majority and count be 1.
+~return the majority.
 
 */
 
@@ -38,5 +45,33 @@ public class MajorityElement
 				return i;
 		}
 		return -1;
+	}
+
+	//Method 3: count as majority
+	public int majorityElement3(int[] num)
+	{
+		int count = 0;
+		int result = num[0];
+		for(int i = 0; i < num.length; i++)
+		{
+			if(count == 0)
+			{
+				result = num[i];
+				count = 1;
+				continue;
+			}
+
+			if(num[i] != result)
+			{
+				count--;
+			}
+			else
+			{
+				count++;
+				if(count > num.length / 2)
+					return result;
+			}
+		}
+		return result;
 	}
 }
