@@ -27,40 +27,28 @@ public class CombinationSum
 		}
 		Arrays.sort(candidates);
 
-		combinationSumHelper(candidates, target, 0, 0, result, list);
+		combinationSumHelper(candidates, target, 0, result, list);
 		return result;
 	}
 
-	public void combinationSumHelper(int[] input, int target, int start, int sum, 
+	public void combinationSumHelper(int[] candidates, int target, int start,
 									ArrayList<ArrayList<Integer>> result, 
 									ArrayList<Integer> list)
 	{
-		if(sum > target)
+		if(0 == target)
 		{
-			return;
+			result.add(new ArrayList<Integer>(list));
 		}
-		for(int i = start; i < input.length; i++)
+		else
 		{
-			list.add(input[i]);
-			sum = sum + input[i];
-			if(sum == target)
+			for(int i = 0; i < candidates.length && candidates[i] <= target; i++)
 			{
-				result.add(new ArrayList<Integer>(list));
-				sum = sum - list.get(list.size() - 1);
+				list.add(candidates[i]);
+				combinationSumHelper(candidates, target-candidates[i], i, result, list);
 				list.remove(list.size() - 1);
-				return;
 			}
-			else if(sum < target)
-			{
-				combinationSumHelper(input, target, i, sum, result, list);
-			}
-			else
-			{
-				combinationSumHelper(input, target, i+1, sum, result, list);
-			}
-			sum = sum - list.get(list.size() - 1);
-			list.remove(list.size() - 1);
 		}
+
 		return;
 	}
 }
