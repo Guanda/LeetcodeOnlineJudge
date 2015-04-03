@@ -69,4 +69,76 @@ class CloneGraph
         }
         return newHead;
 	}
+
+
+	//DFS, recursive
+	public UndirectedGraphNode cloneGraphDFS(UndirectedGraphNode node)
+	{
+		if(node == null)
+			return null;
+
+		UndirectedGraphNode newHead = new UndirectedGraphNode(node.label);
+		HashMap<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<UndirectedGraphNode, UndirectedGraphNode>();
+
+		map.put(node, newHead);
+		DFS(node, map);
+
+		return newHead;
+	}
+
+	public void DFS(UndirectedGraphNode node, HashMap<UndirectedGraphNode, UndirectedGraphNode> map)
+	{
+		if(node == null)
+			return;
+
+		for(UndirectedGraphNode aNeighbors : node.neighbors)
+		{
+			if(!map.containsKey(aNeighbors))
+			{
+				UndirectedGraphNode copy = new UndirectedGraphNode(aNeighbors.label);
+				map.put(aNeighbors, copy);
+				DFS(aNeighbors, map);
+			}
+			map.get(node).neighbors.add(map.get(aNeighbors));
+		}
+	}
+
+
+	//DFS, stack
+	public UndirectedGraphNode cloneGraph(UndirectedGraphNode node)
+	{
+		if(node == null)
+			return null;
+
+		UndirectedGraphNode newHead = new UndirectedGraphNode(node.label);
+		HashMap<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<UndirectedGraphNode, UndirectedGraphNode>();
+		LinkedList<UndirectedGraphNode> stack = new LinkedList<UndirectedGraphNode>();
+
+		map.put(node, newHead);
+		stack.push(node);
+
+		while(!stack.isEmpty())
+		{
+			UndirectedGraphNode curr = stack.pop();
+			for(UndirectedGraphNode aNeighbors : curr.neighbors)
+			{
+				if(!map.containsKey(aNeighbors))
+				{
+					stack.push(aNeighbors);
+					UndirectedGraphNode copy = new UndirectedGraphNode(aNeighbors.label);
+					map.put(aNeighbors, copy);
+				}
+				map.get(curr).neighbors.add(map.get(aNeighbors));
+			}
+		}
+		return newHead;
+	}
+
+
+
+
+
+
+
+
 }
