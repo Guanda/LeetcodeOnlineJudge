@@ -29,10 +29,10 @@ class FindPeakElement
 		while(left < right)
 		{
 			int mid = (left + right) / 2;
-			if(num[mid] < num[mid-1])
-				right = mid;
-			else
+			if(num[mid] < num[mid+1])
 				left = mid + 1;
+			else
+				right = mid;
 		}
 		return left;
 	}
