@@ -109,9 +109,9 @@ class FlattenBT
     				next.right = curr.right;
     			}
     			curr.right = curr.left;
+    			curr.left = null;
     		}
-    		curr.right = curr.left;
-    		curr.left = null;
+    		curr = curr.right;	
     	}
     }
 }
