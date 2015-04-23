@@ -18,7 +18,7 @@ If S = [1,2,3], a solution is:
   []
 ]
 
-Anaylsis:
+Analysis:
 	Based on S[n-1], for every element in it, add new S[n]
 
 */
