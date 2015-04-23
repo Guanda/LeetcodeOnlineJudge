@@ -18,6 +18,9 @@ If S = [1,2,3], a solution is:
   []
 ]
 
+Anaylsis:
+	Based on S[n-1], for every element in it, add new S[n]
+
 */
 
 class Subsets
