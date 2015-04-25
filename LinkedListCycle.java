@@ -4,7 +4,7 @@ Given a linked list, determine if it has a cycle in it.
 Follow up:
 Can you solve it without using extra space?
 
-Anaylsis:
+Analysis:
 The idea is set two point, one move slow the other move fast, and if there is a cycle,
 the slow and fast will meet finally, otherwise the next will be null, no loop;
 
@@ -31,23 +31,14 @@ class LinkedListCycle
 		ListNode slow = head;
 		ListNode fast = head;
 
-		while(true)
+		while(fast != null && fast.next != null)
 		{
 			slow = slow.next;
-			if(fast.next != null)
-			{
-				fast = fast.next.next;
-			}
-			else
-			{
-				return false;
-			}
-
-			if(slow == null || fast == null)
-				return false;
+			fast = fast.next.next;
 
 			if(slow == fast)
 				return true;
 		}
+		return false;
 	}
 }
