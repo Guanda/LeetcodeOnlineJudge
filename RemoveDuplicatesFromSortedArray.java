@@ -8,6 +8,9 @@ Given input array A = [1,1,2],
 
 Your function should return length = 2, and A is now [1,2].
 
+Anaylsis:
+The problem needs the new array be unique array, otherwise we don't need replace the duplicates number with "else if".
+
 */
 
 class RemoveDuplicatesFromSortedArray
