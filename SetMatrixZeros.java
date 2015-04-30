@@ -47,7 +47,7 @@ class SetMatrixZeros
 	}
 
 	
-	//Method 2
+	//Method 2, time: O(m*n) time: O(1)!!!!
 	public void setZeros(int[][] matrix)
 	{
 		int rowLength = matrix.length;
