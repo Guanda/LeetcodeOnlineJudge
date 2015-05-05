@@ -12,12 +12,67 @@ You should return the following matrix:
 ]
 
 Analysis:
-Level by level.
+Method 1:
+	Four boundary
+
+Method 2:
+	Level by level.
 
 */
 
 class SpiralMatrix2
 {
+	//Method 1
+	public int[][] generateMatrix(int n)
+	{
+		int val = 1;
+		int[][] matrix = new int[n][n];
+		int top = 0, bottom = n-1, left = 0, right = n-1;
+
+		while(left < right && top < bottom)
+		{
+			//top
+			for(int i = left; i < right; i++)
+			{
+				matrix[top][i] = val;
+				val++;
+			}
+
+			//right
+			for(int i = top; i < bottom; i++)
+			{
+				matrix[i][right] = val;
+				val++;
+			}
+
+			//bottom
+			for(int i = right; i > left; i--)
+			{
+				matrix[bottom][i] = val;
+				val++;
+			}
+
+			//left
+			for(int i = bottom; i > top; i--)
+			{
+				matrix[i][left] = val;
+				val++;
+			}
+			left++;
+			right--;
+			top++;
+			bottom--;
+		}
+
+		//for n is odd, we need one more element
+		if(n % 2 != 0)
+			matrix[n/2][n/2] = val;
+		
+		return matrix;
+	}
+
+
+	//Method 2
 	public int[][] generateMatrix(int n)
 	{
 		int val = 1;

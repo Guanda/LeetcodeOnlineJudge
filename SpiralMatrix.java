@@ -12,13 +12,18 @@ Given the following matrix:
 You should return [1,2,3,6,9,8,7,4,5].
 
 Analysis:
-If more than one row and column left, it can form a circle and we process the circle. Otherwise, if 
-only one row or column left, we process that column or row ONLY.
+Method 1:
+	If more than one row and column left, it can form a circle and we process the circle. Otherwise, if 
+	only one row or column left, we process that column or row ONLY.
+
+Mathod 2:
+	Use level by level.
 
 */
 
 class SpiralMatrix
 {
+	//Method 1:
 	public List<Integer> spiralMatrix(int[][] matrix)
 	{
 		List<Integer> result = new ArrayList<Integer>();
@@ -89,6 +94,42 @@ class SpiralMatrix
 			y++;
 			m = m - 2;
 			n = n - 2;
+		}
+		return result;
+	}
+
+
+	//Method 2:
+	public List<Integer> spiralMatrix(int[][] matrix)
+	{
+		List<Integer> result = new ArrayList<Integer>();
+		if(matrix.length == 0 || matrix[0].length == 0)
+			return result;
+
+		for(int level = 0, m = matrix.length, n = matrix[0].length; m>level && n>level; level++, m--, n--)
+		{
+			int right = n - 1;
+			int bottom = m - 1;
+
+			//top row
+			for(int i = level; i <= right; i++)
+				result.add(matrix[level][i]);
+			if(bottom == level)
+				return result;
+
+			//right column
+			for(int i = level+1; i <= bottom; i++)
+				result.add(matrix[i][right]);
+			if(right == level)
+				return result;
+
+			//bottom row
+			for(int i = right-1; i >= level; i--)
+				result.add(matrix[bottom][i]);
+
+			//left column
+			for(int i = bottom-1; i > level; i--)
+				result.add(matrix[i][level]);
 		}
 		return result;
 	}
