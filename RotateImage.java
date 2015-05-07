@@ -18,7 +18,8 @@ class RotateImage
 		int n = matrix.length;
 		for(int i = 0; i < n/2; i++)
 		{
-			for(int j = 0; j < Math.ceil(((double)n) / 2.); j++)
+			//be careful how you end the inner lo
+			for(int j = i; j < n - 1 - i; j++)
 			{
 				int tmp = matrix[i][j];
 				matrix[i][j] = matrix[n-1-j][i];
