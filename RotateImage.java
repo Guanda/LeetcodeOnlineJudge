@@ -18,7 +18,7 @@ class RotateImage
 		int n = matrix.length;
 		for(int i = 0; i < n/2; i++)
 		{
-			//be careful how you end the inner lo
+			//be careful how you end the inner loop
 			for(int j = i; j < n - 1 - i; j++)
 			{
 				int tmp = matrix[i][j];
