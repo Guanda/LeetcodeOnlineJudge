@@ -7,32 +7,39 @@ Return [1,3,3,1].
 Note:
 Could you optimize your algorithm to use only O(k) extra space?
 
+Analysis:
+Since each row of the Pascal's triangle is constructed based on 
+previous row. We need to keep tracking of previous row. But we 
+only need keep one row rather all of them.
+
 */
 
 class PascalOneRowSolution
 {
 	public ArrayList<Integer> getRow(int rowIndex)
 	{
-		ArrayList<Integer> res = new ArrayList<Integer>();
+		ArrayList<Integer> row = new ArrayList<Integer>();
 
-		//special case rowIndex = 0
-		if(rowIndex == 0)
+		for(int i = 0; i <= rowIndex; i++)
 		{
-			res.add(1);
-			return res;
-		}
+			ArrayList<Integer> preRow = row;
+			row = new ArrayList<Integer>();
 
-		//for the first row
-		res.add(1);
-
-		for(int i = 1; i <= rowIndex; i++)
-		{
-			res.add(0, 1);
-			for(int j = 1; j < i; j++)
+			//first row
+			if(i == 0)
 			{
-				res.set(j, res.get(j) + res.get(j+1));
+				row.add(1);
+			}
+			else
+			{
+				for(int j = 0; j <= i; j++)
+				{
+					//this is for the current row number calculation
+					int val = ((j > 0) ? preRow.get(j-1) : 0) + ((j < preRow.size()) ? preRow.get(j) : 0);
+					row.add(val);
+				}
 			}
 		}
-		return res;
+		return row;
 	}
 }
