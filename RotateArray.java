@@ -10,13 +10,14 @@ This solution has not passed all the test case. Like: [1, 2] k=1. output: [1, 2]
 
 class RotateArray
 {
-	public void rotateArray(int[] nums, int k)
+	public void rotate(int[] nums, int k)
 	{
 		int n = nums.length;
 		k = k % n;
-		reverse(nums, 0, n-1);
 		reverse(nums, 0, n-k-1);
 		reverse(nums, n-k, n-1);
+		reverse(nums, 0, n-1);
+
 	}
 
 	public void reverse(int[] nums, int start, int end)
