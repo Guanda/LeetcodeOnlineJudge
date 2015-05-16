@@ -7,6 +7,11 @@ Find the minimum element.
 
 You may assume no duplicate exists in the array.
 
+Analysis:
+The key is how to use binary search to solve this problem.
+Compare the middle element with the left one to find out  whether the minimum element in the left or right part.
+Remember the case that no rotated.
+
 */
 
 class FindMinInRotatedSortedArray
@@ -25,7 +30,7 @@ class FindMinInRotatedSortedArray
 
 		int mid = (left + right) / 2;
 
-		//no ratated
+		//no rotated
 		if(num[left] < num[right])
 			return num[left];
 		//go right side
