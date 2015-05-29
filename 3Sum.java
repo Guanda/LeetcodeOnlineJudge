@@ -25,6 +25,7 @@ class 3Sum
 	public ArrayList<ArrayList<Integer>> 3sum(int[] num)
 	{
 		ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+		HashSet<ArrayList<Integer>> hashSet = new HashSet<ArrayList<Integer>>();
 		if(num.length < 3)
 			return result;
 
@@ -58,24 +59,19 @@ class 3Sum
 					arr.add(num[i]);
 					arr.add(num[j]);
 					arr.add(num[k]);
-					result.add(arr);
+
+					//only add the unique one
+					if(!hashSet.contains(arr))
+					{
+						hashSet.add(arr);
+						result.add(arr);
+					}
 					j++;
 					k--;
 				}
 			}
 		}
 
-		//remove duplicates in result
-		HashSet<ArrayList> h = new HashSet<ArrayList>();
-		ArrayList<ArrayList<Integer>> r = new ArrayList<ArrayList<Integer>>();
-		for(ArrayList l : result)
-		{
-			if(! h.contains(l))
-			{
-				r.add(l);
-				h.add(l);
-			}
-		}
-		return r;
+		return result;
 	}
 }
