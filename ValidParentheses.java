@@ -36,4 +36,6 @@ class ValidParentheses
 		}
 		return stack.isEmpty();
 	}
+
+	//method 2 is using the count. remember to consider the case that right brace may come first
 }
