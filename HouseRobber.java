@@ -36,7 +36,7 @@ class HouseRobber
 		for(int i = 1; i < num.length; i++)
 		{
 			int tmp = prev;
-			prev = Math.max(prev, Math.max(prevprev + num[i], prev));
+			prev = Math.max(prevprev + num[i], prev);
 			prevprev = tmp;
 		}
 		return prev;
