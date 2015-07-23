@@ -8,10 +8,10 @@ Those numbers for which this process ends in 1 are happy numbers.
 
 Example: 19 is a happy number
 
-12 + 92 = 82
-82 + 22 = 68
-62 + 82 = 100
-12 + 02 + 02 = 1
+1^2 + 9^2 = 82
+8^2 + 2^2 = 68
+6^2 + 8^2 = 100
+1^2 + 0^2 + 0^2 = 1
 
 Analysis:
 	Use hashtable to record the square sum, when non-1 square sum keep repeating, return false
