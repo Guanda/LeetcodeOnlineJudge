@@ -25,8 +25,11 @@ class 2Sum
 				result[0] = index + 1;
 				result[1] = i + 1;
 			}
-			else
+			else 
+			{
+				//the hash map value i is the index in next time
 				hm.put(target - numbers[i], i);
+			}
 		}
 		return result;
 	}
