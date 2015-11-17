@@ -37,6 +37,15 @@ public class BinaryTreePaths
 
 	private void findPaths(TreeNode root, List<String> result, String cur)
 	{
-		
+		if(root.left == null && root.right == null) {
+			result.add(cur);
+			return;
+		}
+		if(root.left != null) {
+			findPaths(root.left, result, cur + "->" + root.left.val);
+		}
+		if(root.right != null) {
+			findPaths(root.right, result, cur + "->" + root.right.val);
+		}
 	}
 }
