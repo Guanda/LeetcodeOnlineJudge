@@ -27,6 +27,8 @@ class 2Sum
 			}
 			else 
 			{
+				//for every time walk through numbers, save target-numbers[i] to hashmap
+				//which is ready for next time. so only need to pass numbers once.
 				//the hash map value i is the index in next time
 				hm.put(target - numbers[i], i);
 			}
