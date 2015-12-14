@@ -1,9 +1,8 @@
-package LeetcodeOnlineJudge;
-
 /*
  Implement atoi to convert a string to an integer.  
  */
-public class stringToInteger {
+
+public class StringToInteger {
 	public int atoi(String str) {
 		if (str == null || str.length() == 0)
 			return 0;

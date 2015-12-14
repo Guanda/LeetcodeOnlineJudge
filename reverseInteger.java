@@ -17,9 +17,7 @@ Throw an exception? Good, but what if throwing an exception is not an option? Yo
 
 */
 
-package LeetcodeOnlineJudge;
-
-public class reverseInteger {
+public class ReverseInteger {
     public int reverse(int x) {
         // Note: The Solution object is instantiated only once and is reused by each test case.
     int r = 0;

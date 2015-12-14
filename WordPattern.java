@@ -9,6 +9,7 @@ pattern = "abba", str = "dog cat cat dog" should return true.
 pattern = "abba", str = "dog cat cat fish" should return false.
 pattern = "aaaa", str = "dog cat cat dog" should return false.
 pattern = "abba", str = "dog dog dog dog" should return false.
+
 Notes:
 You may assume pattern contains only lowercase letters, and str contains 
 lowercase letters separated by a single space.

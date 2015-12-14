@@ -7,14 +7,12 @@ The Sudoku board could be partially filled, where empty cells are filled with th
 A partially filled sudoku which is valid.
 
 Note:
-A valid Sudoku board (partially filled) is not necessarily solvable. Only the filled cells need to be validated.
+A valid Sudoku board (partially filled) is not necessarily solvable. Only the filled cells need to 
+be validated.
 
-*/
-
-/*
 Analysis:
-The number in each row, col and block should be unique. Go through every position of given board, check if the 
-number has been found in current row, column or block. If so, return false.
+The number in each row, col and block should be unique. Go through every position of given board, 
+check if the number has been found in current row, column or block. If so, return false.
 */
 
 class ValidSudoku
@@ -47,7 +45,9 @@ class ValidSudoku
 				}
 
 				int c = board[i][j] - '1';
-				if(rowChecker.get(j)[c] == true || colChecker.get(i)[c] == true || blockChecker.get(i/3*3 + j/3)[c] == true)
+				if(rowChecker.get(j)[c] == true || 
+					colChecker.get(i)[c] == true || 
+					blockChecker.get(i/3*3 + j/3)[c] == true)
 				{
 					return false;
 				}

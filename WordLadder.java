@@ -1,8 +1,10 @@
 /*
-Given two words (start and end), and a dictionary, find the length of shortest transformation sequence from start to end, such that:
+Given two words (start and end), and a dictionary, find the length of shortest transformation 
+sequence from start to end, such that:
 
 Only one letter can be changed at a time
 Each intermediate word must exist in the dictionary
+
 For example,
 
 Given:
