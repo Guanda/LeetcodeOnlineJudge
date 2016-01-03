@@ -33,7 +33,7 @@ class AddBinary
 			int current = (num1 + num2 + carry) % 2;
 			carry = (num1 + num2 + carry) / 2;
 
-			//every time insert start from position 0 to make sure the sequence correct
+			//every time insert current to position 0 to make sure the sequence correct
 			sb.insert(0, current);
 		}
 		return sb.toString();
