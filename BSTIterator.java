@@ -9,7 +9,7 @@ memory, where h is the height of the tree.
 
 Analysis:
 
-	The question requires average O(1) time and O(n) memory. So we can not 
+	The question requires average O(1) time and O(h) memory. So we can not 
 	either traverse the tree when next() and hasNext() are called for the 
 	least memory usage (O(n) time, O(1) space), nor store the whole tree in 
 	an ArrayList for fast access (O(1) time, O(n) space). We need some tradeoff 
