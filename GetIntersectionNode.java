@@ -10,6 +10,15 @@ A:          a1 → a2
                    ↗            
 B:     b1 → b2 → b3
 begin to intersect at node c1.
+
+Analysis:
+    Two methods:
+    1. Just as usual, find the diff size and then let the longer one pointer to the diff size node.
+       Then iterate until find the same one.
+
+    2. Better solution. Don't need to know the diff size. Reset the pointer of one list to the another
+       list after it reaches the tail and then until we get the same node, we can stop. The diff size will
+       be implemented automatically because the pointer will reset to head of another list.
 */
 
 /**
@@ -24,6 +33,7 @@ begin to intersect at node c1.
  * }
  */
 public class GetIntersectionNode {
+    //Method 1
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) 
     {
         if(headA == null || headB == null)
@@ -72,5 +82,21 @@ public class GetIntersectionNode {
             b = b.next;
         }
         return null;   
+    }
+
+    //Method 2
+    public ListNode getIntersectionNode2(ListNode headA, ListNode headB)
+    {
+        if(headA == null || headB == null)
+            return null;
+
+        ListNode a = headA;
+        ListNode b = headB;
+        while(a != b) {
+            a = a == null ? headB : a.next;
+            b = b == null ? headA : b.next;
+        }
+
+        return a;
     }
 }
