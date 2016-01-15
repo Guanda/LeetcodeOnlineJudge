@@ -8,7 +8,7 @@ Analysis:
 1. Dynamic programming solution, O(N2) time and O(N2) space:
 		Consider the case “ababa”. If we already knew that “bab” is a palindrome, it is obvious that “ababa” must be a palindrome 
 		since the two left and right end letters are the same. P[i,j] means substring start from i and end with j is palindrome.
-		So: P[i,i] is true and P[i,i+1] equals (S[i]==s[i+1]).
+		So: P[i,i] is true and P[i,i+1] equals (s[i]==s[i+1]).
 
 		Then we can consider the situation that length is more than 3: P[ i, j ] ← ( P[ i+1, j-1 ] and Si = Sj )
 
@@ -31,6 +31,7 @@ class LongestPalindome
 		for(int i = 0; i < n; i++)
 			table[i][i] = true;
 
+		// check for sub-string of length 2.
 		for(int i = 0; i < n-1; i++)
 		{
 			if(s.charAt(i) == s.charAt(i+1))
@@ -41,11 +42,13 @@ class LongestPalindome
 			}
 		}
 
+		// Check for lengths greater than 2. len is length of substring
 		for(int len = 3; len <= n; len++)
 		{
 			for(int i = 0; i < n-len+1; i++)
 			{
-				int j = i + len - 1;	//initial j is the last element in s.
+				// Get the ending index of substring from starting index i and length len
+				int j = i + len - 1;
 				if(s.charAt(i) == s.charAt(j) && table[i+1][j-1])
 				{
 					table[i][j] = true;
