@@ -93,6 +93,4 @@ class LongestPalindome
 		}
 		return s.substring(c1+1, c2);
 	}
-
-
 }
