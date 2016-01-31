@@ -1,6 +1,9 @@
 /*
 Implement int sqrt(int x).
 
+Analysis:
+	Use Newton Method
+
 */
 
 class Sqrt {
