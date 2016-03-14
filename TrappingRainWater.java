@@ -14,8 +14,6 @@ Analysis:
 Hmin <= A[i]时，Si = 0
 Hmin > A[i]时，Si = Hmin - A[i]
 
-
-
 */
 
 class TrappingRainWater {
