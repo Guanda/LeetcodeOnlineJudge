@@ -15,7 +15,7 @@
  *
  *
  */
-static int parseLong(String str) {
+static int parseInteger(String str) {
     if(str == null || str.length() == 0)
         throw new NumberFormatException("Not a valid input");
     
