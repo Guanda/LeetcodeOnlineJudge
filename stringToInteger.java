@@ -3,16 +3,11 @@
  */
 
 /*
- * The method name below is parseLong, which is not a good name for covert string to "Integer".
- * I should change it to parseInteger but I cannot compile it based on that name, so I leave it there. 
- * And the same as return type, change from long to int.
- *
  * Here I have some limitations for this problem:
  * 1. When input string is null or empty string, I will return null.
  * 2. I will use trim method to ignore all the spaces in the string.
  * 3. If the number is larger than max integer or smaller than min integer, throw exception.
  * 4. If there is any character is not between 0 to 9 except the first character are + or -, throw exception.
- *
  *
  */
 static int parseInteger(String str) {
