@@ -64,7 +64,7 @@ class WordSearch
 		//mark the node as visited
 		visited[x][y] = true;
 
-		//BFS on its neighbers
+		//DFS on its neighbers
 		if(x > 0 && DFS(board, x-1, y, word, curr+1, visited))
 			return true;
 		if(x+1 < board.length && DFS(board, x+1, y, word, curr+1, visited))
