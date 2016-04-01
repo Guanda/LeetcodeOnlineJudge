@@ -46,6 +46,7 @@ class WordLadder
 					String checkMatch = new String(possibleMatch);
 					if(dict.contains(checkMatch))
 					{
+						//once the word is picked in path, we don't need it again
 						dict.remove(checkMatch);
 						countQue.add(currCount+1);
 						wordQue.add(checkMatch);
