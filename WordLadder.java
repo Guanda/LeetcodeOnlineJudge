@@ -19,6 +19,8 @@ Return 0 if there is no such transformation sequence.
 All words have the same length.
 All words contain only lowercase alphabetic characters.
 
+Analysis: BFS
+
 */
 
 class WordLadder
