@@ -12,6 +12,7 @@ Analysis:
 
 Method 1: DP solution.
 	Very similar with the MinimumPathSum problem. Use 2D sum array to store the count.
+	dp[i][j] represents the number of paths from (0, 0) to (i, j)
 
 Method 2: Maths solution
 	Think about it in this way:
