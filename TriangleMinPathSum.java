@@ -16,7 +16,10 @@ Anaylsis:
 	the bottom row length is equal to the height of triangle, so use 
 	pathSum to hold the bottom row's value, then from bottom to up, 
 	find minimum path
-
+	
+	This is kind of DP solution. Give pathSum array and basic value for last row,
+	then calculate from bottom to up, narrow the pathSum and finally we will get 
+	the result.
 */
 
 class TriangleMinPathSum
