@@ -72,12 +72,12 @@ class TextJustification {
 				int avgSpace = (maxWidth - count) / diff;
 				int moreSpace = (maxWidth - count) % diff;
 				for(int i = start; i < last; i++) {
-					builder.append(words[i]);
-                    if (i < last - 1) {
-                        for (int j = 0; j <= (avgSpace + ((i - start) < moreSpace ? 1 : 0)); j++) {
-                            builder.append(" ");
-                        }
-                    }
+				    builder.append(words[i]);
+		                    if (i < last - 1) {
+		                        for (int j = 0; j <= (avgSpace + ((i - start) < moreSpace ? 1 : 0)); j++) {
+		                            builder.append(" ");
+		                        }
+		                    }
 				}
 			}
 			result.add(builder.toString());
