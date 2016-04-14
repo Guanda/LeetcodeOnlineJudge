@@ -19,25 +19,16 @@ public class SummaryRanges
 			return result;
 		}
 
-		int j = 0;
-		for(int i = 1; i < nums.length; i++) {
-			if(nums[i - 1] + 1 < nums[i]) {
-				if(j == i - 1) {
-					result.add(nums[j] + "");
-				}
-				else {
-					result.add(nums[j] + "->" + nums[i - 1]);
-				}
-
-				if(i == nums.length - 1) {
-					result.add(nums[i] + "");
-				}
-
-				j = i;
+		for(int i = 0; i < nums.length; i++) {
+			int first = nums[i];
+			while((i + 1 < nums.length) && (nums[i+1] - nums[i] == 1)) {
+				i++;
 			}
-			else if(i == nums.length - 1) {
-				result.add(nums[j] + "->" + nums[i]);
-			}
+			
+			if(first != nums[i])
+				result.add(first + "->" + nums[i]);
+			else
+				result.add(first + "");
 		}
 		return result;
 	}
