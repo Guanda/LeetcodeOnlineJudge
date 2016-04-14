@@ -18,7 +18,7 @@ X O X X
 Analysis:
 	Two ways to solve this problem. (BFS, DFS)
 	Start from the boundary to find out all the 'O' and the use DFS or BFS to mark
-	all the 'O' which connect with boundary 'O' to 'N'. Then scan whole table mark 
+	all the 'O' which connect with boundary to 'N'. Then scan whole table mark 
 	'O' to 'X' and mark 'N' to 'O'.
 
 */
