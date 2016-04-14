@@ -72,40 +72,19 @@ class SurroundedRegions
 
 	public void dfs(char[][] board, int x, int y)
 	{
-		LinkedList<Integer[]> stack = new LinkedList<Integer[]>();
-		stack.push(new Integer[]{x, y});
-		while(!stack.isEmpty())
-		{
-			Integer[] curr = stack.pop();
-			int i = curr[0];
-			int j = curr[1];
-			board[i][j] = 'N';
-
-			if(i-1>=0 && board[i-1][j] == 'O')
-				stack.push(new Integer[]{i-1, j});
-			if(j-1>=0 && board[i][j-1] == 'O')
-				stack.push(new Integer[]{i, j-1});
-			if(i+1<board.length && board[i+1][j] == 'O')
-				stack.push(new Integer[]{i+1, j});
-			if(j+1<board[0].length && board[i][j+1] == 'O')
-				stack.push(new Integer[]{i, j+1});
-		}
+		if (x < 0 || x > board.length - 1 || y <0 || y > board[0].length - 1)
+        		return;
 		
-		/*
-		//recursive version of DFS, maybe not passing big data test so we can 
-		//use iteration(stack) version, the element in stack is pair<i,j>
-		board[x][y] = 'N';
+		if(board[x][y] == 'O')
+			board[x][y] = 'N';
 		if(x-1>=0 && board[x-1][y] == 'O')
 			dfs(board, x-1, y);
 		if(y-1>=0 && board[x][y-1] == 'O')
 			dfs(board, x, y-1);
-		if(x+1<board.length && board[x+1][y] == 'O')
+		if(x < board.length - 2 && board[x+1][y] == 'O')
 			dfs(board, x+1, y);
-		if(y+1<board[0].length && board[x][y+1] == 'O')
+		if(y < board[0].length - 2 && board[x][y+1] == 'O')
 			dfs(board, x, y+1);
-		*/
-
-		//iteration version (stack) for dfs
 	}
 
 
