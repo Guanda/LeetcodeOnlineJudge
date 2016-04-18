@@ -25,31 +25,31 @@ Analysis:
 
 class Subsets
 {
-	public ArrayList<ArrayList<Integer>> subsets(int[] S)
+	public List<List<Integer>> subsets(int[] S)
 	{
 		if(S == null)
 			return null;
 
 		Arrays.sort(S);
-		ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+		List<List<Integer>> result = new ArrayList<List<Integer>>();
 		for(int i = 0; i < S.length; i++)
 		{
-			ArrayList<ArrayList<Integer>> tmp = new ArrayList<ArrayList<Integer>>();
+			List<List<Integer>> tmp = new ArrayList<List<Integer>>();
 
 			//get sets that are already in result
-			for(ArrayList<Integer> a : result)
+			for(List<Integer> a : result)
 			{
 				tmp.add(new ArrayList<Integer>(a));
 			}
 
 			//add S[i] to existing sets
-			for(ArrayList<Integer> a : tmp)
+			for(List<Integer> a : tmp)
 			{
 				a.add(S[i]);
 			}
 
 			//add S[i] only as a set
-			ArrayList<Integer> single = new ArrayList<Integer>();
+			List<Integer> single = new ArrayList<Integer>();
 			single.add(S[i]);
 			tmp.add(single);
 
