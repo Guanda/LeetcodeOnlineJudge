@@ -3,8 +3,7 @@ Implement int sqrt(int x).
 
 Analysis:
 	1. Use Newton Method
-	2. Use binary search
-
+	2. Use binary search (easiler to understand)
 */
 
 class Sqrt {
