@@ -35,6 +35,7 @@ class SpiralMatrix
 
 		int m = matrix.length;
 		int n = matrix[0].length;
+		//x, y represent the position of the current element
 		int x = 0;
 		int y = 0;
 
@@ -60,8 +61,7 @@ class SpiralMatrix
 				break;
 			}
 
-			//process the circle
-
+			//process the circle:
 			//top, move right
 			for(int i = 0; i < n-1; i++)
 			{
