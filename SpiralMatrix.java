@@ -90,8 +90,11 @@ class SpiralMatrix
 				x--;
 			}
 
+			//move to the next element, for row is one row under and column is one more left, so both ++
 			x++;
 			y++;
+			
+			//for every circle finished, rows and columns are both reduce 2
 			m = m - 2;
 			n = n - 2;
 		}
