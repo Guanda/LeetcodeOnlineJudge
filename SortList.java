@@ -1,5 +1,5 @@
 /*
-Sort a linked list in O(n log n) time using constant space complexity.
+Sort a linked list in O(nlog n) time using constant space complexity.
 
 Analysis:
 	use Merge sort!
@@ -31,19 +31,20 @@ class SortList
 
 		//break up to two list
 		int middle = count / 2;
-		ListNode left = head, right = null;
-		ListNode p2 = head;
+		ListNode left = head;
+		ListNode right = null;
+		ListNode tmp = head;
 		int countHalf = 0;
-		while(p2 != null)
+		while(tmp != null)
 		{
 			countHalf++;
-			ListNode next = p2.next;
+			ListNode next = tmp.next;
 			if(countHalf == middle)
 			{
-				p2.next = null;
+				tmp.next = null;
 				right = next;
 			}
-			p2 = next;
+			tmp = next;
 		}
 
 		ListNode h1 = sortList(left);
