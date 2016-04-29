@@ -24,7 +24,7 @@ class sortColors
 	{
 		//one pass for counting
 		int[] count = new int[3];
-		for(int color : colors)
+		for(int color : A)
 		{
 			count[color]++;
 		}
@@ -35,12 +35,12 @@ class sortColors
 		//fill up the array
 		int i = 0;
 		for(; i < count[RED]; i++)
-			colors[i] = RED;
+			A[i] = RED;
 
 		for(; i < count[WHITE]; i++)
-			colors[i] = WHITE;
+			A[i] = WHITE;
 
-		for(; i < colors.length; i++)
-			colors[i] = BLUE;
+		for(; i < A.length; i++)
+			A[i] = BLUE;
 	}
 }
