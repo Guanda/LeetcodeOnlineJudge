@@ -16,7 +16,7 @@ Note: also in Cracking Code Interview
 
 class SetMatrixZeros
 {
-	//Method 1, time: O(m*n) space: O(m+n)
+	//Method 1, time: O(m*n), space: O(m+n)
 	public void setZeros(int[][] matrix)
 	{
 		Set<Integer> rows = new HashSet<Integer>();
@@ -47,7 +47,7 @@ class SetMatrixZeros
 	}
 
 	
-	//Method 2, time: O(m*n) time: O(1)!!!!
+	//Method 2, time: O(m*n), space: O(1)!!!!
 	public void setZeros(int[][] matrix)
 	{
 		int rowLength = matrix.length;
