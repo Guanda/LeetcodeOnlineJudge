@@ -7,10 +7,10 @@ path = "/a/./b/../../c/", => "/c"
 click to show corner cases.
 
 Corner Cases:
-Did you consider the case where path = "/../"?
-In this case, you should return "/".
-Another corner case is the path might contain multiple slashes '/' together, such as "/home//foo/".
-In this case, you should ignore redundant slashes and return "/home/foo".
+1. Did you consider the case where path = "/../"?
+	In this case, you should return "/".
+2. Another corner case is the path might contain multiple slashes '/' together, such as "/home//foo/".
+	In this case, you should ignore redundant slashes and return "/home/foo".
 
 Analysis
 	Method 1. Use stack, when "..", pop and when ".", skip
