@@ -45,5 +45,6 @@ class 2SumII
 				return result;
 			}
 		}
+		return null;
 	}
 }
