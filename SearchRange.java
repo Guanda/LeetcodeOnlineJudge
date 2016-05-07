@@ -52,7 +52,7 @@ class SearchRange
 	}
 
 	//Method 2: Binary search
-	public int[] searchRange2(int[] A, int target)
+	public int[] searchRangeBetter(int[] A, int target)
 	{
 		int[] range = {-1, -1};
 		int low = 0;
