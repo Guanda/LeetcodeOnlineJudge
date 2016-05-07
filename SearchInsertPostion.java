@@ -10,6 +10,9 @@ Here are few examples.
 [1,3,5,6], 7 → 4
 [1,3,5,6], 0 → 0
 
+Analysis:
+	Use binary search, find the index directly.
+
 */
 
 public clas SearchInsertPosition
