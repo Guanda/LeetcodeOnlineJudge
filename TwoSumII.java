@@ -45,5 +45,6 @@ class TwoSumII
 				return result;
 			}
 		}
+		return null;
 	}
 }
