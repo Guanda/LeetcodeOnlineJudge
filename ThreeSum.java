@@ -20,7 +20,7 @@ So based on 2Sum problem, we can figure out it by using time O(n^2).
 
 */
 
-class 3Sum
+class ThreeSum
 {
 	public ArrayList<ArrayList<Integer>> 3sum(int[] num)
 	{

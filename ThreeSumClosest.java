@@ -8,7 +8,7 @@ Just similar with 3 sum problem, the only difference is remember min minus every
 
 */
 
-class 3SumClosest
+class ThreeSumClosest
 {
 	public int 3SumClosest(int[] num, int target)
 	{

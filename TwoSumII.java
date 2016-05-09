@@ -16,7 +16,7 @@ Similar with the 2Sum problem, using two pointers from both sides
 
 */
 
-class 2SumII
+class TwoSumII
 {
 	public int[] twoSum(int[] nums, int target)
 	{

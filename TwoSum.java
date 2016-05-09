@@ -11,7 +11,7 @@ Output: index1=1, index2=2
 
 */
 
-class 2Sum
+class TwoSum
 {
 	public int[] twoSum(int[] numbers, int target)
 	{

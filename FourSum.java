@@ -14,7 +14,7 @@ The solution set must not contain duplicate quadruplets.
 
 */
 
-public class 4Sum
+public class FourSum
 {
 	public ArrayList<ArrayList<Integer>> 4Sum(int[] num, int target)
 	{
