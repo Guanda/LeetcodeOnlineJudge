@@ -24,7 +24,7 @@ class RotateList
 	public ListNode rotateRight(ListNode head, int k)
 	{
 		if(head == null || k == 0)
-            return head;
+            		return head;
 
 		//find the length of list
 		//len start from 1 because curr.next!=null
@@ -35,6 +35,7 @@ class RotateList
 			len++;
 			curr = curr.next;
 		}
+		//make it a loop
 		curr.next = head;
 
 		ListNode newHead = curr;
