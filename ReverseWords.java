@@ -9,9 +9,9 @@ Anaylsis:
 	This problem is pretty straightforward. We first split the string to words array, 
 	and then iterate through the array and add each element to a new string. 
 
-	Note: StringBuilder should be used to avoid creating too many Strings. 
-	If the string is very long, using String is not scalable since String is immutable 
-	and too many objects will be created and garbage collected.
+	Note: StringBuilder should be used to avoid creating too many Strings, since string
+	is immutable object. If the string is very long, using String is not scalable since 
+	String is immutable and too many objects will be created and garbage collected.
 
 */
 
