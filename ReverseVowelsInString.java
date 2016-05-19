@@ -20,9 +20,9 @@ class ReverseVowelsInString {
 
 		while(start < end) {
 			if(vowels.contains(array[start] + "") && vowels.contains(array[end] + "")) {
-				char c = array[start];
+				char temp = array[start];
 				array[start] = array[end];
-				array[end] = c;
+				array[end] = temp;
 				start++;
 				end--;
 			}
