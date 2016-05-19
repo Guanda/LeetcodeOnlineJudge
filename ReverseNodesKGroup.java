@@ -41,8 +41,7 @@ class ReverseNodesKGroup {
         return dummy.next;
     }
     
-    // reverse head->n1->..->nk->next..
-    // to head->nk->..->n1->next..
+    // reverse head->n1->..->nk->next.. to head->nk->..->n1->next..
     // return n1
     private ListNode reverseNextK(ListNode head, int k) {
         // check there is enought nodes to reverse
