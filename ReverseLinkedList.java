@@ -2,7 +2,9 @@
 Reverse a singly linked list.
 
 Analysis:
-Method 1: Just one iteration. Move current to connect previous one. So we need prev, curr, next these three nodes.
+Method 1: Just one iteration. Move current to connect previous one. 
+	  So we need prev, curr, next these three nodes.
+	  
 Method 2: recursive solution
 
 */
