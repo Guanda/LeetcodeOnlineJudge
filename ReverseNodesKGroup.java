@@ -2,9 +2,7 @@
 Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
 
 If the number of nodes is not a multiple of k then left-out nodes in the end should remain as it is.
-
 You may not alter the values in the nodes, only nodes itself may be changed.
-
 Only constant memory is allowed.
 
 For example,
@@ -41,11 +39,10 @@ class ReverseNodesKGroup {
         return dummy.next;
     }
     
-    // reverse head->n1->..->nk->next..
-    // to head->nk->..->n1->next..
+    // reverse head->n1->..->nk->next.. to head->nk->..->n1->next..
     // return n1
     private ListNode reverseNextK(ListNode head, int k) {
-        // check there is enought nodes to reverse
+        // check there is enough nodes to reverse
         ListNode next = head;
         for (int i = 0; i < k; i++) {
             if (next.next == null) {
