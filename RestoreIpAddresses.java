@@ -13,9 +13,9 @@ Anaylsis:
 
 class RestoreIpAddresses
 {
-	public ArrayList<String> restoreIpAddresses(String s)
+	public List<String> restoreIpAddresses(String s)
 	{
-		ArrayList<String> res = new ArrayList<String>();
+		List<String> res = new ArrayList<String>();
 
 		//narrow the process when the string's length is not a possible ip address
 		if(s.length() < 4 || s.length() > 12)
@@ -25,7 +25,7 @@ class RestoreIpAddresses
 		return res;
 	}
 
-	public void helper(String s, String tmp, ArrayList<String> res, int count)
+	public void helper(String s, String tmp, List<String> res, int count)
 	{
 		//last section, also stop case
 		if(count == 3 && isValid(s))
