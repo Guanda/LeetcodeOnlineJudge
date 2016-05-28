@@ -14,7 +14,6 @@ Analysis:
 
 */
 
-
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -40,6 +39,7 @@ class ReorderList
 			fast = fast.next.next;
 		}
 
+		//start the second part
 		ListNode second = slow.next;
 		//close the first part
 		slow.next = null;
