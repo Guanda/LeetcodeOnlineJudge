@@ -18,8 +18,8 @@ Anaylsis:
 	window, calculate its bit representation as the key. Then slide the window from left 
 	to right, if the key shows up exactly twice, append the substring to the result.
 
-	For A, C, G, T, represent 2 base 0,1,2,3. So for 10 letters, will take 20 bits. Make 
-	sure every time operation shift left 2.
+	For A, C, G, T, represent 2 base 0,1,2,3 which are all based on 2 bits. So for 10 letters, 
+	will take 20 bits. Make sure every time operation shift left 2.
 */
 
 class RepeatedDNASequences
