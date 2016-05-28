@@ -13,7 +13,8 @@ Try to do this in one pass.
 Analysis:
 
 Key point of this problem is to set up 2 pointers, and the distance between them is n.  
-So that when the faster pointer reached the end of the linked list, the slower pointer  point to the node prior to the node that need to be remove.
+So that when the faster pointer reached the end of the linked list, the slower pointer  
+point to the node prior to the node that need to be remove.
 
 */
 
