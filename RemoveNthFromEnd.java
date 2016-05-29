@@ -4,8 +4,8 @@ Given a linked list, remove the nth node from the end of list and return its hea
 For example,
 
    Given linked list: 1->2->3->4->5, and n = 2.
-
    After removing the second node from the end, the linked list becomes 1->2->3->5.
+
 Note:
 Given n will always be valid.
 Try to do this in one pass.
@@ -22,11 +22,11 @@ class RemoveNthFromEnd
 {
 	public ListNode removeNthFromEnd(ListNode head, int n)
 	{
-		ListNode slow = head;
-		ListNode fast = head;
-
 		if(head.next == null)
 			return null;
+		
+		ListNode slow = head;
+		ListNode fast = head;
 
 		//set up the distance between slower pointer and faster pointer
 		for(int i = 0; i < n; i++)
@@ -34,7 +34,7 @@ class RemoveNthFromEnd
 			fast = fast.next;
 		}
 
-		//case of removeing the head noe(i.e. n is larger than length of the list)
+		//case of removeing the head node(i.e. n is larger than length of the list)
 		if(fast == null)
 			return head.next;
 
