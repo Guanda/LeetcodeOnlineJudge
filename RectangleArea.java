@@ -12,9 +12,11 @@ class RectangleArea
 {
 	public int computeArea(int A, int B, int C, int D, int E, int F, int G, int H)
 	{
+		//the case that no overlap
 		if(C < E || A > G)
 			return (G - E) * (H - F) + (C - A) * (D - B);
 
+		//the other case of no overlap
 		if(D < F || H < B)
 			return (G - E) * (H - F) + (C - A) * (D - B);
 
@@ -23,6 +25,7 @@ class RectangleArea
 		int top = Math.min(H, D);
 		int bottom = Math.max(F, B);
 
+		//have overlap, minus it
 		return (G - E) * (H - F) + (C - A) * (D - B) - (right - left) * (top - bottom);
 	}
 }
