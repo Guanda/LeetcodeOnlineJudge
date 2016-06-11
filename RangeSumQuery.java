@@ -11,6 +11,8 @@ Note:
 You may assume that the array does not change.
 There are many calls to sumRange function.
 
+Analysis:
+	Use DP to save different sums
 */
 
 public class NumArray
