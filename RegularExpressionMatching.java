@@ -24,14 +24,15 @@ Method 1:
 	First of all, this is one of the most difficulty problems. It is hard to think through all 
 	different cases. The problem should be simplified to handle 2 basic cases:
 
-	the second char of pattern is "*"
 	the second char of pattern is not "*"
+	the second char of pattern is  "*"
 
 	For the 1st case, if the first char of pattern is not ".", the first char of pattern and 
 	string should be the same. Then continue to match the remaining part.
 
 	For the 2nd case, if the first char of pattern is "." or first char of pattern == the first 
-	i char of string, continue to match the remaining part.
+	char of string, continue to match the remaining part. Remember to consider the * can represent
+	0 element.
 
 Method 2:
 	DP solution
