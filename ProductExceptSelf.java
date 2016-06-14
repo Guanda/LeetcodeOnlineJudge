@@ -11,6 +11,7 @@ Could you solve it with constant space complexity? (Note: The output array does
 not count as extra space for the purpose of space complexity analysis.)
 
 Analysis:
+	Method 1:
 	The idea is for every elements in array, we can calculate the left of it and then
 	the right of it and then multiply them we will get what we want.
 
@@ -18,6 +19,8 @@ Analysis:
 	result should be [24,12,8,6]
 
 	And the most left and most right value are always 1.
+
+	We cannot just get all products and divided by each element, because we should consider 0.
 
 */
 
