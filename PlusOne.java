@@ -25,6 +25,7 @@ class PlusOne
 		//consider the first digit for the result
 		if(carry == 1)
 		{
+			//since all the other digits would be 0, just use default value
 			result = new int[digits.length + 1];
 			result[0] = 1;
 		}
