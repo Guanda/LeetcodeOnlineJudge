@@ -105,13 +105,13 @@ class PermutationsII {
 
 	//Method 3: recursive
 	public List<List<Integer>> permuteUniqueBest(int[] num) {
-        Arrays.sort(num);
-        List<List<Integer>> result = new ArrayList<List<Integer>>();
-        List<Integer> current = new ArrayList<Integer>();
-        boolean[] visited = new boolean[num.length];
-        permute(result, current, num, visited);
-        return result;
-    }
+	        Arrays.sort(num);
+	        List<List<Integer>> result = new ArrayList<List<Integer>>();
+	        List<Integer> current = new ArrayList<Integer>();
+	        boolean[] visited = new boolean[num.length];
+	        permute(result, current, num, visited);
+	        return result;
+	}
 
     private void permute(List<List<Integer>> result, List<Integer> current, int[] num, boolean[] visited) {
         if (current.size() == num.length) {
