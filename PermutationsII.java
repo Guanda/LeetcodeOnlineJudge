@@ -79,7 +79,7 @@ class PermutationsII {
 		}
 
 		for(int i = start; i < nums.length; i++) {
-			if(containsDuplicate(nums, start, i)) {
+			if(i != start && nums[i] == nums[i-1]) {
 				swap(nums, start, i);
 				helper(nums, start+1, results);
 				swap(nums, start, i);
@@ -96,10 +96,10 @@ class PermutationsII {
 	private boolean containsDuplicate(int[] arr, int start, int end) {
 		for (int i = start; i <= end-1; i++) {
 			if (arr[i] == arr[end]) {
-				return false;
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 
 
