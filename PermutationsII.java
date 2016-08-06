@@ -79,7 +79,7 @@ class PermutationsII {
 		}
 
 		for(int i = start; i < nums.length; i++) {
-			if(i != start && nums[i] == nums[i-1]) {
+			if(!containsDuplicate(nums, start, i)) {
 				swap(nums, start, i);
 				helper(nums, start+1, results);
 				swap(nums, start, i);
