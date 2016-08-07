@@ -29,36 +29,23 @@ But the following is not:
 class SymmetricTree
 {
 	//recursive solution
-	public boolean isSymmetric(TreeNode root)
-	{
-		if(root == null)
-			return true;
+    public boolean isSymmetric(TreeNode root) {
+        return root == null || isSymmetric(root.left, root.right);
+    }
 
-		return isSymmetric(root.left, root.right);
-	}
+    private boolean isSymmetric(TreeNode left, TreeNode right) {
+        if(left == null || right == null)
+            return left == right;
 
-	public boolean isSymmetric(TreeNode a, TreeNode b)
-	{
-		if(a == null)
-			return b == null;
+        if(left.val != right.val)
+            return false;
 
-		if(b == null)
-			return false;
-
-		if(a.val != b.val)
-			return false;
-
-		if(!isSymmetric(a.left, b.right))
-			return false;
-
-		if(!isSymmetric(a.right, b.left))
-			return false;
-
-		return true;
-	}
+        return isSymmetric(left.left, right.right) && isSymmetric(left.right, right.left);
+    }
 
 
 	//Iteration solution
+	//first use two linkedlist or stack to store nodes
 	public boolean isSymmetricIteration(TreeNode root)
 	{
 		if(root == null)
@@ -87,5 +74,35 @@ class SymmetricTree
 			}
 		}
 		return true;
+	}
+
+	//second after re-considering, we can use only one stack to solve this
+	public boolean isSymmetricIterationBetter(TreeNode root) {
+        if(root == null)
+            return true;
+
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        stack.add(root.left);
+        stack.add(root.right);
+        while(stack.size() > 1) {
+            TreeNode right = stack.pop();
+            TreeNode left = stack.pop();
+
+            if(left == null && right == null)
+                continue;
+
+            if((left == null && right != null) || (left != null && right == null))
+                return false;
+
+            if(left.val != right.val)
+                return false;
+
+            stack.add(left.right);
+            stack.add(right.left);
+            stack.add(left.left);
+            stack.add(right.right);
+        }
+
+        return true;
 	}
 }
