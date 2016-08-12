@@ -24,7 +24,7 @@ return true, as there exist a root-to-leaf path 5->4->11->2 which sum is 22.
  * }
  */
 
-class PathSumExisting
+class PathSum
 {
 	public boolean hasPathSum(TreeNode root, int sum)
 	{
@@ -35,8 +35,6 @@ class PathSumExisting
 		if(root.left == null && root.right == null)
 			return (sum == root.val);
 
-		boolean res = hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
-
-		return res;
+		return res = hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
 	}
 }
