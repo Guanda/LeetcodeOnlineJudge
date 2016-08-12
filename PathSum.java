@@ -31,7 +31,7 @@ class PathSum
 		if(root == null)
 			return false;
 
-		//get to leaf
+		//stop case, get to leaf
 		if(root.left == null && root.right == null)
 			return (sum == root.val);
 
