@@ -16,7 +16,6 @@ Anaylsis:
 	the example to find out where the new left tree ends in postorder.
 */
 
-
 /**
  * Definition for binary tree
  * public class TreeNode {
@@ -28,33 +27,30 @@ Anaylsis:
  */
 class ConstructBTFromInorderPostorder
 {
-	public TreeNode buildTree(int[] inorder, int[] postorder)
-	{
-		int inStart = 0;
-		int inEnd = inorder.length - 1;
-		int postStart = 0;
-		int postEnd = postorder.length - 1;
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
+        int inStart = 0;
+        int inEnd = inorder.length - 1;
+        int postStart = 0;
+        int postEnd = postorder.length - 1;
 
-		return buildTree(inorder, inStart, inEnd, postorder, postStart, postEnd);
-	}
+        return buildTree(inorder, inStart, inEnd, postorder, postStart, postEnd);
+    }
 
-	public TreeNode buildTree(int[] inorder, int inStart, int inEnd, int[] postorder, int postStart, int postEnd)
-	{
-		if(inStart > inEnd || postStart > postEnd)
-			return null;
+    public TreeNode buildTree(int[] inorder, int inStart, int inEnd, int[] postorder, int postStart, int postEnd) {
+        if(inStart > inEnd || postStart > postEnd)
+            return null;
 
-		TreeNode root = new TreeNode(postorder[postEnd]);
+        TreeNode root = new TreeNode(postorder[postEnd]);
 
-		int k = 0;
-		for(int i = 0; i < inorder.length; i++)
-		{
-			if(inorder[i] == postorder[postEnd])
-				k = i;
-		}
+        int i;
+        for(i = inStart; i <= inEnd; i++) {
+            if(inorder[i] == postorder[postEnd])
+                break;
+        }
 
-		root.left = buildTree(inorder, inStart, k-1, postorder, postStart, postStart + k - (inStart + 1));
-		root.right = buildTree(inorder, k+1, inEnd, postorder, postStart + k - inStart, postEnd-1);
+        root.left = buildTree(inorder, inStart, i-1, postorder, postStart, postStart+i-(inStart+1));
+        root.right = buildTree(inorder, i+1, inEnd, postorder, postStart+i-inStart, postEnd-1);
 
-		return root;
-	}
+        return root;
+    }
 }

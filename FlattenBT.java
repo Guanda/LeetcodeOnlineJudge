@@ -24,7 +24,6 @@ The flattened tree should look like:
 
 */
 
-
 /**
  * Definition for binary tree
  * public class TreeNode {
