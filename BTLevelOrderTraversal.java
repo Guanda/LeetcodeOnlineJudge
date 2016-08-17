@@ -28,52 +28,50 @@ return its level order traversal as:
 
 class BTLevelOrderTraversal
 {
-	public ArrayList<ArrayList<Integer>> levelOrder(TreeNode root)
+	public List<List<Integer>> levelOrder(TreeNode root)
   {
-      //The idea here is create two arraylist, current and parent. 
-      //Parent contains all the nodes in the upper level
-      //for every node in parent, we add its left and right child to current
+    List<List<Integer>> res = new ArrayList<>();
+    if (root == null)
+      return res;
 
-      ArrayList<ArrayList<TreeNode>> nodeResult = new ArrayList<ArrayList<TreeNode>>();
-      ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+    Queue<TreeNode> q = new LinkedList<>();
+    q.add(root);
 
-      if(root == null)
-          return result;
+    while(!q.isEmpty()) {
+      int levelSize = q.size();
+      List<Integer> currLevel = new ArrayList<>();
 
-      ArrayList<TreeNode> current = new ArrayList<TreeNode>();
-      current.add(root);
-
-      while(current.size() > 0)
-      {
-          //add the previous level into the nodeResult
-          nodeResult.add(current);
-
-          ArrayList<TreeNode> parent = current;
-          current = new ArrayList<TreeNode>();
-
-          for(TreeNode node : parent)
-          {
-              if(node.left != null)
-              {
-                  current.add(node.left);
-              }
-              if(node.right != null)
-              {
-                  current.add(node.right);
-              }
-          }
+      for(int i = 0; i < levelSize; i++) {
+        TreeNode currNode = q.poll();
+        currLevel.add(currNode.val);
+        if (currNode.left != null)
+          q.add(currNode.left);
+        if (currNode.right != null)
+          q.add(currNode.right);
       }
-
-      for(ArrayList<TreeNode> nodeArr : nodeResult)
-      {
-          ArrayList<Integer> intArr = new ArrayList<Integer>();
-          for(TreeNode node : nodeArr)
-          {
-              intArr.add(node.val);
-          }
-          result.add(intArr);
-      }
-
-      return result;
+      
+      res.add(currLevel);
+    }
+    return res;
   }
+
+  //Method 2: DFS
+  public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> results = new ArrayList<List<Integer>>();
+        levelOrderHelper(root, results, 0);
+        return results;
+    }
+
+    public void levelOrderHelper(TreeNode root, List<List<Integer>> results, int height) {
+        if(root == null)
+            return;
+
+        if(height >= results.size()) {
+            results.add(new ArrayList<Integer>());
+        }
+
+        results.get(height).add(root.val);
+        levelOrderHelper(root.left, results, height + 1);
+        levelOrderHelper(root.right, results, height + 1);
+    }
 }
