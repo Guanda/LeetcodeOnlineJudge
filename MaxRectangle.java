@@ -101,9 +101,30 @@ class MaxRectangle {
 			}
 			//compute left (from left to right)
 			for(int j = 0; j < cLen; j++) {
-				
+				if(matrix[i][j] == '1')
+					left[j] = Math.max(left[j], cur_left);
+				else {
+					left[j] = 0;
+					cur_left = j+1;
+				}
+			}
+			//compute right (from right to left)
+			for(int j = cLen-1; j >= 0; j--) {
+				if(matrix[i][j] == '1') {
+					right[j] = Math.min(right[j], cur_right);
+				}
+				else {
+					right[j] = cLen;
+					cur_right = j;
+				}
+			}
+
+			//compute the area of rectangle (can do this from either side)
+			for(int j = 0; j < cLen; j++) {
+				max = Math.max(max, height[j] * (right[j] - left[j]));
 			}
 		}
+		return max;
 	}
 }
 
