@@ -46,7 +46,7 @@ Return
  			{
  				partition.add(str);
  				addPalindrome(s, i, partition, result);
- 				//Focus on this, it will go back to previous case
+ 				//be careful about this, it will go back to previous case
  				partition.remove(partition.size() - 1);
  			}
  		}
