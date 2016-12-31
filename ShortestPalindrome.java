@@ -50,6 +50,8 @@ Analysis:
 */
 class ShortestPalindrome {
 	public String shortestPalindrome(String s) {
+		//I think # is there in case the string's tail is same to the string's head. For example , 
+		//if there is no # ,"aa" will be "aaaa", "aca" will be "acaaca", which can spoil the result.
 	    String temp = s + "#" + new StringBuilder(s).reverse().toString();
 	    int[] table = getTable(temp);
 	    
