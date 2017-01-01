@@ -1,5 +1,6 @@
 /*
-Given an array of size n, find the majority element. The majority element is the element that appears more than ⌊ n/2 ⌋ times.
+Given an array of size n, find the majority element. The majority element is the element that 
+appears more than ⌊ n/2 ⌋ times.
 
 You may assume that the array is non-empty and the majority element always exist in the array.
 
@@ -47,7 +48,7 @@ public class MajorityElement
 		return -1;
 	}
 
-	//Method 3: count as majority
+	//Method 3: count as majority, remember the assumption is the majority element is existing
 	public int majorityElement3(int[] num)
 	{
 		int count = 0;
@@ -57,7 +58,7 @@ public class MajorityElement
 			if(count == 0)
 			{
 				result = num[i];
-				count = 1;
+				count++;
 				continue;
 			}
 
