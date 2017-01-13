@@ -7,10 +7,7 @@ You may assume that duplicates do not exist in the tree.
 Anaylsis:
 	Same as the inorder and postorder problem. The first integer in preorder
 	is the root value.
-
 */
-
-
 /**
  * Definition for binary tree
  * public class TreeNode {
