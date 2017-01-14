@@ -22,8 +22,7 @@ class ContainsDuplicate3 {
 
             final Integer floor = values.floor(nums[i] + t);
             final Integer ceil = values.ceiling(nums[i] - t);
-            if ((floor != null && floor >= nums[i])
-                    || (ceil != null && ceil <= nums[i])) {
+            if ((floor != null && floor >= nums[i]) || (ceil != null && ceil <= nums[i])) {
                 return true;
             }
 
