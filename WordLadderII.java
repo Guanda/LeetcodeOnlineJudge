@@ -19,20 +19,17 @@ Note:
 All words have the same length.
 All words contain only lowercase alphabetic characters.
 
+Analysis:
+
+* we are essentially building a graph, from start, BF. and at each level we find all reachable words from parent.
+* we stop if the current level contains end, we return any path whose last node is end.
+* 
+* To achieve BFT, use a deuqe; a key improvement is to remove all the words we already reached
+* in PREVIOUS LEVEL; we don't need to try visit them again
+* in subsequent level, that is guaranteed to be non-optimal solution.
+* at each new level, we will removeAll() words reached in previous level from dict.
 */
 class WordLadderII {
-	/**
-	 * we are essentially building a graph, from start, BF.
-	 * and at each level we find all reachable words from parent.
-	 * we stop if the current level contains end,
-	 * we return any path whose last node is end.
-	 * 
-	 * to achieve BFT, use a deuqe;
-	 * a key improvement is to remove all the words we already reached
-	 * in PREVIOUS LEVEL; we don't need to try visit them again
-	 * in subsequent level, that is guaranteed to be non-optimal solution.
-	 * at each new level, we will removeAll() words reached in previous level from dict.
-	 */
 	public List<List<String>> findLadders(String start, String end, Set<String> dict) {
 	    List<List<String>> results = new ArrayList<List<String>>();
 	    dict.add(end);
@@ -76,7 +73,6 @@ class WordLadderII {
 	            chars[index] = original;
 	        }
 	    }
-	    
 	    return results;
 	}
 }

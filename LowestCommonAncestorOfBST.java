@@ -19,9 +19,7 @@ nodes 2 and 4 is 2, since a node can be a descendant of itself according to the 
 Analysis:
 Use the property of BST, just check from root to find out the first element that is between n1 and n2,
 or equals n1 or n2
-
 */
-
 /**
  * Definition for a binary tree node.
  * public class TreeNode {

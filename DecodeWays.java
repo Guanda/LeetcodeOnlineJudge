@@ -14,7 +14,9 @@ The number of ways decoding "12" is 2.
 
 Anaylsis:
 	
-Suppose we have an array of letters, A[1..n], and we already know the number of ways to decode A[1], A[1..2], A[1..i-1], how many ways to decode A[1..i]?
+Suppose we have an array of letters, A[1..n], and we already know the number of ways to decode 
+A[1], A[1..2], A[1..i-1], how many ways to decode A[1..i]?
+
 If A[i] is '0' and A[i-1] is neither '1' nor '2', invalid message;
 If A[i] is '0' and A[i-1] is '1' or '2', the number of ways is the number of ways of A[1..i-2];
 If A[i] can be combined with prior letter, the number of ways is the number of ways of A[1..i-1] + A[1..i-2];

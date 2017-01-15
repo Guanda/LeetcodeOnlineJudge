@@ -37,7 +37,7 @@ public class DifferentWaysAddParentheses {
 			char c = input.charAt(i);
 			if(isOperator(c)) {
 				List<Integer> a = diffWaysToCompute(input.substring(0, i));
-				List<Integer> b = diffWaysToCompute(input.substring(i+1, input.length()));
+				List<Integer> b = diffWaysToCompute(input.substring(i+1));
 
 				for(int p : a) {
 					for(int q : b) {
