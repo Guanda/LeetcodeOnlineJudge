@@ -33,7 +33,7 @@ class FindMinInRotatedSortedArray2
 		if(right - left == 1)
 			return Math.min(nums[left], nums[right]);
 
-		int middle = (left + right) / 2;
+		int middle = left + (right - left) / 2;
 
 		//no rotated
 		if(nums[left] < nums[right])

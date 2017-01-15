@@ -28,7 +28,7 @@ class FindMinInRotatedSortedArray
 		if(right - left == 1)
 			return Math.min(num[left], num[right]);
 
-		int mid = (left + right) / 2;
+		int mid = left + (right - left) / 2;
 
 		//no rotated
 		if(num[left] < num[right])
