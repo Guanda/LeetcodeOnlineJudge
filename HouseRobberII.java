@@ -17,7 +17,7 @@ Analysis:
 
 */
 
-class HouseRobber2
+class HouseRobberII
 {
 	public int rob(int[] nums)
 	{
