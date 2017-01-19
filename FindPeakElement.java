@@ -1,5 +1,4 @@
 /*
-
 A peak element is an element that is greater than its neighbors.
 Given an input array where num[i] ≠ num[i+1], find a peak element and return its index.
 The array may contain multiple peaks, in that case return the index to any one of the peaks is fine.
@@ -11,13 +10,13 @@ Note:
 Your solution should be in logarithmic complexity.
 
 Anaylsis:
-We can use Divide and Conquer to find a peak in O(Logn) time. 
-The idea is Binary Search based, we compare middle element with 
-its neighbors. If middle element is greater than both of its 
-neighbors, then we return it. If the middle element is smaller 
-than the its left neighbor, then there is always a peak in left 
-half. If the middle element is smaller than the its right neighbor, 
-then there is always a peak in right half. 
+	We can use Divide and Conquer to find a peak in O(Logn) time. 
+	The idea is Binary Search based, we compare middle element with 
+	its neighbors. If middle element is greater than both of its 
+	neighbors, then we return it. If the middle element is smaller 
+	than the its left neighbor, then there is always a peak in left 
+	half. If the middle element is smaller than the its right neighbor, 
+	then there is always a peak in right half. 
 */
 
 class FindPeakElement

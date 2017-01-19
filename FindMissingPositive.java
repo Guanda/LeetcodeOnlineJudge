@@ -21,7 +21,6 @@ The result array could be something like [1, 2, 3, 0, 5, 6, ...]. Then it's easy
 the first missing one is 4 by iterate through the array and compare each value with their index.
 
 (If the current value larger than length of the array, keep it stay in same place)
-
 */
 
 class FindMissingPositive
