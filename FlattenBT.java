@@ -3,7 +3,6 @@ Given a binary tree, flatten it to a linked list in-place.
 
 For example,
 Given
-
          1
         / \
        2   5
@@ -21,9 +20,7 @@ The flattened tree should look like:
            5
             \
              6
-
 */
-
 /**
  * Definition for binary tree
  * public class TreeNode {
@@ -46,15 +43,13 @@ class FlattenBT
 			return root;
 
 		TreeNode rtree = root.right;
-		if(root.left != null)
-		{
+		if(root.left != null) {
 			root.right = root.left;
 			root.left = null;
 			root = helper(root.right);
 		}
 
-		if(rtree != null)
-		{
+		if(rtree != null) {
 			root.right = rtree;
 			root = helper(root.right);
 		}

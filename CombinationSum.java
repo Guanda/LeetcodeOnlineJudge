@@ -13,17 +13,13 @@ For example, given candidate set 2,3,6,7 and target 7,
 A solution set is: 
 [7] 
 [2, 2, 3] 
-
 */
 
-public class CombinationSum
-{
-	public ArrayList<ArrayList<Integer>> combinationSum(int[] candidates, int target)
-	{
+public class CombinationSum {
+	public ArrayList<ArrayList<Integer>> combinationSum(int[] candidates, int target) {
 		ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
 
-		if(candidates == null || candidates.length == 0 || target <= 0)
-		{
+		if(candidates == null || candidates.length == 0 || target <= 0) {
 			return result;
 		}
 		Arrays.sort(candidates);
@@ -34,22 +30,17 @@ public class CombinationSum
 
 	public void combinationSumHelper(int[] candidates, int target, int start,
 	                                ArrayList<Integer> list,
-									ArrayList<ArrayList<Integer>> result)
-	{
-		if(0 == target)
-		{
+									ArrayList<ArrayList<Integer>> result) {
+		if(0 == target) {
 			result.add(new ArrayList<Integer>(list));
 		}
-		else
-		{
-			for(int i = start; i < candidates.length && candidates[i] <= target; i++)
-			{
+		else {
+			for(int i = start; i < candidates.length && candidates[i] <= target; i++) {
 				list.add(candidates[i]);
 				combinationSumHelper(candidates, target-candidates[i], i, list, result);
 				list.remove(list.size() - 1);
 			}
 		}
-
 		return;
 	}
 }

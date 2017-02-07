@@ -14,17 +14,13 @@ A solution set is:
 [1, 2, 5] 
 [2, 6] 
 [1, 1, 6] 
-
 */
 
-public class CombinationSum2
-{
-	public ArrayList<ArrayList<Integer>> combinationSum(int[] candidates, int target)
-	{
+public class CombinationSum2 {
+	public ArrayList<ArrayList<Integer>> combinationSum(int[] candidates, int target) {
 		ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
 
-		if(candidates == null || candidates.length == 0 || target <= 0)
-		{
+		if(candidates == null || candidates.length == 0 || target <= 0) {
 			return result;
 		}
 		Arrays.sort(candidates);
@@ -35,23 +31,19 @@ public class CombinationSum2
 
 	public void combinationSumHelper(int[] candidates, int target, int start,
 	                                ArrayList<Integer> list,
-									ArrayList<ArrayList<Integer>> result)
-	{
-		if(0 == target)
-		{
+									ArrayList<ArrayList<Integer>> result) {
+		if(0 == target) {
 			result.add(new ArrayList<Integer>(list));
 		}
-		else
-		{
-			for(int i = start; i < candidates.length && candidates[i] <= target; i++)
-			{
-				if (i>start && candidates[i] == candidates[i-1]) continue;
+		else {
+			for(int i = start; i < candidates.length && candidates[i] <= target; i++) {
+				if (i > start && candidates[i] == candidates[i-1]) 
+					continue;
 				list.add(candidates[i]);
 				combinationSumHelper(candidates, target-candidates[i], i+1, list, result);
 				list.remove(list.size() - 1);
 			}
 		}
-
 		return;
 	}
 }

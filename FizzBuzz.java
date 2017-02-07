@@ -24,7 +24,6 @@ Return:
     "14",
     "FizzBuzz"
 ]
-
 */
 class FizzBuzz {
 	public List<String> fizzBuzz(int n) {
