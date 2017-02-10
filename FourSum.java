@@ -11,51 +11,41 @@ The solution set must not contain duplicate quadruplets.
     (-1,  0, 0, 1)
     (-2, -1, 1, 2)
     (-2,  0, 0, 2)
-
 */
 
-public class FourSum
-{
-	public ArrayList<ArrayList<Integer>> 4Sum(int[] num, int target)
-	{
-		Arrays.sort(num);
+public class FourSum {
+	public List<List<Integer>> fourSum(int[] nums, int target) {
+		List<List<Integer>> result = new ArrayList<List<Integer>>();
+		if (nums == null || nums.length < 4)
+			return result;
 
-		HashSet<ArrayList<Integer>> hashSet = new HashSet<ArrayList<Integer>>();
-		ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
-
-		for(int i = 0; i < num.length; i++)
-		{
-			for(int j = i + 1; j < num.length; j++)
-			{
+		Arrays.sort(nums);
+		Set<List<Integer>> hashSet = new HashSet<List<Integer>>();
+		for(int i = 0; i < nums.length; i++) {
+			for(int j = i + 1; j < nums.length; j++) {
 				int k = j + 1;
-				int l = num.length - 1;
-				while(k < l)
-				{
-					int sum = num[i] + num[j] + num[k] + num[l];
-					if(sum < target)
-					{
+				int l = nums.length - 1;
+				while(k < l) {
+					int sum = nums[i] + nums[j] + nums[k] + nums[l];
+					if(sum < target) {
 						k++;
 					}
-					else if(sum > target)
-					{
+					else if(sum > target) {
 						l--;
 					}
-					else
-					{
-						ArrayList<Integer> tmp = new ArrayList<Integer>();
-						tmp.add(num[i]);
-						tmp.add(num[j]);
-						tmp.add(num[k]);
-						tmp.add(num[l]);
-						if(!hashSet.contains(tmp))
-						{
+					else {
+						List<Integer> tmp = new ArrayList<Integer>();
+						tmp.add(nums[i]);
+						tmp.add(nums[j]);
+						tmp.add(nums[k]);
+						tmp.add(nums[l]);
+						if(!hashSet.contains(tmp)) {
 							hashSet.add(tmp);
 							result.add(tmp);
 						}
 						k++;
 						l--;	
 					}
-
 				}
 			}
 		}
