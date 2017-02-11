@@ -17,14 +17,10 @@ Anaylsis:
 	The remainder could be zero while doing the division. That means there is no repeating 
 	fractional part and you should stop right away.
 
-	Be wary of edge case such as negative fractions and nasty extreme case such as -2147483648 / -1.
-
+	Be aware of edge cases such as negative fractions and nasty extreme case such as -2147483648 / -1.
 */
-
-class FractionToDecimal
-{
-	public String fractionToDecimal(int numerator, int denominator)
-	{
+class FractionToDecimal {
+	public String fractionToDecimal(int numerator, int denominator) {
 		if(numerator == 0)
 			return "0";
 		if(denominator == 0)
@@ -33,8 +29,7 @@ class FractionToDecimal
 		String result = "";
 
 		//if the result is negative
-		if((numerator < 0 && denominator > 0) || (numerator > 0 && denominator < 0))
-		{
+		if((numerator < 0 && denominator > 0) || (numerator > 0 && denominator < 0)) {
 			result += "-";
 		}
 
@@ -55,11 +50,9 @@ class FractionToDecimal
 		//decimal part
 		HashMap<Long, Integer> map = new HashMap<Long, Integer>();
 		result += ".";
-		while(reminder != 0)
-		{
+		while(reminder != 0) {
 			//if the reminder existing before, start recurring
-			if(map.containsKey(reminder))
-			{
+			if(map.containsKey(reminder)) {
 				//the position of recurring starts, because we have ".", the value should be start point
 				int begin = map.get(reminder);
 				String part1 = result.substring(0, begin);
