@@ -1,9 +1,7 @@
 /*
 Write a program to find the node at which the intersection of two singly linked lists begins.
 
-
 For example, the following two linked lists:
-
 A:          a1 → a2
                    ↘
                      c1 → c2 → c3
@@ -20,7 +18,6 @@ Analysis:
        list after it reaches the tail and then until we get the same node, we can stop. The diff size will
        be implemented automatically because the pointer will reset to head of another list.
 */
-
 /**
  * Definition for singly-linked list.
  * public class ListNode {
