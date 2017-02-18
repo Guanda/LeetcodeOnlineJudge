@@ -17,17 +17,13 @@ Analysis:
 	Use hashtable to record the square sum, when non-1 square sum keep repeating, return false
 */
 
-class HappyNumber
-{
-	public boolean isHappy(int n)
-	{
+class HappyNumber {
+	public boolean isHappy(int n) {
 		HashSet<Integer> hs = new HashSet<Integer>();
-		while(n != 1 && !hs.contains(n))
-		{
+		while(n != 1 && !hs.contains(n)) {
 			hs.add(n);
 			int sum = 0;
-			while(n > 0)
-			{
+			while(n > 0) {
 				int digit = n % 10;
 				sum = sum + digit * digit;
 				n = n / 10;

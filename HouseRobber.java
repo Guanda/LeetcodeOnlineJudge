@@ -17,15 +17,11 @@ Analysis:
 
 showing like this:
 	Max(dp[k-2]+num[k], dp[k-1])
-
 */
 
-class HouseRobber
-{
-	public int rob(int[] num)
-	{
-		if(num.length == 0)
-		{
+class HouseRobber {
+	public int rob(int[] num) {
+		if(num.length == 0) {
 			return 0; 
 		}
 
@@ -33,8 +29,7 @@ class HouseRobber
 		int prev = num[0];
 
 		//Here start from 1!!!!
-		for(int i = 1; i < num.length; i++)
-		{
+		for(int i = 1; i < num.length; i++) {
 			int tmp = prev;
 			prev = Math.max(prevprev + num[i], prev);
 			prevprev = tmp;
