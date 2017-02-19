@@ -22,7 +22,6 @@ Example 2:
 Maximum amount of money the thief can rob = 4 + 5 = 9.
 
 Analysis:
-	Method 1: 
 	Termination condition: when do we know the answer to rob(root) without any calculation? 
 	Of course when the tree is empty -- we've got nothing to rob so the amount of money is zero.
 
@@ -32,7 +31,6 @@ Analysis:
 	would be the four "grandchild-subtrees" (root.left.left, root.left.right, root.right.left, root.right.right). 
 	However if root is not robbed, the next level of available subtrees would just be the two "child-subtrees" 
 	(root.left, root.right). We only need to choose the scenario which yields the larger amount of money.
-
 */
 class HouseRobberIII {
 	//Method 1: Naively

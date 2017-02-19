@@ -11,16 +11,13 @@ Given a list of non-negative integers representing the amount of money of each h
 determine the maximum amount of money you can rob tonight without alerting the police.
 
 Analysis:
-	This is an extension of House Robber. There are two cases here 1) 1st element is included 
-	and last is not included 2) 1st is not included and last is included. Therefore, we can 
-	use the similar dynamic programming approach to scan the array twice and get the larger value.
-
+	This is an extension of House Robber. There are two cases here :
+	1) 1st element is included and last is not included 
+	2) 1st is not included and last is included. Therefore, we can 
+	   use the similar dynamic programming approach to scan the array twice and get the larger value.
 */
-
-class HouseRobberII
-{
-	public int rob(int[] nums)
-	{
+class HouseRobberII {
+	public int rob(int[] nums) {
 		if(nums == null || nums.length == 0)
 			return 0;
 
@@ -34,8 +31,7 @@ class HouseRobberII
 		int prevprev1 = 0;
 		int prev1 = nums[0];
 
-		for(int i = 2; i < nums.length; i++)
-		{
+		for(int i = 2; i < nums.length; i++) {
 			int tmp = prev1;
 			prev1 = Math.max(prev1, prevprev1+nums[i-1]);
 			prevprev1 = tmp;
@@ -45,8 +41,7 @@ class HouseRobberII
 		int prevprev2 = 0;
 		int prev2 = nums[1];
 
-		for(int i = 2; i < nums.length; i++)
-		{
+		for(int i = 2; i < nums.length; i++) {
 			int tmp = prev2;
 			prev2 = Math.max(prev2, prevprev2+nums[i]);
 			prevprev2 = tmp;
