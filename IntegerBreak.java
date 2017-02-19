@@ -4,48 +4,41 @@ maximize the product of those integers. Return the maximum product you can get.
 
 For example, given n = 2, return 1 (2 = 1 + 1); given n = 10, return 36 (10 = 3 + 3 + 4).
 
-Note: you may assume that n is not less than 2.
+Note: You may assume that n is not less than 2 and not larger than 58.
 
 Hint:
-
-There is a simple O(n) solution to this problem.
-You may check the breaking results of n ranging from 7 to 10 to discover the regularities.
+1. There is a simple O(n) solution to this problem.
+2. You may check the breaking results of n ranging from 7 to 10 to discover the regularities.
 
 Analysis:
+	The first thing we should consider is : What is the max product if we break a number N into two factors?
+	I use a function to express this product: f=x(N-x)
+	When x=N/2, we get the maximum of this function.
+	However, factors should be integers. Thus the maximum is (N/2)*(N/2) when N is even
+	 or (N-1)/2 *(N+1)/2 when N is odd.
+	When the maximum of f is larger than N, we should do the break.
+	(N/2)*(N/2)>=N, then N>=4
+	(N-1)/2 *(N+1)/2>=N, then N>=5
+	These two expressions mean that factors should be less than 4, otherwise we can do the break and get a 
+	better product. The factors in last result should be 1, 2 or 3. Obviously, 1 should be abandoned. Thus, 
+	the factors of the perfect product should be 2 or 3.
 
-Given a number n lets say we have a possible product P = p1 * p2 * ... pk. Then we notice 
-what would happen if we could break pi up into two more terms lets say one of the terms is 
-2 we would get the terms pi-2 and 2 so if 2(pi-2) > pi we would get a bigger product and 
-this happens if pi > 4. since there is one other possible number less then 4 that is not 2 aka 3. 
-Likewise for 3 if we instead breakup the one of the terms into pi-3 and 3 we would get a bigger 
-product if 3*(pi-3) > pi which happens if pi > 4.5.
-
-Hence we see that all of the terms in the product must be 2's and 3's. So we now just need to 
-write n = a3 + b2 such that P = (3^a) * (2^b) is maximized. Hence we should favor more 3's then 
-2's in the product then 2's if possible.
-
-So if n = a*3 then the answer will just be 3^a.
-
-if n = a3 + 2 then the answer will be 2(3^a).
-
-and if n = a3 + 22 then the answer will be 2 * 2 * 3^a
-
-The above three cover all cases that n can be written as and the Math.pow() function takes 
-O(log n) time to preform hence that is the running time.
-
+	The reason why we should use 3 as many as possible is
+	For 6, 3 * 3>2 * 2 * 2. Thus, the optimal product should contain no more than three 2.
 */
-
 class IntegerBreak {
 	public int integerBreak(int n) {
-		if(n == 2)
-			return 1;
-		else if(n == 3)
-			return 2;
-		else if(n % 3 == 0)
-			return (int)Math.pow(3, n/3);
-		else if(n % 3 == 1)
-			return 2 * 2 * (int)Math.pow(3, (n - 4) / 3);
-		else
-			return 2 * (int) Math.pow(3, n/3);
+        if(n == 2) 
+        	return 1;
+        if(n == 3) 
+        	return 2;
+        int product = 1;
+        while(n > 4){
+            product *= 3;
+            n -= 3;
+        }
+        product *= n;
+        
+        return product;
 	}
 }
