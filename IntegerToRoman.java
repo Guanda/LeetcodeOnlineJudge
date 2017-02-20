@@ -4,16 +4,15 @@ Given an integer, convert it to a roman numeral.
 Input is guaranteed to be within the range from 1 to 3999.
 */
 
-class IntegerToRoman
-{
-	public String intergerToRoman(int num)
-	{
+class IntegerToRoman{
+	public String intergerToRoman(int num) {
 		if (num < 1 || num > 3999)
 		        return "Invalid Roman Number Value";
 	    String s = "";
 	    while (num >= 1000) {
 	        s += "M";
-	        num -= 1000;        }
+	        num -= 1000;        
+	    }
 	    while (num >= 900) {
 	        s += "CM";
 	        num -= 900;

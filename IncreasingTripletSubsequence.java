@@ -18,9 +18,7 @@ Analysis:
 	if nums[i] smaller than a, then a=nums[i]
 	if a < nums[i] < b, then b=nums[i]
 	if nums[i] > b, then three elements found, return true
-
 */
-
 public class IncreasingTripletSubsequence {
 	public boolean increasingTriplet(int[] nums) {
 		if(nums == null || nums.length == 0)

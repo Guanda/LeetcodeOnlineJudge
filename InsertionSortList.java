@@ -1,8 +1,6 @@
 /*
 Sort a linked list using insertion sort.
-
 */
-
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -11,28 +9,24 @@ Sort a linked list using insertion sort.
  *     ListNode(int x) { val = x; }
  * }
  */
-class InsertionSortList
-{
-	public ListNode insertionSortList(ListNode head)
-	{
+class InsertionSortList {
+	public ListNode insertionSortList(ListNode head) {
 		if(head == null)
 			return null;
-		ListNode helper = new ListNode(0);
-		ListNode prev = helper;
+		ListNode dummy = new ListNode(0);
+		ListNode prev = dummy;
 		ListNode curr = head;
 
-		while(curr != null)
-		{
+		while(curr != null) {
 			ListNode next = curr.next;
-			prev = helper;
-			while(prev.next != null && prev.next.val <= curr.val)
-			{
+			prev = dummy;
+			while(prev.next != null && prev.next.val <= curr.val) {
 				prev = prev.next;
 			}
 			curr.next = prev.next;
 			prev.next = curr;
 			curr = next;
 		}
-		return helper.next;
+		return dummy.next;
 	}
 }
