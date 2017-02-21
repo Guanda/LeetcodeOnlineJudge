@@ -1,6 +1,5 @@
 /*
 Invert a binary tree.
-
      4
    /   \
   2     7
@@ -16,9 +15,7 @@ to
 9   6 3   1
 
 Analysis: recursive, remember the null case for root, otherwise it will return null pointer exception
-
 */
-
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -28,10 +25,8 @@ Analysis: recursive, remember the null case for root, otherwise it will return n
  *     TreeNode(int x) { val = x; }
  * }
  */
-class InvertBinaryTree
-{
-	public TreeNode invertTree(TreeNode root) 
-	{
+class InvertBinaryTree {
+	public TreeNode invertTree(TreeNode root) {
 		if(root == null)
 		    return root;
 

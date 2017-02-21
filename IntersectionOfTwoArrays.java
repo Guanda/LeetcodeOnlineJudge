@@ -11,7 +11,6 @@ The result can be in any order.
 Analysis:
 	Using hashset to save all elements in nums1 and check the nums2
 	Time Complexity: O(n)
-
 */
 
 class IntersectionOfTwoArrays {
