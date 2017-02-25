@@ -9,29 +9,24 @@ Note:
 You may assume k is always valid, 1 ≤ k ≤ array's length.
 
 Analysis:
-1. The simplest way is sort array first then find the element
-2. Using the quickSort idea, but try compare pivot and k to find it.
-
+	1. The simplest way is sort array first then find the element
+	2. Using the quickSort idea, but try compare pivot and k to find it.
 */
 
-class KthLargestInArray
-{
-	public int findKthLargest(int[] nums, int k)
-	{
+class KthLargestInArray {
+	public int findKthLargest(int[] nums, int k) {
 		if(k < 1 || nums == null)
 			return 0;
 
 		return getKth(nums, nums.length - k +1, 0, nums.length-1);
 	}
 
-	public int getKth(int[] nums, int k, int start, int end)
-	{
+	public int getKth(int[] nums, int k, int start, int end) {
 		int pivot = nums[end];
 		int left = start;
 		int right = end;
 
-		while(true)
-		{
+		while(true) {
 			while(nums[left] < pivot && left < right)
 				left++;
 			while(nums[right] >= pivot && left < right)
@@ -44,22 +39,18 @@ class KthLargestInArray
 		}
 		swap(nums, left, end);
 
-		if(k == left+1)
-		{
+		if(k == left+1) {
 			return pivot;
 		}
-		else if(k < left+1)
-		{
+		else if(k < left+1) {
 			return getKth(nums, k, start, left-1);
 		}
-		else
-		{
+		else {
 			return getKth(nums, k, left+1, end);
 		}
 	}
 
-	public void swap(int[] nums, int left, int right)
-	{
+	public void swap(int[] nums, int left, int right) {
 		int tmp = nums[left];
 		nums[left] = nums[right];
 		nums[right] = tmp;

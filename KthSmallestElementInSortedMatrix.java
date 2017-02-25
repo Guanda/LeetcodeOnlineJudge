@@ -22,7 +22,6 @@ Analysis:
 	Every time when you poll out the root(Top Element in Heap), you need to know the row number and column 
 	number of that element(so we can create a tuple class here), replace that root with the next element 
 	from the same column.
-
 */
 class KthSmallestElementInSortedMatrix {
 	public int kthSmallest(int[][] matrix, int k) {
