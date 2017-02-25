@@ -21,7 +21,7 @@ The 11th digit of the sequence 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ... is a 0, wh
 class NthDigit {
 	public int findNthDigit(int n) {
 		int len = 1;
-		int count = 9;
+		long count = 9;
 		int start = 1;
 		while(n > len * count) {
 			n -= len * count;
