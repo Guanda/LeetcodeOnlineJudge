@@ -9,7 +9,9 @@ Note:
 You may assume k is always valid, 1 ≤ k ≤ array's length.
 
 Analysis:
-	1. The simplest way is sort array first then find the element
+	Three methods:
+	1. The simplest way is sort array first then find the element.
+	2. Using priority queue (max-heap) then pop k times.
 	2. Using the quickSort idea, but try compare pivot and k to find it.
 */
 
@@ -18,7 +20,9 @@ class KthLargestInArray {
 		if(k < 1 || nums == null)
 			return 0;
 
-		return getKth(nums, nums.length - k +1, 0, nums.length-1);
+		//using length-k is beacause we need the nth largest, so here we are 
+		//trying to quick sort to find out the length-k smaller elements
+		return getKth(nums, nums.length - k, 0, nums.length - 1);
 	}
 
 	public int getKth(int[] nums, int k, int start, int end) {
@@ -39,10 +43,10 @@ class KthLargestInArray {
 		}
 		swap(nums, left, end);
 
-		if(k == left+1) {
+		if(k == left) {
 			return pivot;
 		}
-		else if(k < left+1) {
+		else if(k < left) {
 			return getKth(nums, k, start, left-1);
 		}
 		else {
