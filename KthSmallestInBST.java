@@ -9,16 +9,13 @@ What if the BST is modified (insert/delete operations) often and you need to fin
 frequently? How would you optimize the kthSmallest routine?
 
 Hint:
-
 Try to utilize the property of a BST.
 What if you could modify the BST node's structure?
 The optimal runtime complexity is O(height of BST).
 
 Analysis:
 	3 methods here.
-
 */
-
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -30,7 +27,7 @@ Analysis:
  */
 public class KthSmallestInBST
 {
-	//inorder traverse, time: O(n), space O(n)
+	//Method 1: inorder traverse, time: O(n), space O(n)
 	public int kthSmallest(TreeNode root, int k)
 	{
 		int result = 0;
@@ -56,8 +53,8 @@ public class KthSmallestInBST
 	}
 
 
-	//get size of BST and recursively find out kth element
-	//time: O(nlogn), space: O(1). size BST is time O(n)
+	//Method 2: get size of BST and recursively find out kth element
+	//time: O(nlogn), space: O(1). size() method is time O(n)
 	public int kthSmallest2(TreeNode root, int k)
 	{
 		int leftNodeSize = size(root.left);
@@ -92,21 +89,18 @@ public class KthSmallestInBST
 	    	val = x; 
 	    }
 
-	    public int size(TreeNode root)
-		{
+	    public int size(TreeNode root) {
 			if(root == null)
 				return 0;
 
 			return root.n;
 		}
 
-		public void insert(int val)
-		{
-			p = insert(p, val);
+		public void insert(int val) {
+			insert(p, val);
 		}
 
-		private TreeNode insert(TreeNode p, int val)
-		{
+		private TreeNode insert(TreeNode p, int val) {
 			if(p == null) {
 				return new TreeNode(val);
 			}
