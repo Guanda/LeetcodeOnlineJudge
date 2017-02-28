@@ -48,7 +48,7 @@ class TrappingRainWaterII {
         if (heights == null || heights.length == 0 || heights[0].length == 0)
             return 0;
 
-        PriorityQueue<Cell> queue = new PriorityQueue<>(1, new Comparator<Cell>(){
+        PriorityQueue<Cell> queue = new PriorityQueue<>(new Comparator<Cell>(){
             public int compare(Cell a, Cell b) {
                 return a.height - b.height;
             }
