@@ -12,9 +12,6 @@ Hint:
 Try to utilize the property of a BST.
 What if you could modify the BST node's structure?
 The optimal runtime complexity is O(height of BST).
-
-Analysis:
-	3 methods here.
 */
 /**
  * Definition for a binary tree node.
