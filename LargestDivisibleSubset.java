@@ -13,10 +13,11 @@ nums: [1,2,4,8]
 Result: [1,2,4,8]
 
 Analysis:
-	1. Sort
-	2. Find the length of longest subset
-	3. Record the largest element of it.
-	4. Do a loop from the largest element to nums[0], add every element belongs to the longest subset.
+	steps:
+		1. Sort
+		2. Find the length of longest subset
+		3. Record the largest element of it.
+		4. Do a loop from the largest element to nums[0], add every element belongs to the longest subset.
 */
 class LargestDivisibleSubset {
 	public List<Integer> largestDivisibleSubset(int[] nums) {
@@ -46,6 +47,7 @@ class LargestDivisibleSubset {
 
 		//from nums[maxIndex] to 0, add every element belongs to the largest subset.
 		int tmp = nums[maxIndex];
+		//the current count
 		int curDp = dp[maxIndex];
 		for(int i = maxIndex; i >= 0; i--) {
 			if(tmp % nums[i] == 0 && dp[i] == curDp) {
