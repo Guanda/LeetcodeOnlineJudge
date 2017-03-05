@@ -32,7 +32,6 @@ and index of previous item in stack is the ‘left index’. Following is the co
 	 index’ is previous (previous to tp) item in stack and ‘right index’ is ‘i’ (current index).
 
 3) If the stack is not empty, then one by one remove all bars from stack and do step 2.b for every removed bar.
-
 */
 
 class LargestRectangleInHistogram {
