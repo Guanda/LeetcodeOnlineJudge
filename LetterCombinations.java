@@ -51,7 +51,7 @@ public class LetterCombinations {
 	}
 
 
-	//Method 2:
+	//Method 2: insert char to string one by one
     public ArrayList<String> letterCombinations(String digits) {
 	    setup();
 	    ArrayList<String> res = new ArrayList<String>();
