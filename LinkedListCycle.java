@@ -5,11 +5,9 @@ Follow up:
 Can you solve it without using extra space?
 
 Analysis:
-The idea is set two point, one move slow the other move fast, and if there is a cycle,
-the slow and fast will meet finally, otherwise the next will be null, no loop;
-
+	The idea is set two point, one move slow the other move fast, and if there is a cycle,
+	the slow and fast will meet finally, otherwise the next will be null, no loop;
 */
-
 /**
  * Definition for singly-linked list.
  * class ListNode {
@@ -21,18 +19,15 @@ the slow and fast will meet finally, otherwise the next will be null, no loop;
  *     }
  * }
  */
-class LinkedListCycle
-{
-	public boolean hasCycle(ListNode head)
-	{
+class LinkedListCycle {
+	public boolean hasCycle(ListNode head) {
 		if(head == null)
 			return false;
 
 		ListNode slow = head;
 		ListNode fast = head;
 
-		while(fast != null && fast.next != null)
-		{
+		while(fast != null && fast.next != null) {
 			slow = slow.next;
 			fast = fast.next.next;
 
