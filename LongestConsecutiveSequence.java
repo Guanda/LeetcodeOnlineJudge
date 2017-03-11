@@ -8,15 +8,11 @@ The longest consecutive elements sequence is [1, 2, 3, 4]. Return its length: 4.
 Your algorithm should run in O(n) complexity.
 
 Analysis:
-We can use a HashSet to add and remove elements. HashSet is implemented by using a hash table. 
-Elements are not ordered. The add, remove and contains methods have constant time complexity O(1).
-
+	We can use a HashSet to add and remove elements. HashSet is implemented by using a hash table. 
+	Elements are not ordered. The add, remove and contains methods have constant time complexity O(1).
 */
-
-class LongestConsecutiveSequence
-{
-	public int longestConsecutive(int[] nums)
-	{
+class LongestConsecutiveSequence {
+	public int longestConsecutive(int[] nums) {
 		if(nums == null || nums.length == 0)
 			return 0;
 
@@ -25,20 +21,17 @@ class LongestConsecutiveSequence
 		for(int e : nums)
 			set.add(e);
 
-		for(int e : nums)
-		{
+		for(int e : nums) {
 			int left = e - 1;
 			int right = e + 1;
 			int count = 1;
-			while(set.contains(left))
-			{
+			while(set.contains(left)) {
 				count++;
 				set.remove(left);
 				left--;
 			}
 
-			while(set.contains(right))
-			{
+			while(set.contains(right)) {
 				count++;
 				set.remove(right);
 				right++;

@@ -28,6 +28,7 @@ Analysis:
 	2. If it's smaller, means we are on the right track and we should keep going. If larger, stop and return.
 	3. Treat each cell as a start cell. Calculate and memorize the longest distance for this cell, 
 	   so we don't need to calculate it again in the future.
+	Time complexity should be O(mn), because of the cache, dfs only check values.
 */
 class LongestIncreasingPathInMatrix {
 	public int longestIncreasingPath(int[][] matrix) {
