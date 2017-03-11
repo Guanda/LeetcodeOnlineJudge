@@ -33,6 +33,9 @@ The name of a directory or sub-directory will not contain a ..
 Time complexity required: O(n) where n is the size of the input string.
 
 Notice that a/aa/aaa/file1.txt is not the longest file path, if there is another path aaaaaaaaaaaaaaaaaaaaa/sth.png.
+
+Analysis:
+	Just pay attention that in String "\n", "\t", "\123" will all be count the length as one
 */
 class LongestAbsoluteFilePath {
 	public int lengthLongestPath(String input) {
@@ -40,7 +43,7 @@ class LongestAbsoluteFilePath {
 		stack.push(0);
 		int max = 0;
 		for(String s : input.split("\n")) {
-			int layer = s.lastIndexOf("\t") + 1; // number of \t
+			int layer = s.lastIndexOf("\t") + 1; // number of \t, see the analysis
 			//find parent
 			while(layer + 1 < stack.size()) {
 				stack.pop();
