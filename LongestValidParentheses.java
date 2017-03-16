@@ -8,7 +8,6 @@ Another example is ")()())", where the longest valid parentheses substring is "(
 
 Analysis:
 	Using stack to track the index
-
 */
 
 class LongestValidParentheses {

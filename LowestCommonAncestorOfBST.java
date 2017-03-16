@@ -17,8 +17,8 @@ For example, the lowest common ancestor (LCA) of nodes 2 and 8 is 6. Another exa
 nodes 2 and 4 is 2, since a node can be a descendant of itself according to the LCA definition.
 
 Analysis:
-Use the property of BST, just check from root to find out the first element that is between n1 and n2,
-or equals n1 or n2
+	Use the property of BST, just check from root to find out the first element that is between n1 and n2,
+	or equals n1 or n2
 */
 /**
  * Definition for a binary tree node.
@@ -29,10 +29,8 @@ or equals n1 or n2
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class LowestCommonAncestor
-{
-	public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q)
-	{
+public class LowestCommonAncestor {
+	public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 		if(root == null)
 			return root;
 
