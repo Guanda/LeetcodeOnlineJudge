@@ -5,7 +5,6 @@ The algorithm should run in linear time and in O(1) space.
 Analysis:
 	How many majority elements could it possibly have? ---- 0, 1, or 2
 	Boyer-Moore Majority Vote algorithm, see the method3 in MajorityElement problem.
-
 */
 class MajorityElementII {
 	public List<Integer> majorityElement(int[] nums) {
@@ -14,6 +13,7 @@ class MajorityElementII {
 			return result;
 		}
 
+		//find the two majority elements in array
 		int count1 = 0, count2 = 0;
 		int candidate1 = nums[0];
 		int candidate2 = nums[0];
