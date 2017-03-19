@@ -11,12 +11,11 @@ Return 4.
 
 Analysis:
 	Use DP
-	b[i][j] represent the maximal size of the square that can be achieved at point (i, j)
-
+	b[i][j] represent the edge length of the largest square ENDING at position (i, j)
 */
 class MaximalSquare {
 	public int maximalSquare(char[][] matrix) {
-		if(matrix.length == 0)
+		if(matrix.length == 0 || matrix[0].length == 0)
 			return 0;
 
 		int m = matrix.length;
