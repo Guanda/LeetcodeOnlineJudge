@@ -20,7 +20,6 @@ same points to it. Then we know the maximum number of points on the same line fo
 
 We can do the same thing to point B, point C...
 Finally, just return the maximum result among point A, point B, point C...
-
 */
 /**
  * Definition for a point.

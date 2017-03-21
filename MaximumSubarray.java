@@ -11,20 +11,16 @@ and conquer approach, which is more subtle.
 Anaylsis:
 	The changing condition for dynamic programming is "We should ignore the sum of 
 	the previous n-1 elements if nth element is greater than the sum."
-
 */
 
-class MaximumSubarray
-{
+class MaximumSubarray {
 	//DP solution
-	public int maxSubarray(int[] A)
-	{
+	public int maxSubarray(int[] A) {
 		int max = A[0];
 		int[] sum = new int[A.length];
 		sum[0] = A[0];
 
-		for(int i = 1; i < A.length; i++)
-		{
+		for(int i = 1; i < A.length; i++) {
 			sum[i] = Math.max(A[i], sum[i-1] + A[i]);
 			max = Math.max(max, sum[i]);
 		}

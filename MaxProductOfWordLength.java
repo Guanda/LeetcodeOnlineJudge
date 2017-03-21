@@ -19,9 +19,10 @@ Return 0
 No such pair of words.
 
 Analysis:
-	Since they are all lowercase, we can use int to store every bit for 26 charactors.
-	So the way we solve it is using bit manipulation.
-
+	int has 32bits,but lower case letters only has 26 .we can use the lowest 26 bit of int indicates that the word 
+	has how many kinds of lower case letters .If the lowest bit of int is 1,it indicates the word has lower case 
+	letter 'a'.......the order of lower case letter is from right to left,like zyx.....cba. So elements[i] indicates 
+	the condition of the word i having how many kinds of lower case letters .
 */
 
 class MaxProductOfWordLength {
@@ -38,6 +39,7 @@ class MaxProductOfWordLength {
 		int result = 0;
 		for(int i = 0; i < len; i++) {
 			for(int j = 1; j < len; j++) {
+				//check if two words have no common letters
 				if((elements[i] & elements[j]) == 0)
 					result = Math.max(result, words[i].length() * words[j].length());
 			}
