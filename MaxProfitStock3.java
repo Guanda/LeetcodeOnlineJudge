@@ -8,8 +8,7 @@ You may not engage in multiple transactions at the same time (ie, you must sell 
 
 Analysis:
 	Method 1: DP solution, only need to consider 4 variables: buy1, sell1, buy2, sell2
-	Method 2: Since we have mostly 2 transactions, we can suppose that two one is before day i, and one is after day i.
-
+	Method 2: Since we have mostly 2 transactions, we can suppose that two, one is before day i, and one is after day i.
 */
 class MaxProfitStock3 {
 	//Method 1:
