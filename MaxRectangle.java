@@ -10,28 +10,26 @@ For example, given the following matrix:
 Return 6.
 
 Analysis:
+	Method 1:
+		This question is similar as [Largest Rectangle in Histogram]:
 
-Method 1:
-	This question is similar as [Largest Rectangle in Histogram]:
+		You can maintain a row length of Integer array H recorded its height of '1's, and scan and update 
+		row by row to find out the largest rectangle of each row.
 
-	You can maintain a row length of Integer array H recorded its height of '1's, and scan and update 
-	row by row to find out the largest rectangle of each row.
+		For each row, if matrix[row][i] == '1'. H[i] +=1, or reset the H[i] to zero.
+		and accroding the algorithm of [Largest Rectangle in Histogram], to update the maximum area.
 
-	For each row, if matrix[row][i] == '1'. H[i] +=1, or reset the H[i] to zero.
-	and accroding the algorithm of [Largest Rectangle in Histogram], to update the maximum area.
+	Method 2:
+		The DP solution proceeds row by row, starting from the first row. Let the maximal rectangle area at row i 
+		and column j be computed by [right(i,j) - left(i,j)]*height(i,j).
 
-Method 2:
-	The DP solution proceeds row by row, starting from the first row. Let the maximal rectangle area at row i 
-	and column j be computed by [right(i,j) - left(i,j)]*height(i,j).
+		All the 3 variables left, right, and height can be determined by the information from previous row, and 
+		also information from the current row. So it can be regarded as a DP solution. The transition equations are:
 
-	All the 3 variables left, right, and height can be determined by the information from previous row, and 
-	also information from the current row. So it can be regarded as a DP solution. The transition equations are:
-
-	left(i,j) = max(left(i-1,j), cur_left), cur_left can be determined from the current row
-	right(i,j) = min(right(i-1,j), cur_right), cur_right can be determined from the current row
-	height(i,j) = height(i-1,j) + 1, if matrix[i][j]=='1';
-	height(i,j) = 0, if matrix[i][j]=='0'
-
+		left(i,j) = max(left(i-1,j), cur_left), cur_left can be determined from the current row
+		right(i,j) = min(right(i-1,j), cur_right), cur_right can be determined from the current row
+		height(i,j) = height(i-1,j) + 1, if matrix[i][j]=='1';
+		height(i,j) = 0, if matrix[i][j]=='0'
 */
 
 class MaxRectangle {
