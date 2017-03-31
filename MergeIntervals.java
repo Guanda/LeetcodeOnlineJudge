@@ -6,11 +6,9 @@ Given [1,3],[2,6],[8,10],[15,18],
 return [1,6],[8,10],[15,18].
 
 Analysis:
-The key to solve this problem is defining a Comparator first to sort the arraylist of intervals and
-then merge intervals
-
+	The key to solve this problem is defining a Comparator based on "start" to sort the 
+	arraylist of intervals and then merge intervals
 */
-
 /**
  * Definition for an interval.
  * public class Interval {
@@ -20,10 +18,8 @@ then merge intervals
  *     Interval(int s, int e) { start = s; end = e; }
  * }
  */
-class MergeIntervals
-{
-	public List<Interval> merge(List<Interval> intervals)
-	{
+class MergeIntervals {
+	public List<Interval> merge(List<Interval> intervals) {
 		if(intervals == null || intervals.size() <= 1)
 			return intervals;
 
@@ -33,16 +29,13 @@ class MergeIntervals
 		List<Interval> result = new ArrayList<Interval>();
 
 		Interval prev = intervals.get(0);
-		for(Interval interval : intervals)
-		{
-			if(prev.end >= interval.start)
-			{
+		for(Interval interval : intervals) {
+			if(prev.end >= interval.start) {
 				//merge case
 				Interval merged = new Interval(prev.start, Math.max(prev.end, interval.end));
 				prev = merged;
 			}
-			else
-			{
+			else {
 				result.add(prev);
 				prev = interval;
 			}
@@ -52,10 +45,8 @@ class MergeIntervals
 	}
 }
 
-class IntervalComparator implements Comparator<Interval>
-{
-	public int compare(Interval i1, Interval i2)
-	{
+class IntervalComparator implements Comparator<Interval> {
+	public int compare(Interval i1, Interval i2) {
 		return i1.start - i2.start;
 	}
 }

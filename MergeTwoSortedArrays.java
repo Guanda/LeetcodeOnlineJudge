@@ -7,24 +7,18 @@ additional elements from nums2.
 The number of elements initialized in nums1 and nums2 are m and n respectively.
 
 Analysis:
-The key of this problem is moving elements in two arrays backwards!!!!!!!!
-Consider use in-place to avoid the extra space. 
-
+    The key of this problem is moving elements in two arrays backwards!!!!!!!!
+    Consider use in-place to avoid the extra space. 
 */
 
-class MergeTwoSortedArrays
-{
-	public void merge(int[] nums1, int m, int[] nums2, int n)
-	{
-		while(m > 0 && n > 0)
-        {
-            if(nums1[m-1] >= nums2[n-1])
-            {
+class MergeTwoSortedArrays {
+	public void merge(int[] nums1, int m, int[] nums2, int n) {
+		while(m > 0 && n > 0) {
+            if(nums1[m-1] >= nums2[n-1]) {
                 nums1[m+n-1] = nums1[m-1];
                 m--;
             }
-            else
-            {
+            else {
                 nums1[m+n-1] = nums2[n-1];
                 n--;
             }
@@ -32,8 +26,7 @@ class MergeTwoSortedArrays
         
         //here we only need to consider the n>m situation, because if m>n, the rest of nums1 has left 
         //in the current array, we don't need to process it anymore
-        while(n > 0)
-        {
+        while(n > 0) {
             nums1[m+n-1] = nums2[n-1];
             n--;
         }
