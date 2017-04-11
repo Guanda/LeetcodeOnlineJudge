@@ -15,7 +15,6 @@ only one unique minimum window in S.
 
 Analysis:
 	Using map and two pointer to track
-
 */
 
 class MinimumWindowSubstring {
@@ -24,46 +23,35 @@ class MinimumWindowSubstring {
 			return "";
 		}
 
-		int[] sMap = new int[128];
-		int[] tMap = new int[128];
+		int[] map = new int[128];
 		for(int i = 0; i < t.length(); i++) {
-			tMap[t.charAt(i)]++;
+			map[t.charAt(i)]++;
 		}
 
-		int begin = 0;
-		int end = 0;
-		int found = 0;
-		int min = Integer.MAX_VALUE;
-		String result = "";
+		int counter = t.length(); // check whether the substring is valid
+        int begin=0, end=0; // two pointers, one point to tail and one head
+        int head = 0;
+        int len = Integer.MAX_VALUE; //the length of substring
+        while(end < s.length()) {
+        	if(map[s.charAt(end)] > 0) {
+        		counter--;
+        	}
+        	map[s.charAt(end)]--;
+        	end++;
 
-		while(end < s.length()) {
-			if(found < t.length()) {
-				if(tMap[s.charAt(end)] > 0) {
-					sMap[s.charAt(end)]++;
-					if(sMap[s.charAt(end)] <= tMap[s.charAt(end)]) {
-						found++;
-					}
-				}
-				end++;
-			}
-
-			while(found == t.length()) {
-				if(end - begin < min) {
-					min = end - begin;
-					result = s.substring(begin, end);
-				}
-
-				//move begin to next
-				if(tMap[s.charAt(begin)] > 0) {
-					sMap[s.charAt(begin)]--;
-					if(sMap[s.charAt(begin)] < tMap[s.charAt(begin)]) {
-						found--;
-					}
-				}
-
-				begin++;
-			}
-		}
-		return result;
+        	// When we found a valid window, move start to find smaller window.
+        	while(counter == 0) {
+        		if(end - begin < len) {
+        			len = end - begin;
+        			head = begin;
+        		}
+        		map[s.charAt(begin)]++;
+        		if(map[s.charAt(begin)] > 0) {
+        			counter++;
+        		}
+        		begin++;
+        	}
+        }
+        return len == Integer.MAX_VALUE ? "" : s.substring(head, head + len);
 	}
 }
