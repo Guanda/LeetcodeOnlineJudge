@@ -6,40 +6,29 @@ For example, given the array [2,3,1,2,4,3] and s = 7,
 the subarray [4,3] has the minimal length under the problem constraint.
 
 Analysis:
-Use two pointers
-And you should know the subarray is the consistently sub array in the array.
-
+	Use two pointers both from beginning
+	And you should know the subarray is the consistently sub array in the array.
 */
 
-class MinSubArraySizeSum
-{
-	public int minSubArrayLen(ints, int[] nums)
-	{
+class MinSubArraySizeSum {
+	public int minSubArrayLen(int s, int[] nums) {
 		if(nums.length == 0)
 			return 0;
 		int first = 0;
 		int second = 0;
-		int min = nums.length + 1;
-		int sum = nums[0];
+		int min = Integer.MAX_VALUE;
+		int sum = 0;
 
-		while(first < nums.length && second <= first)
-		{
-			if(sum < s)
-			{
-				first++;
-				if(first < nums.length)
-					sum = sum + nums[first];
-			}
-			else
-			{
+		while(first < nums.length) {
+			sum = sum + nums[first];
+			while(sum >= s) {
 				min = Math.min(first-second+1, min);
 				sum = sum - nums[second];
 				second++;
 			}
+			first++;
 		}
-		if(min == nums.length + 1)
-			return 0;
 
-		return min;
+		return (min == Integer.MAX_VALUE) ? 0 : min;
 	}
 }
