@@ -17,7 +17,6 @@ Analysis:
 	So, best way to do this is make all the elements in the array equal to the min element.
 
 	sum(array) - n * minimum
-
 */
 class MinMovesToEqualArray {
 	public int minMoves(int[] nums) {

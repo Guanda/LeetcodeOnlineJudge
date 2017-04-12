@@ -21,6 +21,13 @@ Return a NestedInteger object containing a nested list with 2 elements:
     i.  An integer containing value 456.
     ii. A nested list with one element:
          a. An integer containing value 789.
+
+Analysis:
+	1. If encounters '[', push current NestedInteger to stack and start a new one.
+	2. If encounters ']', end current NestedInteger and pop a NestedInteger from stack to continue.
+	3. If encounters ',', append a new number to curr NestedInteger, if this comma is not right after a brackets.
+	4. Update index l and r, where l shall point to the start of a integer substring, while r shall points to the 
+	   end+1 of substring.
 */
 /**
  * // This is the interface that allows for creating nested lists.
@@ -62,8 +69,8 @@ class MiniParser {
 		Stack<NestedInteger> stack = new Stack<>();
 		NestedInteger curr = null;
 		int l = 0; // l shall point to the start of a number substring; 
-	               // r shall point to the end+1 of a number substring
-	    for (int r = 0; r < s.length(); r++) {
+	    int r = 0;  // r shall point to the end+1 of a number substring
+	    while(r < s.length()) {
 	        char ch = s.charAt(r);
 	        if (ch == '[') {
 	            if (curr != null) {
@@ -88,6 +95,7 @@ class MiniParser {
 	            }
 	            l = r+1;
 	        }
+	        r++;
 	    }
 	    
 	    return curr;
