@@ -15,11 +15,9 @@ standard operations of a stack.
 
 You may assume that all operations are valid (for example, no pop or peek operations 
 will be called on an empty queue).
-
 */
 
-public class MyQueue
-{
+public class MyQueue {
 	Stack<Integer> s1 = new Stack<Integer>();
 	Stack<Integer> s2 = new Stack<Integer>();
 
@@ -32,10 +30,8 @@ public class MyQueue
     public void pop() {
         if(!s2.isEmpty())
         	s2.pop();
-        else 
-        {
-        	while(!s1.isEmpty())
-        	{
+        else {
+        	while(!s1.isEmpty()) {
         		s2.push(s1.pop());
         	}
         	s2.pop();
@@ -46,10 +42,8 @@ public class MyQueue
     public int peek() {
         if(!s2.isEmpty())
         	return s2.peek();
-        else 
-        {
-        	while(!s1.isEmpty())
-        	{
+        else {
+        	while(!s1.isEmpty()) {
         		s2.push(s1.pop());
         	}
         	return s2.peek();

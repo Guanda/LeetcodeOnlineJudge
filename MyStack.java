@@ -15,11 +15,9 @@ operations of a queue.
 
 You may assume that all operations are valid (for example, no pop or top operations 
 will be called on an empty stack).
-
 */
 
-class MyStack 
-{
+class MyStack {
 	Queue<Integer> q1 = new LinkedList<Integer>();
 	Queue<Integer> q2 = new LinkedList<Integer>();
 
@@ -47,7 +45,7 @@ class MyStack
         while(q1.size() > 1) {
             q2.add(q1.poll());
         }
-        return q1.peek()
+        return q1.peek();
     }
 
     // Return whether the stack is empty.

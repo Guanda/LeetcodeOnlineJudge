@@ -9,16 +9,14 @@ Note:
 You must do this in-place without making a copy of the array.
 Minimize the total number of operations.
 
+Analysis:
+	Use two pointers: i and j
 */
 
-public class MoveZeros
-{
-	public void moveZeros(int[] nums)
-	{
-		for(int i = 0, j = 0; i < nums.length; i++)
-		{
-			if(nums[i] != 0)
-			{
+public class MoveZeros {
+	public void moveZeros(int[] nums) {
+		for(int i = 0, j = 0; i < nums.length; i++) {
+			if(nums[i] != 0) {
 				int tmp = nums[i];
 				nums[i] = nums[j];
 				nums[j] = tmp;
