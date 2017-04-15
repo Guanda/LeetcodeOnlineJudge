@@ -9,7 +9,6 @@ where 'Q' and '.' both indicate a queen and an empty space respectively.
 
 For example,
 There exist two distinct solutions to the 4-queens puzzle:
-
 [
  [".Q..",  // Solution 1
   "...Q",
@@ -25,7 +24,8 @@ There exist two distinct solutions to the 4-queens puzzle:
 Analysis:
 	Use DFS, remember to remove the element in current loop after dfs fucntion execute.
 	And one solution is a list of string.
-
+	
+	In the 45 diag lines col - row are always same , and in 135 drag lines col + row are always same
 */
 
 class N-Queens {

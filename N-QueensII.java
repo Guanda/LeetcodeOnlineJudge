@@ -5,7 +5,7 @@ Now, instead outputting board configurations, return the total number of distinc
 
 Analysis:
 	Similar idea of N-Queens problem.
-
+	In the 45 diag lines col - row are always same , and in 135 drag lines col + row are always same
 */
 
 class N-QueensII {
