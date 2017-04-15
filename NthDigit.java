@@ -2,7 +2,7 @@
 Find the nth digit of the infinite integer sequence 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ...
 
 Note:
-n is positive and will fit within the range of a 32-bit signed integer (n < 231).
+n is positive and will fit within the range of a 32-bit signed integer (n < 2^31).
 
 Example 1:
 Input:
@@ -17,12 +17,20 @@ Output:
 0
 Explanation:
 The 11th digit of the sequence 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ... is a 0, which is part of the number 10.
+
+Analysis:
+	Straight forward way to solve the problem in 3 steps:
+		1. find the length of the number where the nth digit is from
+		2. find the actual number where the nth digit is from
+		3. find the nth digit and return
 */
 class NthDigit {
 	public int findNthDigit(int n) {
 		int len = 1;
 		long count = 9;
 		int start = 1;
+
+		//step 1
 		while(n > len * count) {
 			n -= len * count;
 			len++;
@@ -30,15 +38,11 @@ class NthDigit {
 			start *= 10;
 		}
 
-		/*
-		The reason why (n-1) is to keep the correct digits finally in number they correspond to. Eg: if we are 
-		trying to find the 192th digit, we know range from 1th digit to 9th digit belongs to numbers from 1 to 9 
-		and range from 10th to 189th belongs to numbers from 10 to 99, right? So it is obvious that the next number 
-		should be 100 and the 192th digit should be the 3rd digit of 100(now n=3). OK, back to the code, if we donot 
-		minus 1 from n and then devide the len, the 192th digit would go to the next number which is 101.
-		*/
-		start += (n - 1) / len;
+		//step 2
+		start += (n - 1) / len; //减1是因为start 自己算一个数，要把start 从计算中抠掉
 		String s = Integer.toString(start);
+
+		//step 3
 		return Character.getNumericValue(s.charAt((n - 1) % len));
 	}
 }

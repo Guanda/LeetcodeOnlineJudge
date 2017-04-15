@@ -14,19 +14,12 @@ If there are 5 stones in the heap, could you figure out a way to remove the ston
 always be the winner?
 
 Analysis:
-
-It is very easy to find out when n = [1, 3], first hand can win, when n = 4 or n % 4 == 0, first hand will
-lose anyway.
-
+	It is very easy to find out when n = [1, 3], first hand can win, when n = 4 or n % 4 == 0, first hand will
+	lose anyway.
 */
 
-public class NimGame
-{
-	public boolean canWinNim(int n)
-	{
-		if(n % 4 != 0)
-			return true;
-		else
-			return false;
+public class NimGame {
+	public boolean canWinNim(int n) {
+		return n % 4 != 0;
 	}
 }
