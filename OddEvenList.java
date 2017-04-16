@@ -11,9 +11,7 @@ return 1->3->5->2->4->NULL.
 Note:
 The relative order inside both the even and odd groups should remain as it was in the input. 
 The first node is considered odd, the second node even and so on ...
-
 */
-
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -40,6 +38,7 @@ class OddEvenList {
 			currOdd = currOdd.next;
 			currEven = currEven.next;
 		}
+		//connect odd and even list
 		currOdd.next = evenDummyHead.next;
 
 		return oddDummyHead.next;
