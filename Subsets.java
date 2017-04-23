@@ -33,6 +33,8 @@ class Subsets {
 			return results;
 		}
 
+		Arrays.sort(nums);
+
 		helper(new ArrayList<Integer>(), nums, 0, results);
 		return results;
 	}
