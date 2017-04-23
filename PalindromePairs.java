@@ -10,7 +10,6 @@ Example 2:
 Given words = ["abcd", "dcba", "lls", "s", "sssll"]
 Return [[0, 1], [1, 0], [3, 2], [2, 4]]
 The palindromes are ["dcbaabcd", "abcddcba", "slls", "llssssll"]
-
 */
 class PalindromePairs {
 	public List<List<Integer>> palindromePairs(String[] words) {
@@ -24,7 +23,7 @@ class PalindromePairs {
 		}
 
 		for(int i = 0; i < words.length; i++) {
-			// notice it should be "j <= words[i].length()"
+			// notice it should be "j <= words[i].length()", because substring
 			for(int j = 0; j <= words[i].length(); j++) {
 				String str1 = words[i].substring(0, j);
 				String str2 = words[i].substring(j);

@@ -7,9 +7,7 @@ Could you do it in O(n) time and O(1) space?
 Analysis:
 	Method 1: Using Stack 
 	Method 2: reverse the second half of linked list and then reverse it back
-
 */
-
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -18,11 +16,9 @@ Analysis:
  *     ListNode(int x) { val = x; }
  * }
  */
-public class PalindromeLinkedList
-{
+public class PalindromeLinkedList {
 	//Method 1: time O(n), spack O(n)
-	public boolean isPalindrome(ListNode head)
-	{
+	public boolean isPalindrome(ListNode head) {
 		if(head == null)
 			return true;
 
@@ -46,8 +42,7 @@ public class PalindromeLinkedList
 
 	//Method 2: time O(n), space O(1)
 	//only reverse half of them is because we don't want to use extra space
-	public boolean isPalindrome2(ListNode head)
-	{
+	public boolean isPalindrome2(ListNode head) {
 		if(head == null || head.next == null)
 			return true;
 		
@@ -55,7 +50,7 @@ public class PalindromeLinkedList
 		ListNode fast = head;
 
 		/* Get the middle of the list. Move slow by 1 and
-          ast by 2, slow will have the middle node */
+          fast by 2, slow will have the middle node */
 		while(fast != null && fast.next != null) {
 			fast = fast.next.next;
             slow = slow.next;
@@ -83,8 +78,7 @@ public class PalindromeLinkedList
 
 	}
 
-	public ListNode reverse(ListNode p)
-	{
+	public ListNode reverse(ListNode p) {
 		if(p == null || p.next == null) {
 			return p;
 		}
