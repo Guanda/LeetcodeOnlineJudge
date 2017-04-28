@@ -13,17 +13,23 @@ For example,
 ]
 
 Analysis:
-	the basic idea is, to permute n numbers, we can add the nth number into 
-	the resulting List<List<Integer>> from the n-1 numbers, in every possible position.
-
+	Basic idea is, to permute n numbers, we can add the nth number into the resulting List<List<Integer>> 
+	from the n-1 numbers, in every possible position.
 */
 
 class Permutations {
+	//Method 1: iteration
 	public List<List<Integer>> permute(int[] nums) {
 		List<List<Integer>> results = new ArrayList<List<Integer>>();
-		if(nums == null || nums.length == 0) {
+
+		if(nums == null) {
 			return results;
 		}
+
+		if (nums.length == 0) {
+            results.add(new ArrayList<Integer>());
+            return results;
+        }
 
 		//initialize the results
 		List<Integer> list = new ArrayList<Integer>();
@@ -35,6 +41,7 @@ class Permutations {
 			//the positions are from 0 to i
 			for(int j = 0; j <= i; j++) {
 				for(List<Integer> l : results) {
+					//deep copy the list l
 					List<Integer> newList = new ArrayList<Integer>(l);
 					newList.add(j, nums[i]);
 					newResults.add(newList);
@@ -46,16 +53,26 @@ class Permutations {
 		return results;
 	}
 
-	//method 2, backtracing, worse time complexity than method 1
+	//method 2, DFS with backtracing, worse time complexity than method 1
 	public List<List<Integer>> permuteBT(int[] nums) {
-		List<List<Integer>> list = new ArrayList<>();
-		backtrack(list, new ArrayList<>(), nums);
-		return list; 
+		List<List<Integer>> results = new ArrayList<>();
+
+		if (nums == null) {
+            return results;
+        }
+        
+        if (nums.length == 0) {
+            results.add(new ArrayList<Integer>());
+            return results;
+        }
+
+		helper(results, new ArrayList<>(), nums);
+		return results; 
 	}
 
-	public void backtrack(List<List<Integer>> list, List<Integer> tempList, int[] nums) {
+	public void helper(List<List<Integer>> results, List<Integer> tempList, int[] nums) {
 		if(tempList.size() == nums.length) {
-			list.add(new ArrayList<>(tempList));
+			results.add(new ArrayList<>(tempList));
 		}
 		else {
 			for(int i = 0; i < nums.length; i++) {
@@ -63,7 +80,7 @@ class Permutations {
 				if(tempList.contains(nums[i]))
 					continue;
 				tempList.add(nums[i]);
-				backtrack(list, tempList, nums);
+				backtrack(results, tempList, nums);
 				tempList.remove(tempList.size() - 1);
 			}
 		}
