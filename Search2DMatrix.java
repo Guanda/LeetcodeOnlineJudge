@@ -18,56 +18,61 @@ Analysis:
 	Binary Search.
 	First search for the row that may contain the target.
 	Second search for the target in that row.
-
 */
 
-class Search2DMatrix
-{
-	public boolean searchMatrix(int[][] matrix, int target)
-	{
-		//binary search to find the row
-		int top = 0, bottom = matrix.length - 1;
-		while(top < bottom)
-		{
-			int middle = (top + bottom) / 2;
-			if(target == matrix[middle][0])
-				return true;
-			else if(target < matrix[middle][0])
-				bottom = middle - 1;
-			//this is the point to specify the row
-			else if(target < matrix[middle+1][0])
-			{
-				top = middle;
-				break;
-			}
-			else
-			{
-				top = middle + 1;
-			}
-		}
-
-		//binary search to find the target in that row
-		int row = top;
-		int left = 0;
-		int right = matrix[row].length - 1;
-
-		//remember we need cover the "=" case here
-		while(left <= right)
-		{
-			int middle = (left + right) / 2;
-			if(target == matrix[row][middle])
-			{
-				return true;
-			}
-			else if(target < matrix[row][middle])
-			{
-				right = middle - 1;
-			}
-			else
-			{
-				left = middle + 1;
-			}
-		}
-		return false;
+class Search2DMatrix {
+	public boolean searchMatrix(int[][] matrix, int target) {
+        if(matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return false;
+        }
+        
+        //first binary search to find out the row where target may be existing
+        int row = 0;
+        int startR = 0, endR = matrix.length - 1;
+        while(startR + 1 < endR) {
+            int midR = startR + (endR - startR) / 2;
+            if(matrix[midR][0] == target) {
+                return true;
+            }
+            else if(matrix[midR][0] < target) {
+                startR = midR;
+            }
+            else {
+                endR = midR;
+            }
+        }
+        if(matrix[endR][0] <= target) {
+            row = endR;
+        }
+        else if(matrix[startR][0] <= target) {
+            row = startR;
+        }
+        else {
+            return false;
+        }
+        
+        //after above binary search, the target has to be "row"
+        //do another binary search
+        int startC = 0, endC = matrix[0].length - 1;
+        while(startC + 1 < endC) {
+            int midC = startC + (endC - startC) / 2;
+            if(matrix[row][midC] == target) {
+                return true;
+            }
+            else if(matrix[row][midC] < target) {
+                startC = midC;
+            }
+            else {
+                endC = midC;
+            }
+        }
+        if(matrix[row][startC] == target) {
+            return true;
+        }
+        else if(matrix[row][endC] == target) {
+            return true;
+        }
+        
+        return false;
 	}
 }

@@ -8,35 +8,30 @@ You are given a target value to search. If found in the array return its index, 
 You may assume no duplicate exists in the array.
 
 Analysis:
-For this problem we don't need to know where the pivot is. Look at the middle element, compare it with
-the left most and right most element, if the left most is less than middle, we will know all elements in 
-the first half must be in strictly increasing order. Like this do binary search.
+	For this problem we don't need to know where the pivot is. Look at the middle element, compare it with
+	the left most and right most element, if the left most is less than middle, we will know all elements in 
+	the first half must be in strictly increasing order. Like this do binary search.
 */
 
-class SearchInRotatedSortedArray
-{
-	public int search(int[] nums, int target)
-	{
+class SearchInRotatedSortedArray {
+	public int search(int[] nums, int target) {
 		int left = 0;
 		int right = nums.length - 1;
 
-		while(left <= right)
-		{
-			int middle = (left + right) / 2;
+		while(left <= right) {
+			int middle = left + (right - left) / 2;
 			if(nums[middle] == target)
 				return middle;
 
 			//the first half is sorted
-			if(nums[left] <= nums[middle])
-			{
+			if(nums[left] <= nums[middle]) {
 				if(nums[left] <= target && target < nums[middle])
 					right = middle - 1;
 				else
 					left = middle + 1;
 			}
 			//the second half is sorted
-			else
-			{
+			else {
 				if(nums[middle] < target && target <= nums[right])
 					left = middle + 1;
 				else

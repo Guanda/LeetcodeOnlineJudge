@@ -14,15 +14,13 @@ Remember the case that no rotated.
 
 */
 
-class FindMinInRotatedSortedArray
-{
-	public int findMin(int[] num)
-	{
+class FindMinInRotatedSortedArray {
+	//Method 1: recursion, binary search
+	public int findMin(int[] num) {
 		return findMin(num, 0, num.length-1);
 	}
 
-	public int findMin(int[] num, int left, int right)
-	{
+	public int findMin(int[] num, int left, int right) {
 		if(left == right)
 			return num[left];
 		if(right - left == 1)
@@ -40,4 +38,30 @@ class FindMinInRotatedSortedArray
 		else
 			return findMin(num, left, mid);
 	}
+
+
+	//Method 2: iteration, binary search
+	public int findMin(int[] nums) {
+        if(nums == null || nums.length == 0) {
+            return -1;
+        }
+        
+        int start = 0, end = nums.length - 1;
+        int target = nums[end];
+        while(start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            if(nums[mid] <= target) {
+                end = mid;
+            }
+            else {
+                start = mid;
+            }
+        }
+        if(nums[start] <= target) {
+            return nums[start];
+        }
+        else {
+            return nums[end];
+        }
+    }
 }

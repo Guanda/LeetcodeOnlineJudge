@@ -13,31 +13,31 @@ Implement a function to find the first bad version. You should minimize the numb
 Analysis:
 	Binary search
 */
-
 /* The isBadVersion API is defined in the parent class VersionControl.
       boolean isBadVersion(int version); */
-public class FirstBadVersion
-{
-	public int firstBadVersion(int n)
-	{
-		if(n == 1) {
-			return n;
-		}
-
-		int left = 1;
-		int right = n;
-
-		while(left < right) {
-			//use this because (left+right)/2 may out-range the int type!!!!
-			int mid = left + (right - left) / 2;
-			if(isBadVersion(mid)) {
-				right = mid;
-			}
-			else {
-				left = mid + 1;
-			}
-		}
-
-		return right;
+public class FirstBadVersion {
+	public int firstBadVersion(int n) {
+        if(n <= 1) {
+            return n;
+        }
+        
+        int start = 1, end = n;
+        while(start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            
+            if(isBadVersion(mid)) {
+                end = mid;
+            }
+            else {
+                start = mid;
+            }
+        }
+        
+        if(isBadVersion(start)) {
+            return start;
+        }
+        else {
+            return end;
+        }
 	}
 }
