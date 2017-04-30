@@ -1,6 +1,5 @@
 /*
 Suppose a sorted array is rotated at some pivot unknown to you beforehand.
-
 (i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
 
 You are given a target value to search. If found in the array return its index, otherwise return -1.
@@ -40,4 +39,47 @@ class SearchInRotatedSortedArray {
 		}
 		return -1;
 	}
+
+
+	//use binary search template
+	public int search(int[] A, int target) {
+        if(A == null || A.length == 0) {
+            return -1;
+        }
+        
+        int start = 0, end = A.length - 1;
+        while(start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            if(A[mid] == target) {
+                return mid;
+            }
+            
+            //first half is sorted
+            if(A[start] <= A[mid]) {
+                if(A[start] <= target && A[mid] >= target) {
+                    end = mid;
+                }
+                else {
+                    start = mid;
+                }
+            }
+            //second half is sorted
+            else {
+                if(A[mid] <= target && A[end] >= target) {
+                    start = mid;
+                }
+                else {
+                    end = mid;
+                }
+            }
+        }
+        if(A[start] == target) {
+            return start;
+        }
+        if(A[end] == target) {
+            return end;
+        }
+        
+        return -1;
+    }
 }
