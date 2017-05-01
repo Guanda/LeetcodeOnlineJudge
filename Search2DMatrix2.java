@@ -21,6 +21,7 @@ Given target = 20, return false.
 
 class Search2DMatrix2 {
 	//method 1: normal. Time complexity: O(m+n)
+	//从右上角或者左下角出发进行比较，每次比较之后能够删除一行或者一列或者both
 	public boolean searchMatrix(int[][] matrix, int target) {
 		if(matrix == null || matrix.length == 0 || matrix[0].length == 0)
 			return false;
@@ -31,6 +32,7 @@ class Search2DMatrix2 {
 		if(target < matrix[0][0] || target > matrix[m-1][n-1])
 			return false;
 
+		//从右上角出发
 		int row = 0;
 		int col = n - 1;
 
