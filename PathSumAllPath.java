@@ -27,30 +27,26 @@ return
  * }
  */
 
-class PathSumAllPath
-{
-	public ArrayList<ArrayList<Integer>> pathSum(TreeNode root, int sum)
-	{
-		ArrayList<ArrayList<Integer>> resSet = new ArrayList<ArrayList<Integer>>();
-		ArrayList<Integer> path = new ArrayList<Integer>();
+class PathSumAllPath {
+	public List<List<Integer>> pathSum(TreeNode root, int sum) {
+		List<List<Integer>> resSet = new ArrayList<>();
+		List<Integer> path = new ArrayList<Integer>();
 		pathSum(root, sum, path, resSet);
 		return resSet;
 	}
 
-	private void pathSum(TreeNode root, int sum, ArrayList<Integer> path, ArrayList<ArrayList<Integer>> resSet)
-	{
+	private void pathSum(TreeNode root, int sum, List<Integer> path, List<List<Integer>> resSet) {
 		if(root == null)
 			return;
 
 		path.add(root.val);
 		//get to leaf
-		if(root.left == null && root.right == null)
-		{
+		if(root.left == null && root.right == null) {
 			//found a path
-			if(sum == root.val)
-			{
-				//Be Careful! This is necessary! Otherwise the path will be changed and the resSet will be changed.
-				ArrayList<Integer> curPath = new ArrayList<Integer>(path);
+			if(sum == root.val) {
+				//Be Careful! This is necessary! Otherwise the path will be changed and the resSet will be changed
+				//deep copy
+				List<Integer> curPath = new ArrayList<Integer>(path);
 				resSet.add(curPath);
 			}
 		}
