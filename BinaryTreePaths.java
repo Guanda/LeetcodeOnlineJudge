@@ -23,10 +23,8 @@ All root-to-leaf paths are:
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class BinaryTreePaths
-{
-	public List<String> binaryTreePaths(TreeNode root)
-	{
+public class BinaryTreePaths {
+	public List<String> binaryTreePaths(TreeNode root) {
 		List<String> result = new ArrayList<>();
 		if(root == null) {
 			return result;
@@ -35,8 +33,7 @@ public class BinaryTreePaths
 		return result;
 	}
 
-	private void findPaths(TreeNode root, List<String> result, String cur)
-	{
+	private void findPaths(TreeNode root, List<String> result, String cur) {
 		if(root.left == null && root.right == null) {
 			result.add(cur);
 			return;
@@ -48,4 +45,37 @@ public class BinaryTreePaths
 			findPaths(root.right, result, cur + "->" + root.right.val);
 		}
 	}
+
+
+	//no private method need:
+
+	//递归定义：求出从root出发的所有路径并返回
+    public List<String> binaryTreePaths(TreeNode root) {
+        List<String> paths = new ArrayList<>();
+
+        //递归的出口
+        if(root == null) {
+            return paths;
+        }
+        
+        if(root.left == null && root.right == null) {
+            paths.add(root.val + "");
+            return paths;
+        }
+        
+        //递归的拆解
+        // divide & conquer
+        List<String> leftPaths = binaryTreePaths(root.left);
+        List<String> rightPaths = binaryTreePaths(root.right);
+        
+        //merge
+        for(String path : leftPaths) {
+            paths.add(root.val + "->" + path);
+        }
+        for(String path : rightPaths) {
+            paths.add(root.val + "->" + path);
+        }
+        
+        return paths;
+    }
 }
