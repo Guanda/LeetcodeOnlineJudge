@@ -30,15 +30,14 @@ The flattened tree should look like:
  *     TreeNode(int x) { val = x; }
  * }
  */
-class FlattenBT
-{
+class FlattenBT {
 	//Method 1: recursive
 	//insert left to root.right, before right
-    public void flatten(TreeNode root) {
-        helper(root);
-    }
-    
-    public TreeNode helper(TreeNode root) {
+  public void flatten(TreeNode root) {
+      helper(root);
+  }
+      
+  public TreeNode helper(TreeNode root) {
 		if(root == null)
 			return root;
 
@@ -54,49 +53,49 @@ class FlattenBT
 			root = helper(root.right);
 		}
 		return root;
-    }
+  }
 
 
-    //Method 2: iteration with stack
-    public void flatten2(TreeNode root) {
-    	Stack<TreeNode> stack = new Stack<TreeNode>();
-    	TreeNode curr = root;
-    	while(curr != null) {
-    		if（curr.left != null) {
-				if(curr.right != null)
-					stack.push(curr.right);	
+  //Method 2: iteration with stack
+  public void flatten2(TreeNode root) {
+  	Stack<TreeNode> stack = new Stack<TreeNode>();
+  	TreeNode curr = root;
+  	while(curr != null) {
+  		if（curr.left != null) {
+			if(curr.right != null)
+				stack.push(curr.right);	
 
-				curr.right = curr.left;
-				curr.left = null;		
-			}
-    		
-    		if(curr.right == null && !stack.isEmpty()) {
-    			curr.right = stack.pop();
-    		}
-    		curr = curr.right;
-    	}
-    }
+  			curr.right = curr.left;
+  			curr.left = null;		
+  		}
+  		
+  		if(curr.right == null && !stack.isEmpty()) {
+  			curr.right = stack.pop();
+  		}
+  		curr = curr.right;
+  	}
+  }
 
 
-    //Method 3: iteration without stack
-    //Each time when we prune a right subtree, we use while-loop 
-    //to find the right-most leaf of the current left subtree, and 
-    //append the subtree there.
-    public void flatten3(TreeNode root) {
-    	TreeNode curr = root;
-    	while(curr != null) {
-    		if(curr.left != null) {
-    			if(curr.right != null) {
-    				TreeNode next = curr.left;
-    				while(next.right != null) {
-    					next = next.right;
-    				}
-    				next.right = curr.right;
-    			}
-    			curr.right = curr.left;
-    			curr.left = null;
-    		}
-    		curr = curr.right;	
-    	}
-    }
+  //Method 3: iteration without stack
+  //Each time when we prune a right subtree, we use while-loop 
+  //to find the right-most leaf of the current left subtree, and 
+  //append the subtree there.
+  public void flatten3(TreeNode root) {
+  	TreeNode curr = root;
+  	while(curr != null) {
+  		if(curr.left != null) {
+  			if(curr.right != null) {
+  				TreeNode next = curr.left;
+  				while(next.right != null) {
+  					next = next.right;
+  				}
+  				next.right = curr.right;
+  			}
+  			curr.right = curr.left;
+  			curr.left = null;
+  		}
+  		curr = curr.right;	
+  	}
+  }
 }
