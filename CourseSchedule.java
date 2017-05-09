@@ -14,9 +14,9 @@ you should also have finished course 1. So it is impossible.
 
 Analysis:
 	Topological Sorting, Using BFS to check finally if the count(edges) and numCourses are equal
-
 */
 class CourseSchedule {
+	//using matrix to process prerequisites, which is not perfect
 	public boolean canFinish(int numCourses, int[][] prerequisites) {
 		int[][] matrix = new int[numCourses][numCourses];
 		int[] indegree = new int[numCourses];
@@ -55,4 +55,52 @@ class CourseSchedule {
 		}
 		return count == numCourses;
 	}
+
+
+	//using hashmap or array of list to process prerequisites
+	public boolean canFinish(int numCourses, int[][] prerequisites) {
+        //process prerequisites
+        int[] indegree = new int[numCourses];
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        for(int i = 0; i < prerequisites.length; i++) {
+            int ready = prerequisites[i][0];
+            int pre = prerequisites[i][1];
+            
+            if(!map.containsKey(pre)) {
+                List<Integer> list = new ArrayList<>();
+                list.add(ready);
+                map.put(pre, list);
+            }
+            else {
+                map.get(pre).add(ready);
+            }
+            indegree[ready]++;
+        }
+        
+        Queue<Integer> queue = new LinkedList<>();
+        //add all courses which indegree is 0 to queue
+        for(int i = 0; i < numCourses; i++) {
+            if(indegree[i] == 0) {
+                queue.offer(i);
+            }
+        }
+        
+        int count = 0;
+        while(!queue.isEmpty()) {
+            int curr = queue.poll();
+            count++;
+            if(map.get(curr) != null) {
+                int size = map.get(curr).size();
+                for(int i = 0; i < size; i++) {
+                    int neighbor = map.get(curr).get(i);
+                    indegree[neighbor]--;
+                    if(indegree[neighbor] == 0) {
+                        queue.offer(neighbor);
+                    }
+                }   
+            }
+        }
+        
+        return count == numCourses;
+    }
 }
