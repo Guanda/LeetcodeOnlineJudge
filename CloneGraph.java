@@ -29,36 +29,31 @@ Visually, the graph looks like the following:
 * };
 */
 
-class CloneGraph
-{
+class CloneGraph {
 	//BFS
-	public UndirectedGraphNode cloneGraph(UndirectedGraphNode node)
-	{
+	public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
 		if(node == null)
             return null;
         
-        LinkedList<UndirectedGraphNode> queue = new LinkedList<UndirectedGraphNode>();
-        HashMap<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<UndirectedGraphNode, UndirectedGraphNode>();
+        Queue<UndirectedGraphNode> queue = new LinkedList<UndirectedGraphNode>();
+        Map<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<UndirectedGraphNode, UndirectedGraphNode>();
         UndirectedGraphNode newHead = new UndirectedGraphNode(node.label);
         
         queue.add(node);
         map.put(node, newHead);
         
-        while(!queue.isEmpty())
-        {
+        while(!queue.isEmpty()) {
             UndirectedGraphNode curr = queue.pop();
             List<UndirectedGraphNode> currNeighbors = curr.neighbors;
-            for(UndirectedGraphNode aNeighbors : currNeighbors)
-            {
-            	if(!map.containsKey(aNeighbors))
-            	{
+            for(UndirectedGraphNode aNeighbors : currNeighbors) {
+            	if(!map.containsKey(aNeighbors)) {
             		UndirectedGraphNode copy = new UndirectedGraphNode(aNeighbors.label);
             		map.put(aNeighbors, copy);
             		map.get(curr).neighbors.add(copy);
             		queue.add(aNeighbors);
             	}
-            	else
-            	{
+            	//针对self-cycle的情况
+            	else {
             		map.get(curr).neighbors.add(map.get(aNeighbors));
             	}
             }
@@ -68,8 +63,7 @@ class CloneGraph
 
 
 	//DFS, recursive
-	public UndirectedGraphNode cloneGraphDFS(UndirectedGraphNode node)
-	{
+	public UndirectedGraphNode cloneGraphDFS(UndirectedGraphNode node) {
 		if(node == null)
 			return null;
 
@@ -82,15 +76,12 @@ class CloneGraph
 		return newHead;
 	}
 
-	public void DFS(UndirectedGraphNode node, HashMap<UndirectedGraphNode, UndirectedGraphNode> map)
-	{
+	public void DFS(UndirectedGraphNode node, HashMap<UndirectedGraphNode, UndirectedGraphNode> map) {
 		if(node == null)
 			return;
 
-		for(UndirectedGraphNode aNeighbors : node.neighbors)
-		{
-			if(!map.containsKey(aNeighbors))
-			{
+		for(UndirectedGraphNode aNeighbors : node.neighbors) {
+			if(!map.containsKey(aNeighbors)) {
 				UndirectedGraphNode copy = new UndirectedGraphNode(aNeighbors.label);
 				map.put(aNeighbors, copy);
 				DFS(aNeighbors, map);
@@ -101,8 +92,7 @@ class CloneGraph
 
 
 	//DFS, stack
-	public UndirectedGraphNode cloneGraph(UndirectedGraphNode node)
-	{
+	public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
 		if(node == null)
 			return null;
 
@@ -113,13 +103,10 @@ class CloneGraph
 		map.put(node, newHead);
 		stack.push(node);
 
-		while(!stack.isEmpty())
-		{
+		while(!stack.isEmpty()) {
 			UndirectedGraphNode curr = stack.pop();
-			for(UndirectedGraphNode aNeighbors : curr.neighbors)
-			{
-				if(!map.containsKey(aNeighbors))
-				{
+			for(UndirectedGraphNode aNeighbors : curr.neighbors) {
+				if(!map.containsKey(aNeighbors)) {
 					stack.push(aNeighbors);
 					UndirectedGraphNode copy = new UndirectedGraphNode(aNeighbors.label);
 					map.put(aNeighbors, copy);
