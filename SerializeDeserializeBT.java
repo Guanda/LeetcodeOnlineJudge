@@ -23,10 +23,9 @@ import java.util.Queue;
  necessarily need to follow this format, so please be creative and come up with different approaches yourself.
 
  Analysis:
- The idea is simple: print the tree in pre-order traversal and use "X" to denote null node and split node with ",".
- We can use a StringBuilder for building the string on the fly. For deserializing, we use a Queue to store the pre-order
- traversal and since we have "X" as null node, we know exactly how to where to end building subtrees.
-
+     The idea is simple: print the tree in pre-order traversal and use "X" to denote null node and split node with ",".
+     We can use a StringBuilder for building the string on the fly. For deserializing, we use a Queue to store the pre-order
+     traversal and since we have "X" as null node, we know exactly how to where to end building subtrees.
  */
 
 public class SerializeDeserializeBT {
