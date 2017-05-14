@@ -12,20 +12,16 @@ The solution set must not contain duplicate triplets.
     (-1, -1, 2)
 
 Analysis:
+	Consider the 2Sum question first: sort array and then set two pointers, one from start and 
+	then other one from the last. time O(n)
 
-Consider the 2Sum question first: sort array and then set two pointers, one from start and 
-then other one from the last. time O(n)
-
-So based on 2Sum problem, we can figure out it by using time O(n^2).
-
+	So based on 2Sum problem, we can figure out it by using time O(n^2).
 */
 
-class ThreeSum
-{
-	public ArrayList<ArrayList<Integer>> 3sum(int[] num)
-	{
-		ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
-		HashSet<ArrayList<Integer>> hashSet = new HashSet<ArrayList<Integer>>();
+class ThreeSum {
+	public List<List<Integer>> 3sum(int[] num) {
+		List<List<Integer>> result = new ArrayList<>();
+		HashSet<List<Integer>> hashSet = new HashSet<>();
 		if(num.length < 3)
 			return result;
 
@@ -34,35 +30,29 @@ class ThreeSum
 		int n = num.length;
 
 		//i<n-2 because we have at lest three elements in num[]
-		for(int i = 0; i < n-2 && num[i] <= 0; i++)
-		{
+		for(int i = 0; i < n-2 && num[i] <= 0; i++) {
 			//skip the same int in the loop
 			if (i > 0 && num[i] == num[i-1]) 
 				continue;
 
 			int j = i + 1;
 			int k = n - 1;
-			while(j < k)
-			{
+			while(j < k) {
 				int sum_two = num[i] + num[j];
-				if(sum_two + num[k] < 0)
-				{
+				if(sum_two + num[k] < 0) {
 					j++;
 				}
-				else if(sum_two + num[k] > 0)
-				{
+				else if(sum_two + num[k] > 0) {
 					k--;
 				}
-				else
-				{
-					ArrayList<Integer> arr = new ArrayList<Integer>();
+				else {
+					List<Integer> arr = new ArrayList<Integer>();
 					arr.add(num[i]);
 					arr.add(num[j]);
 					arr.add(num[k]);
 
 					//only add the unique one
-					if(!hashSet.contains(arr))
-					{
+					if(!hashSet.contains(arr)) {
 						hashSet.add(arr);
 						result.add(arr);
 					}
