@@ -9,17 +9,13 @@ Given input array A = [1,1,2],
 Your function should return length = 2, and A is now [1,2].
 
 Anaylsis:
-The problem needs the new array be unique array, otherwise we don't need replace the duplicates number with "else if".
-
+	The problem needs the new array be unique array, otherwise we don't need replace the duplicates number with "else if".
 */
 
-class RemoveDuplicatesFromSortedArray
-{
-	public int removeDuplicates(int[] A)
-	{
+class RemoveDuplicatesFromSortedArray {
+	public int removeDuplicates(int[] A) {
 		int count = 0;
-		for(int i = 1; i < A.length; i++)
-		{
+		for(int i = 1; i < A.length; i++) {
 			if(A[i] == A[i-1])
 				count++;
 			else if(count > 0)
