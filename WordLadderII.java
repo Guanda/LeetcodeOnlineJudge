@@ -20,59 +20,81 @@ All words have the same length.
 All words contain only lowercase alphabetic characters.
 
 Analysis:
-
-* we are essentially building a graph, from start, BF. and at each level we find all reachable words from parent.
-* we stop if the current level contains end, we return any path whose last node is end.
-* 
-* To achieve BFT, use a deuqe; a key improvement is to remove all the words we already reached
-* in PREVIOUS LEVEL; we don't need to try visit them again
-* in subsequent level, that is guaranteed to be non-optimal solution.
-* at each new level, we will removeAll() words reached in previous level from dict.
+	Use BFS first to generate graph based map and calculate distance between each node and start.
+	Then use DFS to find out the path.
+	Since we have distance map which level the map, so it is guaranteed that we have shortest path.
 */
 class WordLadderII {
-	public List<List<String>> findLadders(String start, String end, Set<String> dict) {
-	    List<List<String>> results = new ArrayList<List<String>>();
-	    dict.add(end);
-	    // instead of storing words we are at, we store the paths.
-	    Deque<List<String>> paths = new LinkedList<List<String>>();
-	    List<String> path0 = new LinkedList<String>();
-	    path0.add(start);
-	    paths.add(path0);
-	    // if we found a path ending at 'end', we will set lastLevel,
-	    // use this data to stop iterating further.
-	    int level = 1, lastLevel = Integer.MAX_VALUE;
-	    Set<String> wordsPerLevel = new HashSet<String>();
-	    while (!paths.isEmpty()) {
-	        List<String> path = paths.pollFirst();
-	        if (path.size() > level) {
-	            dict.removeAll(wordsPerLevel);
-	            wordsPerLevel.clear();
-	            level = path.size();
-	            if (level > lastLevel)
-	                break; // stop and return
-	        }
-	        //  try to find next word to reach, continuing from the path
-	        String last = path.get(level - 1);
-	        char[] chars = last.toCharArray();
-	        for (int index = 0; index < last.length(); index++) {
-	            char original = chars[index];
-	            for (char c = 'a'; c <= 'z'; c++) {
-	                chars[index] = c;
-	                String next = new String(chars);
-	                if (dict.contains(next)) {
-	                    wordsPerLevel.add(next);
-	                    List<String> nextPath = new LinkedList<String>(path);
-	                    nextPath.add(next);
-	                    if (next.equals(end)) {
-	                        results.add(nextPath);
-	                        lastLevel = level; // curr level is the last level
-	                    } else
-	                        paths.addLast(nextPath);
-	                }
-	            }
-	            chars[index] = original;
-	        }
-	    }
-	    return results;
-	}
+    public List<List<String>> findLadders(String start, String end, Set<String> dict) {
+        List<List<String>> results = new ArrayList<>();
+        Map<String, List<String>> map = new HashMap<>();
+        Map<String, Integer> distance = new HashMap<>();
+        
+        bfs(start, end, dict, map, distance);
+        
+        List<String> path = new ArrayList<>();
+        
+        dfs(start, end, path, map, distance, results);
+        
+        return results;
+    }
+    
+    private void dfs(String start,
+                     String end,
+                     List<String> path,
+                     Map<String, List<String>> map,
+                     Map<String, Integer> distance,
+                     List<List<String>> results) {
+        path.add(start);
+        if(start.equals(end)) {
+            results.add(new ArrayList<String>(path));
+        }
+        else {
+            for(String next : map.get(start)) {
+                if (distance.containsKey(next) && distance.get(next) == distance.get(start) + 1) { 
+                    dfs(next, end, path, map, distance, results);
+                }
+            }
+        }
+        path.remove(path.size() - 1);
+    }
+    
+    private void bfs(String start,
+                     String end,
+                     Set<String> dict,
+                     Map<String, List<String>> map,
+                     Map<String, Integer> distance) {
+        Queue<String> queue = new LinkedList<>();
+        queue.add(start);
+        distance.put(start, 0);
+        for(String s : dict) {
+            map.put(s, new ArrayList<String>());
+        }
+        
+        while(!queue.isEmpty()) {
+            String curr = queue.poll();
+            List<String> adjList = findAdjList(curr, dict);
+            for(String adj : adjList) {
+                map.get(curr).add(adj);
+                if(!distance.containsKey(adj)) {
+                    distance.put(adj, distance.get(curr) + 1);
+                    queue.add(adj);
+                }
+            }
+        }
+    }
+    
+    private List<String> findAdjList(String curr, Set<String> dict) {
+        List<String> list = new ArrayList<String>();
+
+        for(int i = 0; i < curr.length(); i++) {
+            for(char c = 'a'; c <= 'z'; c++) {
+                String s = curr.substring(0, i) + c + curr.substring(i + 1);
+                if(dict.contains(s)) {
+                    list.add(s);
+                }
+            }
+        }
+        return list;
+    }
 }
