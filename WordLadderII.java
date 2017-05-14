@@ -29,6 +29,10 @@ class WordLadderII {
         List<List<String>> results = new ArrayList<>();
         Map<String, List<String>> map = new HashMap<>();
         Map<String, Integer> distance = new HashMap<>();
+
+        //in case the start and end are not in dict
+        dict.add(start);
+        dict.add(end);
         
         bfs(start, end, dict, map, distance);
         
