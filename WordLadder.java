@@ -20,42 +20,66 @@ All words have the same length.
 All words contain only lowercase alphabetic characters.
 
 Analysis: BFS
-
 */
 
-class WordLadder
-{
-	public int ladderLength(String start, String end, Set<String> dict)
-	{
-		LinkedList<String> wordQue = new LinkedList<String>();
-		LinkedList<Integer> countQue = new LinkedList<Integer>();
-
-		wordQue.add(start);
-		countQue.add(1);
-		while(!wordQue.isEmpty())
-		{
-			String analyzing = wordQue.poll();
-			int currCount = countQue.poll();
-			if(analyzing.equals(end))
-				return currCount;
-
-			for(int i = 0; i < analyzing.length(); i++)
-			{
-				for(char j = 'a'; j < 'z'; j++)
-				{
-					char[] possibleMatch = analyzing.toCharArray();
-					possibleMatch[i] = j;
-					String checkMatch = new String(possibleMatch);
-					if(dict.contains(checkMatch))
-					{
-						//once the word is picked in path, we don't need it again
-						dict.remove(checkMatch);
-						countQue.add(currCount+1);
-						wordQue.add(checkMatch);
-					}
-				}
-			}
-		}	
-		return 0;
-	}
+class WordLadder {
+    public int ladderLength(String start, String end, Set<String> dict) {
+        if(dict == null || dict.size() == 0) {
+            return 0;
+        }
+        
+        if(start.equals(end)) {
+            return 1;
+        }
+        
+        dict.add(start);
+        dict.add(end);
+        
+        Queue<String> queue = new LinkedList<>();
+        Set<String> hashset = new HashSet<>();
+        queue.add(start);
+        hashset.add(start);
+        
+        int len = 1;
+        while(!queue.isEmpty()) {
+            len++;
+            int size = queue.size();
+            for(int i = 0; i < size; i++) {
+                String curr = queue.poll();
+                for(String next : getNextWords(curr, dict)) {
+                    if(hashset.contains(next)) {
+                        continue;
+                    }
+                    if(next.equals(end)) {
+                        return len;
+                    }
+                    hashset.add(next);
+                    queue.add(next);
+                }
+            }
+        }
+        return 0;
+    }
+    
+    private List<String> getNextWords(String curr, Set<String> dict) {
+        List<String> list = new ArrayList<>();
+        for (char c = 'a'; c <= 'z'; c++) {
+            for (int i = 0; i < curr.length(); i++) {
+                if (c == curr.charAt(i)) {
+                    continue;
+                }
+                String nextWord = replace(curr, i, c);
+                if (dict.contains(nextWord)) {
+                    list.add(nextWord);
+                }
+            }
+        }
+        return list;
+    }
+    
+    private String replace(String s, int index, char c) {
+        char[] chars = s.toCharArray();
+        chars[index] = c;
+        return new String(chars);
+    }
 }
