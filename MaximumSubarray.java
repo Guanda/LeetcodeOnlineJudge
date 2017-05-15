@@ -27,4 +27,18 @@ class MaximumSubarray {
 
 		return max;
 	}
+
+	//prefix sum solution, 找到之前最小的prefix sum和目前最大的prefix sum，相减即为max
+    public int maxSubArray(int[] nums) {        
+        int max = Integer.MIN_VALUE;
+        int sum = 0;
+        int minSum = 0; //i之前最小的prefixSum
+        for(int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+            max = Math.max(max, sum - minSum);
+            minSum = Math.min(minSum, sum);
+        }
+        
+        return max;
+    }
 }
