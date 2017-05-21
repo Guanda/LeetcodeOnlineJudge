@@ -5,14 +5,11 @@ Input is guaranteed to be within the range from 1 to 3999.
 
 */
 
-class RomanToInt
-{
+class RomanToInt {
 	//initial the Roman charactors
-	public static int charToInt(char c)
-	{
+	public static int charToInt(char c) {
 		int data = 0;
-		switch(c)
-		{
+		switch(c) {
 			case 'I':
 				data = 1;
 				break;
@@ -38,14 +35,12 @@ class RomanToInt
 		return data;
 	}
 
-	public int romanToInt(String s)
-	{
+	public int romanToInt(String s) {
 		int pre = 0;
 		int cur = 0;
 		int total = charToInt(s.charAt(0));
 
-		for(int i = 1; i < s.length(); i++)
-		{
+		for(int i = 1; i < s.length(); i++) {
 			pre = charToInt(s.charAt(i - 1));
 			cur = charToInt(s.charAt(i));
 			if(cur <= pre)
