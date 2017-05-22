@@ -9,13 +9,10 @@ Your function should return length = 2, with the first two elements of nums bein
 
 */
 
-class RemoveElement
-{
-	public int removeElement(int[] A, int elem)
-	{
+class RemoveElement {
+	public int removeElement(int[] A, int elem) {
 		int count = 0;
-		for(int i = 0; i < A.length; i++)
-		{
+		for(int i = 0; i < A.length; i++) {
 			if(A[i] == elem)
 				count++;
 			//remember we need remove the element, so move the good element one by one
