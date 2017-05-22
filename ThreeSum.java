@@ -19,6 +19,55 @@ Analysis:
 */
 
 class ThreeSum {
+	//Solution 1: no hashset needed
+	public List<List<Integer>> threeSum(int[] numbers) {
+        List<List<Integer>> results = new ArrayList<>();
+        if(numbers == null || numbers.length < 3) {
+            return results;
+        }
+        
+        Arrays.sort(numbers);
+        
+        for(int i = 0; i < numbers.length - 2 && numbers[i] <= 0; i++) {
+            if (i > 0 && numbers[i] == numbers[i - 1]) {
+                continue;
+            }
+            
+            int left = i + 1, right = numbers.length - 1;
+            while(left < right) {
+                int value = numbers[i] + numbers[left] + numbers[right];
+                if(value == 0) {
+                    List<Integer> list = new ArrayList<>();
+                    list.add(numbers[i]);
+                    list.add(numbers[left]);
+                    list.add(numbers[right]);
+                    results.add(list);
+                    left++;
+                    right--;
+                    
+                    while(left > 0 && left < right && numbers[left] == numbers[left - 1]) {
+                        left++;
+                    }
+                    
+                    while(right < numbers.length - 1 && left < right && numbers[right] == numbers[right + 1]) {
+                        right--;
+                    }
+                }
+                else if(value < 0) {
+                    left++;
+                }
+                else {
+                    right--;
+                }
+            }
+        }
+        
+        return results;
+    }
+
+
+
+	//Solution 2: with hashset, more space needed
 	public List<List<Integer>> 3sum(int[] num) {
 		List<List<Integer>> result = new ArrayList<>();
 		HashSet<List<Integer>> hashSet = new HashSet<>();
