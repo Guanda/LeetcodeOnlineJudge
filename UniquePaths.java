@@ -25,35 +25,27 @@ Method 2: Maths solution
 	i.e. C(m+n-2, n-1). We only need to choose either row- or column-turning points since once those points 
 	are selected, the path has been determined. Obviously, the combination can be computed in O(min(m, n)) 
 	time with O(1) space.
-
-
 */
 
-class UniquePaths
-{
+class UniquePaths {
 	//Method 1
-	public int uniquePaths(int m, int n)
-	{
+	public int uniquePaths(int m, int n) {
 		int[][] counts = new int[m][n];
 		counts[0][0] = 1;
 
 		//for first row
-		for(int i = 0; i < m; i++)
-		{
+		for(int i = 0; i < m; i++) {
 			counts[i][0] = 1;
 		}
 
 		//for first column
-		for(int j = 0; j < n; j++)
-		{
+		for(int j = 0; j < n; j++) {
 			counts[0][j] = 1;
 		}
 
 		//fill up the rest of the 2D array
-		for(int i =1; i < m; i++)
-		{
-			for(int j = 1; j < n; j++)
-			{
+		for(int i =1; i < m; i++) {
+			for(int j = 1; j < n; j++) {
 				counts[i][j] = counts[i-1][j] + counts[i][j-1];
 			}
 		}
@@ -63,16 +55,14 @@ class UniquePaths
 
 
 	//Method 2
-	public int uniquePaths(int m, int n)
-	{
+	public int uniquePaths(int m, int n) {
 		if(m == 0 || n == 0)
 			return 0;
 
 		int x = Math.min(m, n);
 		int y = Math.max(m, n);
 		double count = 1;
-		for(int i = 1; i < x; i ++)
-		{
+		for(int i = 1; i < x; i ++) {
 			count = count * (y + i - 1);
 			count = count / i;
 		}
