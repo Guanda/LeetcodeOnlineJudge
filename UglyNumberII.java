@@ -21,6 +21,7 @@ Analysis:
 	Every step we choose the smallest one, and move one step after.
 */
 class UglyNumberII {
+	//Method 1: hard to understand but fast
 	public int nthUglyNumber(int n) {
 		int[] ugly = new int[n];
 		ugly[0] = 1;
@@ -46,4 +47,37 @@ class UglyNumberII {
 		}
 		return nextUgly;
 	}
+
+
+	//Method 2: easy to understand but cost is a little bit higher
+	//Use priority queue and hashset
+	public int nthUglyNumber(int n) {
+		if(n <= 0) {
+            return 0;
+        }
+        
+        PriorityQueue<Long> queue = new PriorityQueue<>();
+        Set<Long> set = new HashSet<>();
+        long[] primes = new long[3];
+        primes[0] = Long.valueOf(2);
+        primes[1] = Long.valueOf(3);
+        primes[2] = Long.valueOf(5);
+        for(int i = 0; i < primes.length; i++) {
+            queue.add(primes[i]);
+            set.add(primes[i]);
+        }
+        
+        long num = Long.valueOf(1);
+        for(int i = 1; i < n; i++) {
+            num = queue.poll();
+            for(int j = 0; j < primes.length; j++) {
+                if(!set.contains(primes[j] * num)){
+                    queue.add(primes[j] * num);
+                    set.add(primes[j] * num);
+                }
+            }
+        }
+        
+        return (int)num;
+    }
 }
