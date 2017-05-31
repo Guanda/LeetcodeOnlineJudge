@@ -22,31 +22,32 @@ Analysis:
 		is reachable.
 */
 
-class JumpGamev{
-	//Method 1: time O(n^2), time limit exceeded in OJ
+class JumpGame{
+	//Method 1: DP, time O(n^2), time limit exceeded in OJ
 	public boolean canJump(int[] nums) {
-		if(nums.length <= 1)
-			return true;
-
-		boolean[] canJump = new boolean[nums.length];
-		for(int i = nums.length - 2, dist = 1; i >= 0; i--, dist++) {
-			if(nums[i] >= dist)
-				canJump[i] = true;
-			else {
-				int j = 1;
-				//any of the elements within the jump range can reach the last one
-				while(j <= nums[i] && !canJump[i+j])
-					j++;
-				if(j <= nums[i])
-					canJump[i] = true;
-			}
-		}
-		return canJump[0];
+		if(nums == null || nums.length == 0) {
+            return true;
+        }
+        
+        //use dp, can[i] means current index i can be reached
+        boolean[] can = new boolean[nums.length];
+        can[0] = true;
+        
+        for(int i = 1; i < nums.length; i++) {
+            for(int j = 0; j < i; j++) {
+                if(can[j] && j + nums[j] >= i) {
+                    can[i] = true;
+                    break;
+                }
+            }
+        }
+        
+        return can[nums.length - 1];
 	}
 
-	//Method 2
+	//Method 2: Greedy, time O(n)
 	public boolean canJump(int[] nums) {
-		if(nums.length <= 1)
+		if(nums == null || nums.length <= 1)
 			return true;
 
 		int next = nums.length - 1;
