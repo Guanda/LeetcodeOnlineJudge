@@ -33,24 +33,23 @@ Analysis:
 class LongestIncreasingSubsequence {
 	//Method 1:
 	public int lengthOfLIS(int[] nums) {
-		if(nums == null || nums.length == 0)
-			return 0;
-
-		int len = nums.length;
-		//initial the lis array all elements are 0 which should be considered later.
-		int[] lis = new int[len];
-
-		int max = 0;
-		for(int i = 1; i < len; i++) {
-			for(int j = 0; j < i; j++) {
-				if(nums[i] > nums[j] && lis[i] < lis[j] + 1)
-					lis[i] = lis[j] + 1;
-			}
-			max = Math.max(lis[i], max);
-		}
-
-		//because we initail lis[i] is 0 which should be 1
-		return max + 1;
+		if(nums == null || nums.length == 0) {
+            return 0;
+        }
+        
+        int[] dp = new int[nums.length];
+        int max = 0;
+        for(int i = 0; i < nums.length; i++) {
+            dp[i] = 1;
+            for(int j = 0; j < i; j++) {
+                if(nums[i] > nums[j] && dp[i] < dp[j] + 1) {
+                    dp[i] = dp[j] + 1;
+                }
+            }
+            max = Math.max(dp[i], max);
+        }
+        
+        return max;
 	}
 
 	//Method 2:

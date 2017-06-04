@@ -10,22 +10,28 @@ Analysis:
 	the shifted value from dividend. Keep doing this until dividend is smaller 
 	than divisor. In fact, every integer can be represented by a set of base 2 so 
 	that shifting can be used.
-
 */
 
-public class DivideTwoInteger
-{
-	public int divideTwoInteger(int dividend, int divisor)
-	{
+public class DivideTwoInteger {
+	public int divideTwoInteger(int dividend, int divisor) {
+		if(divisor == 0) {
+            return dividend >= 0? Integer.MAX_VALUE : Integer.MIN_VALUE;
+        }
+        if(dividend == 0) {
+            return 0;
+        }
+        
+        if (dividend == Integer.MIN_VALUE && divisor == -1) {
+            return Integer.MAX_VALUE;
+        }
+
 		long p = Math.abs((long)dividend);
 		long q = Math.abs((long)divisor);
 		int result = 0;
 
-		while(p >= q)
-		{
+		while(p >= q) {
 			int counter = 0;
-			while(p >= (q << counter))
-			{
+			while(p >= (q << counter)) {
 				counter++;
 			}
 			result += 1 << (counter - 1);
@@ -33,16 +39,13 @@ public class DivideTwoInteger
 		}
 
 		//take care of the boundry case
-		if(dividend == Integer.MIN_VALUE && divisor == -1)
-		{
+		if(dividend == Integer.MIN_VALUE && divisor == -1) {
 			return Integer.MAX_VALUE;
 		}
-		if((dividend > 0 && divisor > 0) || (dividend < 0 && divisor < 0))
-		{
+		if((dividend > 0 && divisor > 0) || (dividend < 0 && divisor < 0)) {
 			return result;
 		}
-		else
-		{
+		else {
 			return -result;
 		}
 	}
