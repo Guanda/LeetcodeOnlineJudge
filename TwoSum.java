@@ -8,25 +8,19 @@ You may assume that each input would have exactly one solution.
 
 Input: numbers={2, 7, 11, 15}, target=9
 Output: index1=1, index2=2
-
 */
 
-class TwoSum
-{
-	public int[] twoSum(int[] numbers, int target)
-	{
+class TwoSum {
+	public int[] twoSum(int[] numbers, int target) {
 		int[] result = new int[2];
 		HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
-		for(int i = 0; i < numbers.length; i++)
-		{
-			if(hm.containsKey(numbers[i]))
-			{
+		for(int i = 0; i < numbers.length; i++) {
+			if(hm.containsKey(numbers[i])) {
 				int index = hm.get(numbers[i]);
 				result[0] = index + 1;
 				result[1] = i + 1;
 			}
-			else 
-			{
+			else  {
 				//for every time walk through numbers, save target-numbers[i] to hashmap
 				//which is ready for next time. so only need to pass numbers once.
 				//the hash map value i is the index in next time

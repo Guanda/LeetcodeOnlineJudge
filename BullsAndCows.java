@@ -25,13 +25,10 @@ should return "1A1B".
 
 You may assume that the secret number and your friend's guess only contain digits, and their 
 lengths are always equal.
-
 */
 
-public class BullsAndCows
-{
-	public String getHint(String secret, String guess)
-	{
+public class BullsAndCows {
+	public String getHint(String secret, String guess) {
 		int bulls = 0;
 		int cows = 0;
 		int[] count = new int[10];
