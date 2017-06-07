@@ -19,25 +19,19 @@ Remember the special case that the head node has duplicates.
  *     ListNode(int x) { val = x; }
  * }
  */
-class RemoveDuplicatesFromSortedList2
-{
-	public ListNode deleteDuplicates(ListNode head)
-	{
+class RemoveDuplicatesFromSortedList2 {
+	public ListNode deleteDuplicates(ListNode head) {
 		ListNode dummy = new ListNode(0);
 		dummy.next = head;
 		ListNode prev = dummy;
 		ListNode curr = head;
 
-		while(curr != null && curr.next != null)
-		{
-			if(curr.next.val != curr.val)
-			{
+		while(curr != null && curr.next != null) {
+			if(curr.next.val != curr.val) {
 				prev = curr;
 			}
-			else
-			{
-				while(curr.next != null && curr.next.val == prev.next.val)
-				{
+			else {
+				while(curr.next != null && curr.next.val == prev.next.val) {
 					curr = curr.next;
 				}
 				prev.next = curr.next;
