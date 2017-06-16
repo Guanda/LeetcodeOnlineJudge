@@ -9,19 +9,23 @@ A trie node should contains the character, its children and the flag that marks 
 
 */
 
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie trie = new Trie();
+ * trie.insert("lintcode");
+ * trie.search("lint"); will return false
+ * trie.startsWith("lint"); will return true
+ */
 class TrieNode {
     // Initialize your data structure here.
-    public TrieNode() {
-        char c;
-        HashMap<Character, TrieNode> children = new HashMap<Character, TrieNode>();
-        boolean isLeaf;
-
-        public TrieNode(){}
-
-        public TrieNode(char c)
-        {
-        	this.c = c;
-        }
+    char c;
+    Map<Character, TrieNode> children = new HashMap<>();
+    boolean hasWord;
+    
+    public TrieNode(){}
+    
+    public TrieNode(char c) {
+        this.c = c;
     }
 }
 
@@ -34,73 +38,58 @@ public class Trie {
 
     // Inserts a word into the trie.
     public void insert(String word) {
-        HashMap<Character, TrieNode> children = root.children;
-
-        for(int i = 0; i < word.length(); i++)
-        {
-        	char c = word.charAt(i);
-        	TrieNode t = null;
-
-        	if(children.containsKey(c))
-        	{
-        		t = children.get(c);
-        	}
-        	else
-        	{
-        		t = new TrieNode(c);
-        		children.put(c, t);
-        	}
-
-        	children = t.children;
-
-        	//set leaf node
-        	if(i == word.length() - 1)
-        	{
-        		t.isLeaf = true;
-        	}
+        TrieNode curr = root;
+        Map<Character, TrieNode> currChildren = root.children;
+        
+        char[] wordArray = word.toCharArray();
+        for(int i = 0; i < wordArray.length; i++) {
+            char wc = wordArray[i];
+            if(currChildren.containsKey(wc)) {
+                curr = currChildren.get(wc);
+            }
+            else {
+                TrieNode newNode = new TrieNode(wc);
+                currChildren.put(wc, newNode);
+                curr = newNode;
+            }
+            currChildren = curr.children;
+            if(i == wordArray.length - 1) {
+                curr.hasWord = true;
+            }
         }
-    }
-
-    //helper method for the following search and startsWith methods
-    public TrieNode searchNode(String str) {
-    	HashMap<Character, TrieNode> children = root.children;
-    	TrieNode t = null;
-
-    	for(int i = 0; i < str.length(); i++)
-    	{
-    		char c = str.charAt(i);
-    		if(children.containsKey(c))
-    		{
-    			t = children.get(c);
-    			children = t.children;
-    		}
-    		else
-    			return null;
-    	}
-    	return t;
     }
 
     // Returns if the word is in the trie.
     public boolean search(String word) {
-        TrieNode t = searchNode(word);
-
-        if(t != null && t.isLeaf)
-        {
-        	return true;
+        if(searchWordNodePos(word) == null) {
+            return false;
         }
-        else
-        {
-        	return false;
-        }
+        return searchWordNodePos(word).hasWord;
     }
 
     // Returns if there is any word in the trie
     // that starts with the given prefix.
     public boolean startsWith(String prefix) {
-        if(searchNode(prefix) == null)
-        	return false;
-        else
-        	return true;
+        return searchWordNodePos(prefix) != null;
+    }
+    
+    // helper method for search and startWith methods
+    private TrieNode searchWordNodePos(String s) {
+        TrieNode curr = root;
+        Map<Character, TrieNode> currChildren = root.children;
+        
+        char[] wordArray = s.toCharArray();
+        for(int i = 0; i < wordArray.length; i++) {
+            char wc = wordArray[i];
+            if(currChildren.containsKey(wc)) {
+                curr = currChildren.get(wc);
+                currChildren = curr.children;
+            }
+            else {
+                return null;
+            }
+        }
+        return curr;
     }
 }
 
