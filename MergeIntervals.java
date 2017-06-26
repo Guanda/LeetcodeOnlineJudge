@@ -20,33 +20,39 @@ Analysis:
  */
 class MergeIntervals {
 	public List<Interval> merge(List<Interval> intervals) {
-		if(intervals == null || intervals.size() <= 1)
-			return intervals;
-
-		//sort the intervals
-		Collections.sort(intervals, new IntervalComparator());
-
-		List<Interval> result = new ArrayList<Interval>();
-
-		Interval prev = intervals.get(0);
-		for(Interval interval : intervals) {
-			if(prev.end >= interval.start) {
-				//merge case
-				Interval merged = new Interval(prev.start, Math.max(prev.end, interval.end));
-				prev = merged;
-			}
-			else {
-				result.add(prev);
-				prev = interval;
-			}
-		}
-		result.add(prev);
-		return result;
+	    if(intervals == null || intervals.size() <= 1) {
+	        return intervals;
+	    }
+	    
+	    //sort intervals based on start elements
+	    Collections.sort(intervals, new Comparator<Intervals>() {
+	        public int compare(Interval a, Interval b) {
+	            return a.start - b.start;
+	        }
+	    });
+	    
+	    List<Interval> result = new ArrayList<>();
+	    Interval last = intervals.get(0);
+	    for(int i = 1; i < intervals.size(); i++) {
+	        Interval curr = intervals.get(i);
+	        if(curr.start <= last.end) {
+	            last.end = Math.max(last.end, curr.end);
+	        }
+	        else {
+	            result.add(last);
+	            last = curr;
+	        }
+	    }
+	    
+	    result.add(last);
+	    return result;
 	}
 }
 
-class IntervalComparator implements Comparator<Interval> {
-	public int compare(Interval i1, Interval i2) {
-		return i1.start - i2.start;
-	}
+class Interval {
+    int start, end;
+    public Interval(int start, int end) {
+        this.start = start;
+        this.end = end;
+    }
 }
