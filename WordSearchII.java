@@ -18,94 +18,96 @@
  */
 
 public class WordSearchII {
-    Set<String> result = new HashSet<String>();
-
-    public List<String> findWords(char[][] board, String[] words) {
-        Trie trie = new Trie();
-        for(String word : words) {
-            trie.insert(word);
-        }
-
+    /**
+     * @param board: A list of lists of character
+     * @param words: A list of string
+     * @return: A list of string
+     */
+    public ArrayList<String> wordSearchII(char[][] board, ArrayList<String> words) {
+        // write your code here
+        ArrayList<String> result = new ArrayList<>();
         boolean[][] visited = new boolean[board.length][board[0].length];
+        Trie tree = new Trie();
+        for(String word : words) {
+            tree.insert(word);
+        }
+        
         for(int i = 0; i < board.length; i++) {
-            for(int j = 0; j < board[0].length; j++) {
-                dfs(board, visited, "", i, j, trie);
+            for(int j = 0; j < board[i].length; j++) {
+                String curr = "";
+                dfs(result, visited, board, i, j, tree.root, curr);
             }
         }
-
-        return new ArrayList<String>(result);
+        return result;
     }
-
-    public void dfs(char[][] board, boolean[][] visited, String str, int x, int y, Trie trie) {
-        if(x < 0 || x >= board.length || y < 0 || y >= board[0].length)
-            return;
-
-        if(visited[x][y])
-            return;
-
-        str += board[x][y];
-        if(!trie.startsWith(str))
-            return;
-
-        if(trie.search(str))
+    
+    private void dfs(ArrayList<String> result,
+                     boolean[][] visited, 
+                     char[][] board,
+                     int i, int j,
+                     TrieNode node,
+                     String str) {
+        if(node.hasWord && !result.contains(str)) {
             result.add(str);
-
-        visited[x][y] = true;
-        dfs(board, visited, str, x-1, y, trie);
-        dfs(board, visited, str, x+1, y, trie);
-        dfs(board, visited, str, x, y-1, trie);
-        dfs(board, visited, str, x, y+1, trie);
-        visited[x][y] = false;
-    }
-}
-
-//The implementation of Trie data structure
-class TrieNode {
-    public TrieNode[] children = new TrieNode[26];
-    public String item = "";
-
-    public TrieNode(){}
-}
-
-public class Trie {
-    private TrieNode root;
-
-    public Trie(){
-        root = new TrieNode();
-    }
-
-    //insert a word into trie
-    public void insert(String word) {
-        TrieNode node = root;
-        for(char c : word.toCharArray()) {
-            if(node.children[c-'a'] == null)
-                node.children[c-'a'] = new TrieNode();
-            node = node.children[c-'a'];
         }
-        node.item = word;
+        
+        int[] dirX = {1, -1, 0, 0};
+        int[] dirY = {0, 0, 1, -1};
+        
+        if(inBound(board, visited, i, j) && node.children.containsKey(board[i][j])) {
+            for(int k = 0; k < 4; k++) {
+                visited[i][j] = true;
+                String curr = str + Character.toString(board[i][j]);
+                dfs(result, visited, board, i+dirX[k], j+dirY[k], node.children.get(board[i][j]), curr);
+                visited[i][j] = false;
+            }
+        }
+    }
+    
+    private boolean inBound(char[][] board, boolean[][] visited, int i, int j) {
+        return i >= 0 && i < board.length && j >= 0 && j < board[0].length && !visited[i][j];
     }
 
-    //returns if the word is in the trie
-    public boolean search(String word) {
-        TrieNode node = root;
-        for(char c : word.toCharArray()) {
-            if(node.children[c - 'a'] == null)
-                return false;
 
-            node = node.children[c - 'a'];
+    class TrieNode {
+        char c;
+        boolean hasWord;
+        Map<Character, TrieNode> children = new HashMap<>();
+        
+        public TrieNode(){}
+        
+        public TrieNode(char c) {
+            this.c = c;
         }
-        return node.item.equals(word);
     }
-
-    //returns if there is any word in the trie that starts with the given prefix
-    public boolean startsWith(String prefix) {
-        TrieNode node = root;
-        for(char c : prefix.toCharArray()) {
-            if(node.children[c - 'a'] == null)
-                return false;
-
-            node = node.children[c - 'a'];
+    
+    class Trie {
+        private TrieNode root;
+        
+        public Trie() {
+            root = new TrieNode();
         }
-        return true;
+        
+        public void insert(String word) {
+            TrieNode curr = root;
+            Map<Character, TrieNode> currChildren = root.children;
+            
+            char[] wordArray = word.toCharArray();
+            for(int i = 0; i < wordArray.length; i++) {
+                char wc = wordArray[i];
+                if(currChildren.containsKey(wc)) {
+                    curr = currChildren.get(wc);
+                }
+                else {
+                    TrieNode newNode = new TrieNode(wc);
+                    currChildren.put(wc, newNode);
+                    curr = newNode;
+                }
+                currChildren = curr.children;
+                if(i == wordArray.length - 1) {
+                    curr.hasWord = true;
+                }
+            }
+        }
     }
 }

@@ -25,7 +25,7 @@ class MergeIntervals {
 	    }
 	    
 	    //sort intervals based on start elements
-	    Collections.sort(intervals, new Comparator<Intervals>() {
+	    Collections.sort(intervals, new Comparator<Interval>() {
 	        public int compare(Interval a, Interval b) {
 	            return a.start - b.start;
 	        }
