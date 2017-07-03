@@ -8,29 +8,38 @@ getMin() -- Retrieve the minimum element in the stack.
 */
 
 //Method 1: use java stack
-class MinStack {
-	private Stack<Integer> stack = new Stack<Integer>();
-	private Stack<Integer> minStack = new Stack<Integer>();
+public class MinStack {
+    Stack<Integer> stack;
+    Stack<Integer> minStack;
 
-	public void push(int x) {
-		if(minStack.isEmpty() || x <= minStack.peek())
-			minStack.push(x);
-		stack.push(x);
-	}
+    /** initialize your data structure here. */
+    public MinStack() {
+        stack = new Stack<Integer>();
+        minStack = new Stack<Integer>();
+    }
+    
+    public void push(int x) {
+        if(minStack.isEmpty()) {
+            minStack.push(x);
+        }
+        else {
+            minStack.push(Math.min(x, minStack.peek()));
+        }
+        stack.push(x);
+    }
 
-	public void pop() {
-		if(stack.peek().equals(minStack.peek()))
-			minStack.pop();
-		stack.pop();
-	}
+    public void pop() {
+        minStack.pop();
+        stack.pop();
+    }
 
-	public int top() {
-		return stack.peek();
-	}
+    public int top() {
+        return stack.peek();
+    }
 
-	public int getMin() {
-		return minStack.peek();
-	}
+    public int getMin() {
+        return minStack.peek();
+    }
 }
 
 
@@ -73,3 +82,12 @@ class MinStack {
         }
     }
 }
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack obj = new MinStack();
+ * obj.push(x);
+ * obj.pop();
+ * int param_3 = obj.top();
+ * int param_4 = obj.getMin();
+ */
