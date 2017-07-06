@@ -44,9 +44,8 @@ class LargestRectangleInHistogram {
         }
         
         int max = 0;
-        int i = 0;
         Stack<Integer> stack = new Stack<>();
-        for(; i <= height.length; i++) {
+        for(int i = 0; i <= height.length; i++) {
             int now = (i == height.length) ? -1 : height[i];
             while(!stack.isEmpty() && now < height[stack.peek()]) {
                 int w = 0;
