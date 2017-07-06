@@ -37,9 +37,8 @@ Analysis:
 */
 
 class LargestRectangleInHistogram {
-	public int largestRectangleArea (int[] heights) {
-		//The stack holds indexes of heights[] array
-    	//The bars stored in stack are always in increasing order of their heights.
+    public int largestRectangleArea(int[] height) {
+        // write your code here
         if(height ==  null || height.length == 0) {
             return 0;
         }
@@ -47,8 +46,9 @@ class LargestRectangleInHistogram {
         int max = 0;
         int i = 0;
         Stack<Integer> stack = new Stack<>();
-        for(; i < height.length; i++) {
-            while(!stack.isEmpty() && height[i] < height[stack.peek()]) {
+        for(; i <= height.length; i++) {
+            int now = (i == height.length) ? -1 : height[i];
+            while(!stack.isEmpty() && now < height[stack.peek()]) {
                 int w = 0;
                 int h = height[stack.pop()];
                 if(!stack.isEmpty()) {
@@ -62,18 +62,6 @@ class LargestRectangleInHistogram {
             stack.push(i);
         }
         
-        while(!stack.isEmpty()) {
-            int w = 0;
-            int h = height[stack.pop()];
-            if(!stack.isEmpty()) {
-                w = i - stack.peek() - 1;
-            }
-            else {
-                w = i;
-            }
-            max = Math.max(max, w * h);
-        }
-        
         return max;
-	}
+    }
 }
