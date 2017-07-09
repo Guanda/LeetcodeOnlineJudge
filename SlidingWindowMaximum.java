@@ -30,6 +30,8 @@ Analysis:
 
 	3. As a result elements in the deque are ordered in both sequence in array and their value. At each step the 
 	   head of the deque is the max element in [i-(k-1),i]
+
+	Time O(n)
 */
 class SlidingWindowMaximum {
 	public int[] maxSlidingWindow(int[] nums, int k) {
@@ -43,8 +45,8 @@ class SlidingWindowMaximum {
 
 		for(int i = 0; i < nums.length; i++) {
 			// remove numbers out of range k
-			if(!q.isEmpty() && q.peek() < i - k + 1) {
-				q.poll();
+			while (!q.isEmpty() && q.peekFirst() < i - k + 1) {
+				q.pollFirst();
 			}
 			// remove smaller numbers in k range as they are useless
 			while (!q.isEmpty() && nums[q.peekLast()] < nums[i]) {
@@ -53,7 +55,7 @@ class SlidingWindowMaximum {
 			// q contains index... result contains content
 			q.offer(i);
 			if (i >= k - 1) {
-				result[rIndex++] = nums[q.peek()];
+				result[rIndex++] = nums[q.peekFirst()];
 			}
 		}
 		return result;
