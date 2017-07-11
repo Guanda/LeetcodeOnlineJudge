@@ -12,16 +12,13 @@ For example:
     Z -> 26
     AA -> 27
     AB -> 28 
-
 */
 
-public class ExcelColumnNumber
-{
+public class ExcelColumnNumber {
 	public int titleToNumber(String s){
 		int n = 0;
 		int k = 26;
-		for(int i = 0; i < s.length(); i++)
-		{
+		for(int i = 0; i < s.length(); i++) {
 			n = n * k + (s.charAt(i) - 'A' + 1);
 		}
 

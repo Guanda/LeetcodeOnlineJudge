@@ -13,26 +13,21 @@ For example:
 
 */
 
-class ExcelColumnTitle
-{
-	public String convertToTitle(int n)
-	{
+class ExcelColumnTitle {
+	public String convertToTitle(int n) {
 		if(n <= 0)
 			return null;
 
 		StringBuilder sb = new StringBuilder();
 		
-		while(n > 0)
-		{
+		while(n > 0) {
 			int r = n % 26;
 			n = n / 26;
-			if(r == 0)
-			{
+			if(r == 0) {
 				sb.insert(0, 'Z');
 				n--;
 			}
-			else
-			{
+			else {
 				sb.insert(0, (char)('A' + r - 1));
 			}
 		}
