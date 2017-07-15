@@ -2,39 +2,32 @@
 Reverse a singly linked list.
 
 Analysis:
-Method 1: Just one iteration. Move current to connect previous one. 
-	  So we need prev, curr, next these three nodes.
-	  
-Method 2: recursive solution
-
+	Method 1: Just one iteration. Move current to connect previous one. 
+		  So we need prev, curr, next these three nodes.
+		  
+	Method 2: recursive solution
 */
 
-class ReverseLinkedList
-{
+class ReverseLinkedList {
 	//Method 1
-	public ListNode reverseList(ListNode head)
-	{
+	public ListNode reverseList(ListNode head) {
 		if(head == null || head.next == null)
 			return head;
 
-		ListNode prev = null;
-		ListNode curr = head;
-		ListNode next = null;
-
-		while(curr != null)
-		{
-			next = curr.next;
-			curr.next = prev;
-			prev = curr;
-			curr = next;
-		}
-		return prev;
+        ListNode pre = null;
+        while(head != null) {
+            ListNode tmp = head.next;
+            head.next = pre;
+            pre = head;
+            head = tmp;
+        }
+        
+        return pre;
 	}
 
 
 	//Method 2
-	public ListNode reverseList(ListNode head)
-	{
+	public ListNode reverseList(ListNode head) {
 		if(head == null || head.next == null)
 			return head;
 
@@ -42,8 +35,7 @@ class ReverseLinkedList
 
 		//update the tail as beginning
 		ListNode curr = remainingReverse;
-		while(curr.next != null)
-		{
+		while(curr.next != null) {
 			curr = curr.next;
 		}
 
