@@ -9,6 +9,7 @@ Given an integer n, generate the nth sequence.
 */
 
 class CountAndSay {
+	// Recursive version
 	public String countAndSay(int n) {
 		if(n <= 1)
 			return String.valueOf(1);
@@ -36,5 +37,28 @@ class CountAndSay {
 			count = 1;
 		}
 		return sb.toString();
+	}
+
+
+	// Non-recursive version
+	public String countAndSay(int n) {
+		String curr = "1";
+		while(--n > 0) {
+			StringBuilder sb = new StringBuilder();
+			char[] chars = curr.toCharArray();
+			int i = 0;
+			while(i < chars.length) {
+				int count = 1;
+				int j = i + 1;
+				while(j < chars.length && chars[i] == chars[j]) {
+					j++;
+					count++;
+				}
+				sb.append(count).append(chars[i]);
+				i = j;
+			}
+			curr = sb.toString();
+		}
+		return curr;
 	}
 }
