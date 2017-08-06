@@ -11,28 +11,61 @@ Return 4.
 
 Analysis:
 	Use DP
-	b[i][j] represent the edge length of the largest square ENDING at position (i, j)
+	edge[i][j] represent the edge length of the largest square ENDING at position (i, j)
 */
 class MaximalSquare {
-	public int maximalSquare(char[][] matrix) {
-		if(matrix.length == 0 || matrix[0].length == 0)
-			return 0;
+    public int maxSquare(int[][] matrix) {
+        // write your code here
+        if(matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return 0;
+        }
+        
+        int row = matrix.length;
+        int col = matrix[0].length;
+        int[][] edge = new int[row+1][col+1];
+        
+        int maxEdge = 0;
+        for(int i = 1; i <= row; i++) {
+            for(int j = 1; j <= col; j++) {
+                if(matrix[i-1][j-1] > 0) {
+                    edge[i][j] = Math.min(edge[i-1][j], Math.min(edge[i-1][j-1], edge[i][j-1])) + 1;
+                }
+                else {
+                    edge[i][j] = 0;
+                }
+                maxEdge = Math.max(edge[i][j], maxEdge);
+            }
+        }
+        
+        return maxEdge * maxEdge;
+    }
 
-		int m = matrix.length;
-		int n = matrix[0].length;
-		int[][] b = new int[m+1][n+1];
 
-		int maxEdge = 0;
-		for(int i = 1; i <= m; i++) {
-			for(int j = 1; j <= n; j++) {
-				if(matrix[i-1][j-1] == '1') {
-					//the (i, j) position largest square depend on the left, top, topleft of (i, j)
-					b[i][j] = Math.min(Math.min(b[i-1][j], b[i-1][j-1]), b[i][j-1]) + 1;
-					maxEdge = Math.max(b[i][j], maxEdge);
-				}
-			}
-		}
+	// Optimize dp solution 1, to save space
+	public int maxSquare(int[][] matrix) {
+        // write your code here
+        if(matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return 0;
+        }
+        
+        int row = matrix.length;
+        int col = matrix[0].length;
+        int[][] edge = new int[2][col+1];
+        
+        int maxEdge = 0;
+        for(int i = 1; i <= row; i++) {
+            for(int j = 1; j <= col; j++) {
+                if(matrix[i-1][j-1] > 0) {
+                    edge[i%2][j] = Math.min(edge[(i-1)%2][j], Math.min(edge[(i-1)%2][j-1], edge[i%2][j-1])) + 1;
+                }
+                else {
+                    edge[i%2][j] = 0;
+                }
 
-		return maxEdge * maxEdge;
-	}
+                maxEdge = Math.max(edge[i%2][j], maxEdge);
+            }
+        }
+        
+        return maxEdge * maxEdge;
+    }
 }
