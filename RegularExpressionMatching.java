@@ -2,7 +2,7 @@
 Implement regular expression matching with support for '.' and '*'.
 
 '.' Matches any single character.
-'*' Matches zero or more of the preceding element.
+'*' Matches zero or more of the preceding element. (This means * cannot be the first char)
 
 The matching should cover the entire input string (not partial).
 
@@ -38,7 +38,7 @@ Method 2:
 	DP solution
 
  -- dp[s.length() + 1][p.length() + 1], where dp[i][j] means the first i characters from string 
-    i matches the first j characters in string j. 
+    s matches the first j characters in string p. 
  -- Initial state: dp[0][0] = true, e.g. "" -> "", true. 
                         dp[i][0] = false, i >= 1, any string cannot match a empty string 
                         dp[0][i], if (p.charAt(j) == '*'), dp[0][j] = dp[0][j - 2] 
@@ -66,7 +66,7 @@ class RegularExpressionMatching {
 		if(p.length() == 1 || p.charAt(1) != '*') {
 			if(s.length() < 1)
 				return false;
-			else if((s.charAt(0) != p.charAt(0)) && p.charAt(0) != '.')
+			else if(s.charAt(0) != p.charAt(0) && p.charAt(0) != '.')
 				return false;
 			else
 				return isMatch(s.substring(1), p.substring(1));
@@ -113,14 +113,16 @@ class RegularExpressionMatching {
 				if(pChar != '*') {
 					if(pChar == sChar || pChar == '.')
 						dp[i][j] = dp[i-1][j-1];
-				} else {
+				} 
+				else {
 					//in case that dp out of boundry
 					if(j == 1)
 						return false;
 
 					if(sChar != p.charAt(j-2) && p.charAt(j-2) != '.') {
 						dp[i][j] = dp[i][j-2];
-					} else {
+					} 
+					else {
 						dp[i][j] = dp[i][j-2] || dp[i][j-1] || dp[i-1][j];
 					}
 				}
