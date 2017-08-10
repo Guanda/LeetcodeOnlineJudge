@@ -7,10 +7,8 @@ b = "1"
 Return "100".
 */
 
-class AddBinary
-{
-	public String addBinary(String a, String b)
-	{
+class AddBinary {
+	public String addBinary(String a, String b) {
 		if(a == null || a.length() == 0)
 			return b;
 		if(b == null || b.length() == 0)
@@ -21,8 +19,7 @@ class AddBinary
 		int lastA = a.length() -1;
 		int lastB = b.length() -1;
 
-		while(lastA >= 0 || lastB >= 0 || carry > 0)
-		{
+		while(lastA >= 0 || lastB >= 0 || carry > 0) {
 			int num1 = 0;
 			int num2 = 0;
 			if(lastA >= 0)
