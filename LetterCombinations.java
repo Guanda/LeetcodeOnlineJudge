@@ -27,26 +27,30 @@ public class LetterCombinations {
 		map.put('9', "wxyz");
 	}
 
-	//Method 1: recursion
+
+	//Method 1: dfs
 	public ArrayList<String> letterCombinations(String digits) {
 		setup();
 		ArrayList<String> result = new ArrayList<String>();
-		recursion(digits, 0, new String(), result);
+		
+		if(digits == null || digits.length() == 0) {
+		    return result;
+		}
+		
+		dfs(digits, new String(), result);
 		return result;
 	}
 
-	private void recursion(String digits, int start, String res, ArrayList<String> result) {
-		if(res.length() > digits.length())
-			return;
-		else if(res.length() == digits.length())
+	private void dfs(String digits, String res, ArrayList<String> result) {
+		if(res.length() == digits.length()) {
 			result.add(res);
-		else {
-			for(int i = start; i < digits.length(); i++) {
-				String letters = map.get(digits.charAt(i));
-				for(int j = 0; j < letters.length(); j++) {
-					recursion(digits, i + 1, res + letters.charAt(j), result);
-				}
-			}
+			return;
+		}
+
+		for(char c : map.get(digits.charAt(res.length())).toCharArray()) {
+			res = res + c;
+			dfs(digits, res, result);
+			res = res.substring(0, res.length() - 1);
 		}
 	}
 
