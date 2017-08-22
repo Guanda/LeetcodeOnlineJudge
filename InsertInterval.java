@@ -33,6 +33,9 @@ Analysis:
  */
 class InsertInterval {
 	public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
+		if(intervals == null || newInterval == null) {
+            return intervals;
+        }
 		List<Interval> result = new ArrayList<Interval>();
 		for(Interval interval : intervals) {
 			if(interval.start > newInterval.end) {
@@ -42,8 +45,10 @@ class InsertInterval {
 			else if(interval.end < newInterval.start) {
 				result.add(interval);
 			}
-			else if(interval.end >= newInterval.start || interval.start <= newInterval.end) {
-				newInterval = new Interval(Math.min(interval.start, newInterval.start), Math.max(interval.end, newInterval.end));
+			//interval.end >= newInterval.start || interval.start <= newInterval.end
+			else {
+				newInterval = new Interval(Math.min(interval.start, newInterval.start), 
+											Math.max(interval.end, newInterval.end));
 			}
 		}
 		result.add(newInterval);
