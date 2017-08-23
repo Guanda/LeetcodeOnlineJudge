@@ -10,13 +10,10 @@ Examples:
 "3456237490", 9191 -> []
 
 Analysis:
-
-This problem has a lot of edge cases to be considered:
-
-1. overflow: we use a long type once it is larger than Integer.MAX_VALUE or minimum, we get over it.
-2. 0 sequence: because we can't have numbers with multiple digits started with zero, we have to deal with it too.
-3. a little trick is that we should save the value that is to be multiplied in the next recursion. (prev value)
-
+	This problem has a lot of edge cases to be considered:
+	1. overflow: we use a long type once it is larger than Integer.MAX_VALUE or minimum, we get over it.
+	2. 0 sequence: because we can't have numbers with multiple digits started with zero, we have to deal with it too.
+	3. a little trick is that we should save the value that is to be multiplied in the next recursion. (prev value)
 */
 class ExpressionAddOperators {
 	public List<String> addOperators(String num, int target) {
