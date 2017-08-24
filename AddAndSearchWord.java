@@ -19,51 +19,83 @@ Note:
 You may assume that all words are consist of lowercase letters a-z.
 
 Analysis:
-	Use Trie
-
+	Use Trie and bfs
 */
-//WordDictionary
-class AddAndSearchWord {
-    public class TrieNode {
-        public TrieNode[] children = new TrieNode[26];
-        public boolean isLeaf;
-    }
-    
-    private TrieNode root = new TrieNode();
 
+public class WordDictionary {
+    private TrieNode root;
+    
+    public WordDictionary() {
+        root = new TrieNode();
+    }
+
+    // Adds a word into the data structure.
     public void addWord(String word) {
-        TrieNode node = root;
-        for (char c : word.toCharArray()) {
-            if (node.children[c - 'a'] == null) {
-                node.children[c - 'a'] = new TrieNode();
+        TrieNode curr = root;
+        Map<Character, TrieNode> currChildren = root.children;
+        char[] wordArray = word.toCharArray();
+        for(int i = 0; i < wordArray.length; i++) {
+            char wc = wordArray[i];
+            if(currChildren.containsKey(wc)) {
+                curr = currChildren.get(wc);
             }
-            node = node.children[c - 'a'];
+            else {
+                TrieNode newNode = new TrieNode(wc);
+                currChildren.put(wc, newNode);
+                curr = newNode;
+            }
+            currChildren = curr.children;
+            if(i == wordArray.length - 1) {
+                curr.hasWord = true;
+            }
         }
-        node.isLeaf = true;
     }
 
+    // Returns if the word is in the data structure. A word could
+    // contain the dot character '.' to represent any one letter.
     public boolean search(String word) {
-        return match(word.toCharArray(), 0, root);
-    }
-    
-    private boolean match(char[] chs, int k, TrieNode node) {
-        if (k == chs.length) 
-            return node.isLeaf; 
-
-        if (chs[k] != '.') {
-            return node.children[chs[k] - 'a'] != null && match(chs, k + 1, node.children[chs[k] - 'a']);
-        } else {
-            for (int i = 0; i < node.children.length; i++) {
-                if (node.children[i] != null) {
-                    if (match(chs, k + 1, node.children[i])) {
-                        return true;
+        Queue<TrieNode> queue = new LinkedList<>();
+        queue.add(root);
+        int index = 0;
+        while(!queue.isEmpty()) {
+            char c = word.charAt(index);
+            int size = queue.size();
+            boolean flag = false;
+            for(int i = 0; i < size; i++) {
+                TrieNode curr = queue.poll();
+                if(c == '.') {
+                    for(TrieNode node : curr.children.values()) {
+                        queue.add(node);
+                        flag = flag || node.hasWord;
                     }
                 }
+                else if(curr.children.containsKey(c)){
+                    TrieNode newNode = curr.children.get(c);
+                    queue.add(newNode);
+                    flag = flag || newNode.hasWord;
+                }
+            }
+            index++;
+            if(index >= word.length()) {
+                return flag;
             }
         }
         return false;
     }
 }
+
+class TrieNode {
+    char c;
+    Map<Character, TrieNode> children = new HashMap<>();
+    boolean hasWord;
+    
+    public TrieNode() {}
+    
+    public TrieNode(char c) {
+        this.c = c;
+    }
+}
+
 
 // Your WordDictionary object will be instantiated and called as such:
 // WordDictionary wordDictionary = new WordDictionary();
