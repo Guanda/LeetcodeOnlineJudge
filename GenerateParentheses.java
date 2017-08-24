@@ -26,25 +26,18 @@ public class GenerateParentheses {
 		return result;
 	}
 
-	private void helper(int n, int left, int right, List<String> result, String tmp) {
+	private void helper(int n, int left, int right, List<String> result, String curr) {
 		//exit situation, left == n
-		if(left == n) {
-			for(int i = 0; i < n - right; i++) {
-				tmp = tmp + ")";
-			}
-			result.add(tmp);
-			return;
-		}
-
-		//case 1: left > right
-		if(left > right) {
-			helper(n, left+1, right, result, tmp+"(");
-			helper(n, left, right+1, result, tmp+")");
-		}
-
-		//case 2: left == right
-		else {
-			helper(n, left+1, right, result, tmp+"(");
-		}
+        if(left == n && right == n) {
+            result.add(curr);
+            return;
+        }
+        
+        if(left < n) {
+            helper(n, result, left + 1, right, curr + "(");
+        }
+        if(right < n && left > right) {
+            helper(n, result, left, right + 1, curr + ")");
+        }
 	}
 }
