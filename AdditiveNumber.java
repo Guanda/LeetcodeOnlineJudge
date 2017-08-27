@@ -14,18 +14,16 @@ Note: Numbers in the additive sequence cannot have leading zeros, so sequence 1,
 Given a string containing only digits '0'-'9', write a function to determine if it's an additive number.
 
 Analysis:
-
 	1. Choose the first number A, it can be the leftmost 1 up to i digits. i<=(L-1)/2 because the third number 
 	should be at least as long as the first number
 
 	2. Choose the second number B, it can be the leftmost 1 up to j digits excluding the first number. the limit 
-	for j is a little bit tricky, because we don't know whether A or B is longer. The remaining string (with length L-j) 
-	after excluding A and B should have a length of at least max(length A, length B), where length A = i and length 
-	B = j-i, thus L-j >= max(j-i, i)
+	for j is a little bit tricky, because we don't know whether A or B is longer. The remaining string 
+	(with length L-j) after excluding A and B should have a length of at least max(length A, length B), 
+	where length A = i and length B = j-i, thus L-j >= max(j-i, i)
 
 	3. Calls the recursive checker function and returns true if passes the checker function, or continue to the next 
 	choice of B (A) until there is no more choice for B or A, in which case returns a false.
-
 */
 class AdditiveNumber {
 	public boolean isAdditiveNumber(String num) {
