@@ -12,6 +12,7 @@ Note:
 
 */
 class SuperUglyNumber {
+	// Faster solution
 	public int nthSuperUglyNumberI(int n, int[] primes) {
 	    int[] ugly = new int[n];
 	    int[] idx = new int[primes.length];
@@ -32,4 +33,30 @@ class SuperUglyNumber {
 
 	    return ugly[n - 1];
 	}
+
+
+	// use heap
+	public int nthSuperUglyNumber(int n, int[] primes) {
+        // write your code here
+        PriorityQueue<Long> queue = new PriorityQueue<>();
+        Set<Long> set = new HashSet<>();
+        for(int i = 0; i < primes.length; i++) {
+            queue.add(Long.valueOf(primes[i]));
+            set.add(Long.valueOf(primes[i]));
+        }
+        
+        long num = Long.valueOf(1);
+        for(int i = 1; i < n; i++) {
+            num = queue.poll();
+            for(int j = 0; j < primes.length; j++) {
+                long curr = Long.valueOf(primes[j]) * num;
+                if(!set.contains(curr)) {
+                    queue.add(curr);
+                    set.add(curr);
+                }
+            }
+        }
+        
+        return (int)num;
+    }
 }
