@@ -48,9 +48,12 @@ class LongestAbsoluteFilePath {
 			while(layer + 1 < stack.size()) {
 				stack.pop();
 			}
-			// remove "/t", add"/"
+			
+			//remove "/t", add"/"
 			int len = stack.peek() + s.length() - layer + 1;
 			stack.push(len);
+
+			//check if it is a file
 			if(s.contains(".")) {
 				max = Math.max(max, len - 1);
 			}

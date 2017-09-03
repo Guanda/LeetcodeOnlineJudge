@@ -30,8 +30,8 @@ merged into one in the final output as such: [...[2 3], [4 5], [12 7], ...]
 
 Analysis:
 	Too difficult to describe the solution here, check online.
-
 */
+
 class SkylineProblem {
 	public List<int[]> getSkyline(int[][] buildings) {
 		Map<Integer, List<int[]>> cps = new TreeMap<>(); // ordered by the critical points
