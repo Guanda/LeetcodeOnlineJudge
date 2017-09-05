@@ -31,8 +31,7 @@ Analysis:
  */
 public class GetIntersectionNode {
     //Method 1
-    public ListNode getIntersectionNode(ListNode headA, ListNode headB) 
-    {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB)  {
         if(headA == null || headB == null)
             return null;
         
@@ -42,13 +41,11 @@ public class GetIntersectionNode {
         ListNode b = headB;
         
         //get each linked list's size
-        while(a != null)
-        {
+        while(a != null) {
             a = a.next;
             sizeA++;
         }
-        while(b != null)
-        {
+        while(b != null) {
             b = b.next;
             sizeB++;
         }
@@ -58,21 +55,18 @@ public class GetIntersectionNode {
         b = headB;
         int sizeDiff = Math.abs(sizeA - sizeB);
         int bigger = 0;
-        if(sizeA >= sizeB)
-        {
+        if(sizeA >= sizeB) {
             bigger = sizeA;
             for(int i = 0; i < sizeDiff; i++)
                 a = a.next;
         }
-        else
-        {
+        else {
             bigger = sizeB;
             for(int i = 0; i < sizeDiff; i++)
                 b = b.next;
         }
         
-        for(int i = 0; i < bigger - sizeDiff; i++)
-        {
+        for(int i = 0; i < bigger - sizeDiff; i++) {
             if(a.val == b.val)
                 return a;
             a = a.next;
@@ -82,8 +76,7 @@ public class GetIntersectionNode {
     }
 
     //Method 2
-    public ListNode getIntersectionNode2(ListNode headA, ListNode headB)
-    {
+    public ListNode getIntersectionNode2(ListNode headA, ListNode headB) {
         if(headA == null || headB == null)
             return null;
 

@@ -26,10 +26,8 @@ return its level order traversal as:
  * }
  */
 
-class BTLevelOrderTraversal
-{
-	public List<List<Integer>> levelOrder(TreeNode root)
-  {
+class BTLevelOrderTraversal {
+	public List<List<Integer>> levelOrder(TreeNode root) {
     List<List<Integer>> res = new ArrayList<>();
     if (root == null)
       return res;
