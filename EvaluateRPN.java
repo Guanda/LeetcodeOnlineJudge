@@ -8,40 +8,31 @@ Some examples:
   ["4", "13", "5", "/", "+"] -> (4 + (13 / 5)) -> 6
 
 Analysis:
-Use stack
-
+	Use stack
 */
 
-class EvaluateRPN
-{
-	public int evalRPN(String[] tokens)
-	{
+class EvaluateRPN {
+	public int evalRPN(String[] tokens) {
 		int a, b;
 		Stack<Integer> S = new Stack<Integer>();
-		for(String s : tokens)
-		{
-			if(s.equals("+"))
-			{
+		for(String s : tokens) {
+			if(s.equals("+")) {
 				S.push(S.pop() + S.pop());
 			}
-			else if(s.equals("-"))
-			{
+			else if(s.equals("-")) {
 				b = S.pop();
 				a = S.pop();
 				S.push(a - b);
 			}
-			else if(s.equals("*"))
-			{
+			else if(s.equals("*")) {
 				S.push(S.pop() * S.pop());
 			}
-			else if(s.equals("/"))
-			{
+			else if(s.equals("/")){
 				b = S.pop();
 				a = S.pop();
 				S.push(a / b);
 			}
-			else
-			{
+			else {
 				S.push(Integer.parseInt(s));
 			}
 		}

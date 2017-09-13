@@ -29,6 +29,7 @@ Analysis:
 	     so curr++. Any time this happens, add the curr value to total sum.
 	iv)  Any time we find ith index does not form arith seq, make currently running no of seqs to zero.
 */
+
 class ArithmeticSlices {
 	public int numberOfArithmeticSlices(int[] A) {
 	    int curr = 0, sum = 0;
