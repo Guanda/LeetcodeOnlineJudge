@@ -18,7 +18,45 @@ Analysis:
 showing like this:
 	Max(dp[k-2]+num[k], dp[k-1])
 */
+
 class HouseRobber {
+	// Solution 1: normal DP
+	public long rob(int[] A) {
+        // write your code here
+        if(A == null || A.length == 0) {
+            return 0;
+        }
+        
+        int[] dp = new int[A.length + 1];
+        dp[0] = 0;
+        dp[1] = A[0];
+        for(int i = 2; i < dp.length; i++) {
+            dp[i] = Math.max(dp[i - 1], dp[i - 2] + A[i - 1]);
+        }
+        
+        return dp[A.length];
+    }
+
+
+    // Solution 2: improved DP
+    public long rob(int[] A) {
+        // write your code here
+        if(A == null || A.length == 0) {
+            return 0;
+        }
+        
+        int[] dp = new int[2];
+        dp[0] = 0;
+        dp[1] = A[0];
+        for(int i = 2; i <= A.length; i++) {
+            dp[i % 2] = Math.max(dp[(i - 1) % 2], dp[(i - 2) % 2] + A[i - 1]);
+        }
+        
+        return dp[A.length % 2];
+    }
+
+
+    // Another version of solution2
 	public int rob(int[] num) {
 		if(num.length == 0) {
 			return 0; 
