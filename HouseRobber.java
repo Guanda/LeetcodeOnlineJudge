@@ -27,7 +27,7 @@ class HouseRobber {
             return 0;
         }
         
-        int[] dp = new int[A.length + 1];
+        long[] dp = new long[A.length + 1];
         dp[0] = 0;
         dp[1] = A[0];
         for(int i = 2; i < dp.length; i++) {
@@ -45,7 +45,7 @@ class HouseRobber {
             return 0;
         }
         
-        int[] dp = new int[2];
+        long[] dp = new long[2];
         dp[0] = 0;
         dp[1] = A[0];
         for(int i = 2; i <= A.length; i++) {
