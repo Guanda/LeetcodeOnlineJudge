@@ -32,6 +32,7 @@ Analysis:
 	However if root is not robbed, the next level of available subtrees would just be the two "child-subtrees" 
 	(root.left, root.right). We only need to choose the scenario which yields the larger amount of money.
 */
+
 class HouseRobberIII {
 	//Method 1: Naively
 	public int rob(TreeNode root) {
@@ -57,8 +58,10 @@ class HouseRobberIII {
 	}
 
 	private int robSub(TreeNode root, Map<TreeNode, Integer> map) {
-	    if (root == null) return 0;
-	    if (map.containsKey(root)) return map.get(root);
+	    if (root == null) 
+	    	return 0;
+	    if (map.containsKey(root)) 
+	    	return map.get(root);
 	    
 	    int val = 0;
 	    if (root.left != null) {
