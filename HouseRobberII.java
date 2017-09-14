@@ -16,7 +16,39 @@ Analysis:
 	2) 1st is not included and last is included. Therefore, we can 
 	   use the similar dynamic programming approach to scan the array twice and get the larger value.
 */
+
 class HouseRobberII {
+	// Solution 1:
+	public int rob(int[] nums) {
+        // write your code here
+        if(nums == null || nums.length == 0) {
+            return 0;
+        }
+        
+        if(nums.length == 1) {
+            return nums[0];
+        }
+        
+        return Math.max(robHelper(nums, 0, nums.length - 2), robHelper(nums, 1, nums.length - 1));
+    }
+    
+    private int robHelper(int[] nums, int start, int end) {
+        int[] dp = new int[2];
+        if(start == end) {
+            return nums[end];
+        }
+        
+        dp[start % 2] = nums[start];
+        dp[(start + 1) % 2] = Math.max(nums[start], nums[start + 1]);
+        for(int i = start + 2; i <= end; i++) {
+            dp[i % 2] = Math.max(dp[(i - 1) % 2], dp[(i - 2) % 2] + nums[i]);
+        }
+        
+        return dp[end % 2];
+    }
+
+
+    // Solution 2:
 	public int rob(int[] nums) {
 		if(nums == null || nums.length == 0)
 			return 0;
