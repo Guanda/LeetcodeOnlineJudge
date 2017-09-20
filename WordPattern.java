@@ -16,58 +16,27 @@ lowercase letters separated by a single space.
 
 Analysis:
 	Using hashmap to store each word and pattern indicater
-
 */
 
-public class WordPattern
-{
-	//Method 1
-	public boolean wordPattern(String pattern, String str)
-	{
-		String[] words = str.split(" ");
-		if(words.length != pattern.length())
-			return false;
+public class WordPattern {
+    public boolean wordPattern(String pattern, String str) {
+        String[] arr= str.split(" ");
+        HashMap<Character, String> map = new HashMap<Character, String>();
+        
+        if(arr.length != pattern.length())
+            return false;
 
-		HashMap<Character, String> map = new HashMap<>();
-		Set<String> set = new HashSet<>();
-
-		int i = 0;
-		for(String word : words) {
-			char c = pattern.charAt(i);
-			// 如果该字符产生过映射
-			if(map.containsKey(c)) {
-				// 且映射的字符串和当前字符串不一样
-				if(!word.equals(map.get(c)))
-					return false;
-			}
-			else {
-				// 如果该字符没有产生过映射
-				// 如果当前字符串已经被映射过了
-				if(set.contains(word))
-					return false;
-
-				// 否则新加一组映射
-				map.put(c, word);
-				set.add(word);
-			}
-			i++;
-		}
-		return true;
-	}
-
-	//Method 2, but not easy to understand
-	public boolean wordPattern2(String pattern, String str)
-	{
-		String[] words = str.split(" ");
-		if(words.length != pattern.length())
-			return false;
-
-		HashMap map = new HashMap();
-		for(int i = 0; i < words.length; i++) {
-			if(!Objects.equals(map.put(pattern.charAt(i), i), map.put(words[i], i))) {
-				return false;
-			}
-		}
-		return true;
-	}
+        for(int i=0; i<arr.length; i++){
+            char c = pattern.charAt(i);
+            if(map.containsKey(c)){
+                if(!map.get(c).equals(arr[i]))
+                    return false;
+            }else{
+                if(map.containsValue(arr[i]))
+                    return false;
+                map.put(c, arr[i]);
+            }    
+        }
+        return true;
+    }
 }
