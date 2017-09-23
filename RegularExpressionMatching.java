@@ -19,40 +19,38 @@ isMatch("ab", ".*") → true
 isMatch("aab", "c*a*b") → true
 
 Analysis:
+	Method 1:
+		First of all, this is one of the most difficulty problems. It is hard to think through all 
+		different cases. The problem should be simplified to handle 2 basic cases:
 
-Method 1:
-	First of all, this is one of the most difficulty problems. It is hard to think through all 
-	different cases. The problem should be simplified to handle 2 basic cases:
+		the second char of pattern is not "*"
+		the second char of pattern is  "*"
 
-	the second char of pattern is not "*"
-	the second char of pattern is  "*"
+		For the 1st case, if the first char of pattern is not ".", the first char of pattern and 
+		string should be the same. Then continue to match the remaining part.
 
-	For the 1st case, if the first char of pattern is not ".", the first char of pattern and 
-	string should be the same. Then continue to match the remaining part.
+		For the 2nd case, if the first char of pattern is "." or first char of pattern == the first 
+		char of string, continue to match the remaining part. Remember to consider the * can represent
+		0 element.
 
-	For the 2nd case, if the first char of pattern is "." or first char of pattern == the first 
-	char of string, continue to match the remaining part. Remember to consider the * can represent
-	0 element.
+	Method 2:
+		DP solution
+	 -- dp[s.length() + 1][p.length() + 1], where dp[i][j] means the first i characters from string 
+	    s matches the first j characters in string p. 
+	 -- Initial state: dp[0][0] = true, e.g. "" -> "", true. 
+	                        dp[i][0] = false, i >= 1, any string cannot match a empty string 
+	                        dp[0][i], if (p.charAt(j) == '*'), dp[0][j] = dp[0][j - 2] 
 
-Method 2:
-	DP solution
-
- -- dp[s.length() + 1][p.length() + 1], where dp[i][j] means the first i characters from string 
-    s matches the first j characters in string p. 
- -- Initial state: dp[0][0] = true, e.g. "" -> "", true. 
-                        dp[i][0] = false, i >= 1, any string cannot match a empty string 
-                        dp[0][i], if (p.charAt(j) == '*'), dp[0][j] = dp[0][j - 2] 
-
- -- Transit function: 
-      -- If p.charAt(j) != '*'. Then IF s.charAt(i - 1) == p.charAt(j - 1) || p.charAt(j - 1) == '.'. 
-            -- dp[i][j] = dp[i - 1][j - 1];
-      -- Else  // p.charAt(j - 1) == "*"
-           -- If s.charAt(i - 1) != p.charAt(j - 2) && p.charAt(j - 2) != '.' 
-               Then dp[i][j] = dp[i][j - 2] // zero matched, e.g. s = acdd, p = acb*dd. 
-           -- Else 
-                Then dp[i][j] = dp[i][j - 2]  ||  // zero matched
-                                dp[i][j - 1] || // 1 matched
-                                dp[i - 1][j] // 2+ matched
+	 -- Transit function: 
+	      -- If p.charAt(j) != '*'. Then IF s.charAt(i - 1) == p.charAt(j - 1) || p.charAt(j - 1) == '.'. 
+	            -- dp[i][j] = dp[i - 1][j - 1];
+	      -- Else  // p.charAt(j - 1) == "*"
+	           -- If s.charAt(i - 1) != p.charAt(j - 2) && p.charAt(j - 2) != '.' 
+	               Then dp[i][j] = dp[i][j - 2] // zero matched, e.g. s = acdd, p = acb*dd. 
+	           -- Else 
+	                Then dp[i][j] = dp[i][j - 2]  ||  // zero matched
+	                                dp[i][j - 1] || // 1 matched
+	                                dp[i - 1][j] // 2+ matched
 */
 
 class RegularExpressionMatching {

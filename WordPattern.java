@@ -26,12 +26,13 @@ public class WordPattern {
         if(arr.length != pattern.length())
             return false;
 
-        for(int i=0; i<arr.length; i++){
+        for(int i = 0; i < arr.length; i++) {
             char c = pattern.charAt(i);
-            if(map.containsKey(c)){
+            if(map.containsKey(c)) {
                 if(!map.get(c).equals(arr[i]))
                     return false;
-            }else{
+            }
+            else {
                 if(map.containsValue(arr[i]))
                     return false;
                 map.put(c, arr[i]);
