@@ -34,43 +34,24 @@ class GameOfLife {
 	public void gameOfLife(int[][] board) {
 		int m = board.length;
 		int n = board[0].length;
-		if(m || n)
+		if(m == 0 || n == 0)
 			return;
+
+		int[] dirX = {-1, 0, 1, 0, -1, 1, 1, -1};
+		int[] dirY = {0, -1, 0, 1, -1, -1, 1, 1};
 
 		for(int i = 0; i < m; i++) {
 			for(int j = 0; j < n; j++) {
 				int lives = 0;
-				//check top
-				if(i > 0) {
-					lives = lives + ((board[i-1][j] == 1 || board[i-1][j] == 2) ? 1 : 0);
-				}
-				//check left
-				if(j > 0) {
-					lives = lives + ((board[i][j-1] == 1 || board[i][j-1] == 2) ? 1 : 0);
-				}
-				//check bottom
-				if(i < m - 1) {
-					lives = lives + ((board[i+1][j] == 1 || board[i+1][j] == 2) ? 1 : 0);
-				}
-				//check right
-				if(j < n - 1) {
-					lives = lives + ((board[i][j+1] == 1 || board[i][j+1] == 2) ? 1 : 0);
-				}
-				//check left top
-				if(i > 0 && j > 0) {
-					lives = lives + ((board[i-1][j-1] == 1 || board[i-1][j-1] == 2) ? 1 : 0);
-				}
-				//check left bottom
-				if(i < m - 1 && j > 0) {
-					lives = lives + ((board[i+1][j-1] == 1 || board[i+1][j-1] == 2) ? 1 : 0);
-				}
-				//check right bottom
-				if(i < m - 1 && j < n - 1) {
-					lives = lives + ((board[i+1][j+1] == 1 || board[i+1][j+1] == 2) ? 1 : 0);
-				}
-				//check right top
-				if(i > 0 && j < n - 1) {
-					lives = lives + ((board[i-1][j+1] == 1 || board[i-1][j+1] == 2) ? 1 : 0);
+				for(int k = 0; k < 8; k++) {
+					int ii = i + dirX[k];
+					int jj = j + dirY[k];
+					if(ii < 0 || ii >= m || jj < 0 || jj >= n) {
+						continue;
+					}
+					if(board[ii][jj] == 1 || board[ii][jj] == 2) {
+						lives++;
+					}
 				}
 
 				//based on the neighbords' alive to update current point, 0 and 1 don't need update
