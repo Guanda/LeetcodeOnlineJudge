@@ -9,10 +9,9 @@ dict = ["leet", "code"].
 Return true because "leetcode" can be segmented as "leet code".
 
 Analysis:
-
-Use DP solution.
-
+	Use DP solution.
 */
+
 class WordBreak {
 	public boolean workBreak(String s, Set<String> wordDict) {
 		boolean[] result = new boolean[s.length()+1];
