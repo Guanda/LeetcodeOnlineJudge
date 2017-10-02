@@ -62,11 +62,11 @@ public class LetterCombinations {
 	    ArrayList<String> preres = new ArrayList<String>();
 	    res.add("");
 
-	    for(int i=0;i<digits.length();i++) {
+	    for(int i = 0;i < digits.length(); i++) {
 	        for(String str: res) {
 	            String letters = map.get(digits.charAt(i));
-	            for(int j=0;j<letters.length();j++)
-	                preres.add(str+letters.charAt(j));
+	            for(int j = 0; j < letters.length(); j++)
+	                preres.add(str + letters.charAt(j));
 	        }
 	        res = preres;
 	        preres = new ArrayList<String>();
