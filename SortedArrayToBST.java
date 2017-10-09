@@ -5,7 +5,6 @@ Anaylsis:
 	Easy recursive.
 */
 
-
 /**
  * Definition for binary tree
  * public class TreeNode {
@@ -15,18 +14,16 @@ Anaylsis:
  *     TreeNode(int x) { val = x; }
  * }
  */
-class SortedArrayToBST
-{
-	public TreeNode sortedArrayToBST(int[] num)
-	{
+
+class SortedArrayToBST {
+	public TreeNode sortedArrayToBST(int[] num) {
 		if(num.length == 0)
 			return null;
 
 		return sortedArrayToBST(num, 0, num.length-1);
 	}
 
-	public TreeNode sortedArrayToBST(int[] num, int start, int end)
-	{
+	public TreeNode sortedArrayToBST(int[] num, int start, int end) {
 		if(start > end)
 			return null;
 
