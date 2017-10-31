@@ -55,6 +55,36 @@ class DecodeWays {
 		return count[len];
 	}
 
+	//improve by mod the index in count array
+	public int numDecodings(String s) {
+        if(s == null || s.length() == 0) {
+            return 0;
+        }
+        int len = s.length();
+        int[] count = new int[2];
+        count[0] = 1;
+        for(int i = 1; i <= len; i++) {
+            char c = s.charAt(i - 1);
+            if(c < '0' || c > '9') {
+                return 0;
+            }
+            
+            if(c == '0') {
+                if(i - 1 == 0 || (s.charAt(i - 2) != '1' && s.charAt(i - 2) != '2')) {
+                    return 0;
+                }
+                count[i%2] = count[(i - 2)%2];
+            }
+            else if(i - 1 > 0 && isTwoDigitCode(s.charAt(i - 2), c)) {
+                count[i%2] = count[(i - 1)%2] + count[(i - 2)%2];
+            }
+            else {
+                count[i%2] = count[(i - 1)%2];
+            }
+        }
+        return count[len%2];
+    }
+
 
 	//improve the above solution to save space
 	//Notice that in above algorithm, we only need previous two counts, count[i-1] and count[i-2]. 
