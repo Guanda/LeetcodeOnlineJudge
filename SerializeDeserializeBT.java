@@ -1,7 +1,3 @@
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
-
 /*
  Serialization is the process of converting a data structure or object into a sequence of bits
  so that it can be stored in a file or memory buffer, or transmitted across a network connection
@@ -17,8 +13,8 @@ import java.util.Queue;
      1
     / \
    2   3
-  / \
- 4   5
+      / \
+     4   5
  as "[1,2,3,null,null,4,5]", just the same as how LeetCode OJ serializes a binary tree. You do not
  necessarily need to follow this format, so please be creative and come up with different approaches yourself.
 
@@ -28,6 +24,7 @@ import java.util.Queue;
      traversal and since we have "X" as null node, we know exactly how to where to end building subtrees.
  */
 
+// Solution 1:
 public class SerializeDeserializeBT {
     private static final String spliter = ",";
     private static final String NN = "X";
@@ -67,6 +64,78 @@ public class SerializeDeserializeBT {
             node.right = buildTree(nodes);
             return node;
         }
+    }
+}
+
+
+// Solution2: 
+class SerializeDeserializeBT {
+    //Use BFS for serialize and deserialize
+    public String serialize(TreeNode root) {
+        if(root == null) {
+            return "{}";
+        }
+        
+        List<TreeNode> queue = new ArrayList<>();
+        queue.add(root);
+        
+        for(int i = 0; i < queue.size(); i++) {
+            TreeNode node = queue.get(i);
+            if(node == null) {
+                continue;
+            }
+            queue.add(node.left);
+            queue.add(node.right);
+        }
+        
+        //clear the null nodes in the end of queue
+        while(queue.get(queue.size() - 1) == null) {
+            queue.remove(queue.size() - 1);
+        }
+        
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        sb.append(queue.get(0).val);
+        for(int i = 1; i < queue.size(); i++) {
+            if(queue.get(i) == null) {
+                sb.append(",#");
+            }
+            else {
+                sb.append(",");
+                sb.append(queue.get(i).val);
+            }
+        }
+        sb.append("}");
+        return sb.toString();
+    }
+    
+    public TreeNode deserialize(String data) {
+        if(data == "{}") {
+            return null;
+        }
+        String[] vals = data.substring(1, data.length() - 1).split(",");
+        List<TreeNode> queue = new ArrayList<>();
+        TreeNode root = new TreeNode(Integer.parseInt(vals[0]));
+        queue.add(root);
+        int index = 0;
+        boolean isLeftChild = true;
+        for(int i = 1; i < vals.length; i++) {
+            if(!vals[i].equals("#")) {
+                TreeNode node = new TreeNode(Integer.parseInt(vals[i]));
+                if(isLeftChild) {
+                    queue.get(index).left = node;
+                }
+                else {
+                    queue.get(index).right = node;
+                }
+                queue.add(node);
+            }
+            if(!isLeftChild) {
+                index++;
+            }
+            isLeftChild = !isLeftChild;
+        }
+        return root;
     }
 }
 
