@@ -13,45 +13,53 @@ If there is no such window in S that covers all characters in T, return the empt
 If there are multiple such windows, you are guaranteed that there will always be 
 only one unique minimum window in S.
 
-Analysis:
-	Using map and two pointer to track
+Analysis: 窗口指针类型为题
 */
 
 class MinimumWindowSubstring {
-	public String minWindow(String s, String t) {
-		if(s == null || s.length() == 0 || t == null || t.length() == 0) {
-			return "";
-		}
-
-		int[] map = new int[128];
-		for(int i = 0; i < t.length(); i++) {
-			map[t.charAt(i)]++;
-		}
-
-		int counter = t.length(); // check whether the substring is valid
-        int begin=0, end=0; // two pointers, one point to tail and one head
-        int head = 0;
-        int len = Integer.MAX_VALUE; //the length of substring
-        while(end < s.length()) {
-        	if(map[s.charAt(end)] > 0) {
-        		counter--;
-        	}
-        	map[s.charAt(end)]--;
-        	end++;
-
-        	// When we found a valid window, move start to find smaller window.
-        	while(counter == 0) {
-        		if(end - begin < len) {
-        			len = end - begin;
-        			head = begin;
-        		}
-        		map[s.charAt(begin)]++;
-        		if(map[s.charAt(begin)] > 0) {
-        			counter++;
-        		}
-        		begin++;
-        	}
+    public String minWindow(String s, String t) {
+        if(s == null || s.length() == 0 || t == null || t.length() == 0) {
+            return "";
         }
-        return len == Integer.MAX_VALUE ? "" : s.substring(head, head + len);
-	}
+        
+        String minStr = "";
+        int[] sourceHash = new int[256];
+        int[] targetHash = new int[256];
+        
+        //initial targetHash
+        for(int i = 0; i < t.length(); i++) {
+            targetHash[t.charAt(i)]++;
+        }
+        
+        int i = 0, j = 0;
+        int ans = Integer.MAX_VALUE;
+        for(i = 0; i < s.length(); i++) {
+            while(j < s.length() && !isValid(sourceHash, targetHash)) {
+                sourceHash[s.charAt(j)]++;
+                if(j < s.length()) {
+                    j++;
+                }
+                else {
+                    break;
+                }
+            }
+            if(isValid(sourceHash, targetHash)) {
+                if(ans > j - i) {
+                    ans = j - i;
+                    minStr = s.substring(i, j);
+                }
+            }
+            sourceHash[s.charAt(i)]--;
+        }
+        return minStr;
+    }
+    
+    private boolean isValid(int[] sourceHash, int[] targetHash) {
+        for(int i = 0; i < 256; i++) {
+            if(targetHash[i] > sourceHash[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
