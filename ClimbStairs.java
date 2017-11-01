@@ -11,18 +11,15 @@ And for Fibonacci recurrence we have different ways to figure out.
 Here we have Iteration(DP) solution and recursive solution.
 */
 
-class ClimbStairs
-{
+class ClimbStairs {
 	//DP solution
-	public int climbStairsIteration(int n)
-	{
+	public int climbStairsIteration(int n) {
 		if(n < 3)
 			return n;
 
 		int p1 = 1; 
 		int p2 = 2;
-		for(int i = 2; i < n; i++)
-		{
+		for(int i = 2; i < n; i++) {
 			int tmp = p2;
 			p2 = p1 + p2;
 			p1 = tmp;
@@ -32,8 +29,7 @@ class ClimbStairs
 	}
 
 	//recursive solution
-	public int climbStairsRecursive(int n)
-	{
+	public int climbStairsRecursive(int n) {
 		if(n < 3)
 			return n;
 
