@@ -36,9 +36,11 @@ class ExpressionAddOperators {
 			return;
 		}
 		for(int i = pos; i < num.length(); i++) {
+			// start with pos which is 0, so skip all following cases with 0 as start digit
 			if(i != pos && num.charAt(pos) == '0')
 				break;
 			long cur = Long.parseLong(num.substring(pos, i+1));
+			
 			if(pos == 0) {
 				dfs(result, path+cur, num, target, i+1, cur, cur);
 			}
