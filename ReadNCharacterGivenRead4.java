@@ -13,7 +13,6 @@ The read function will only be called once for each test case.
 /* The read4 API is defined in the parent class Reader4.
       int read4(char[] buf); */
 
-
 class ReadNCharacterGivenRead4 extends Reader4 {
     /**
      * @param buf Destination buffer

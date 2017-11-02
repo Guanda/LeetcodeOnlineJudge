@@ -11,21 +11,17 @@ Analysis
 	A rather straight forward solution is a two-pass algorithm using counting sort.
 	1) Iterate the array counting number of 0's, 1's, and 2's
 	2) Overwrite array with total number of 0's, then 1's and followed by 2's.
-
 */
 
-class sortColors
-{
+class sortColors {
 	private static final int RED = 0;
 	private static final int WHITE = 1;
 	private static final int BLUE = 2;
 
-	public void sortColors(int[] A)
-	{
+	public void sortColors(int[] A) {
 		//one pass for counting
 		int[] count = new int[3];
-		for(int color : A)
-		{
+		for(int color : A) {
 			count[color]++;
 		}
 

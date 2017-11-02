@@ -32,8 +32,11 @@ Analysis:
  *     TreeNode(int x) { val = x; }
  * }
  */
+
 class BSTIterator {
+
 	private Stack<TreeNode> stack = new Stack<TreeNode>();
+
 	public BSTIterator(TreeNode root) {
 		pushToStack(root);
 	}
