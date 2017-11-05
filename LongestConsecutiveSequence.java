@@ -11,6 +11,7 @@ Analysis:
 	We can use a HashSet to add and remove elements. HashSet is implemented by using a hash table. 
 	Elements are not ordered. The add, remove and contains methods have constant time complexity O(1).
 */
+
 class LongestConsecutiveSequence {
 	public int longestConsecutive(int[] nums) {
 		if(nums == null || nums.length == 0)
@@ -53,5 +54,4 @@ For example, given an array {1,2,4,5,3}, the program time is m. m is the length 
 We do have an extreme case here: If n is number of elements, m is average length of consecutive sequence, 
 and m==n, then the time complexity is O(n^2). The reason is that in this case, no element is removed from the set 
 each time. You can use this array to get the point: {1,3,5,7,9}.
-
 */
