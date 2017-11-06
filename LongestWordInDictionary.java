@@ -32,7 +32,7 @@ class LongestWordInDictionary {
 		}
 		Arrays.sort(words);
 		String result = "";
-		TreeSet<String> set = new TreeSet<>();
+		Set<String> set = new HashSet<>();
 		for(String s : words) {
 			if(s.length() == 1 || set.contains(s.substring(0, s.length() - 1))) {
 				result = s.length() > result.length() ? s : result;

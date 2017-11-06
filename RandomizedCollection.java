@@ -24,12 +24,11 @@ collection.remove(1);
 collection.getRandom();
 
 Analysis:
+    The follow-up of RandomizedSet problem: allowing duplications.
+    For example, after insert(1), insert(1), insert(2), getRandom() should have 2/3 chance return 1 and 1/3 chance return 2.
+    Then, remove(1), 1 and 2 should have an equal chance of being selected by getRandom().
 
-The follow-up of RandomizedSet problem: allowing duplications.
-For example, after insert(1), insert(1), insert(2), getRandom() should have 2/3 chance return 1 and 1/3 chance return 2.
-Then, remove(1), 1 and 2 should have an equal chance of being selected by getRandom().
-
-The idea is to add a set to the hashMap to remember all the locations of a duplicated number.
+    The idea is to add a set to the hashMap to remember all the locations of a duplicated number.
 */
 public class RandomizedCollection {
 

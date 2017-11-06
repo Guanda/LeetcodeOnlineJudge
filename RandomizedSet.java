@@ -25,41 +25,46 @@ randomSet.insert(2);
 randomSet.getRandom();
 */
 class RandomizedSet {
-	ArrayList<Integer> nums;
-    HashMap<Integer, Integer> locs;
-    java.util.Random rand = new java.util.Random();
+    List<Integer> nums;
+    //indicate the value and position in nums list
+    HashMap<Integer, Integer> positionMap;
+    Random random = new Random();
     /** Initialize your data structure here. */
     public RandomizedSet() {
         nums = new ArrayList<Integer>();
-        locs = new HashMap<Integer, Integer>();
+        positionMap = new HashMap<Integer, Integer>();
     }
     
     /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
     public boolean insert(int val) {
-        boolean contain = locs.containsKey(val);
-        if ( contain ) return false;
-        locs.put( val, nums.size());
+        if (positionMap.containsKey(val)) 
+            return false;
+        
+        positionMap.put(val, nums.size());
         nums.add(val);
         return true;
     }
     
     /** Removes a value from the set. Returns true if the set contained the specified element. */
     public boolean remove(int val) {
-        boolean contain = locs.containsKey(val);
-        if ( ! contain ) return false;
-        int loc = locs.get(val);
-        if (loc < nums.size() - 1 ) { // not the last one than swap the last one with this val
-            int lastone = nums.get(nums.size() - 1 );
-            nums.set( loc , lastone );
-            locs.put(lastone, loc);
+        if (!positionMap.containsKey(val)) 
+            return false;
+        
+        // if the val is not the last element in nums, swap it with last one and remove last
+        // so we can take care of the remove element position well.
+        int pos = positionMap.get(val);
+        if(pos < nums.size() - 1) {
+            int lastone = nums.get(nums.size() - 1);
+            nums.set(pos, lastone);
+            positionMap.put(lastone, pos);
         }
-        locs.remove(val);
+        positionMap.remove(val);
         nums.remove(nums.size() - 1);
         return true;
     }
     
     /** Get a random element from the set. */
     public int getRandom() {
-        return nums.get( rand.nextInt(nums.size()) );
+        return nums.get(random.nextInt(nums.size()));
     }
 }
