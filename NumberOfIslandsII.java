@@ -24,37 +24,36 @@ public class NumberOfIslandsII {
      * @param operators an array of point
      * @return an integer array
      */
-    public List<Integer> numIslands2(int n, int m, Point[] operators) {
-        // Write your code here
+    public List<Integer> numIslands2(int m, int n, int[][] positions) {
         List<Integer> result = new ArrayList<>();
-        if(operators == null) {
+        if(positions == null) {
             return result;
         }
         
         int[] dirX = {1, 0, 0, -1};
         int[] dirY = {0, 1, -1, 0};
-        int[][] islands = new int[n][m];
+        int[][] islands = new int[m][n];
         
-        UnionFind uf = new UnionFind(n, m);
+        UnionFind uf = new UnionFind(m, n);
         int count = 0;
         
-        for(int i = 0; i < operators.length; i++) {
-            int x = operators[i].x;
-            int y = operators[i].y;
+        for(int i = 0; i < positions.length; i++) {
+            int x = positions[i][0];
+            int y = positions[i][1];
             if(islands[x][y] != 1) {
                 count++;
                 islands[x][y] = 1;
-                int id = UnionFind.convertToId(x, y, m);
+                int id = uf.convertToId(x, y, n);
                 for(int j = 0; j < 4; j++) {
                     int currX = x + dirX[j];
                     int currY = y + dirY[j];
-                    if(currX >= 0 && currX < n && currY >= 0 && currY < m && islands[currX][currY] == 1) {
-                        int currId = UnionFind.convertToId(currX, currY, m);
-                        int father = UnionFind.find(id);
-                        int fatherCurr = UnionFind.find(currId);
+                    if(currX >= 0 && currX < m && currY >= 0 && currY < n && islands[currX][currY] == 1) {
+                        int currId = uf.convertToId(currX, currY, n);
+                        int father = uf.find(id);
+                        int fatherCurr = uf.find(currId);
                         if(father != fatherCurr) {
                             count--;
-                            UnionFind.union(father, fatherCurr);
+                            uf.union(father, fatherCurr);
                         }
                     }
                 }
@@ -66,10 +65,10 @@ public class NumberOfIslandsII {
 }
 
 class UnionFind {
-    static Map<Integer, Integer> father = new HashMap<>();
+    Map<Integer, Integer> father = new HashMap<Integer, Integer>();
     
-    public static int convertToId(int x, int y, int m) {
-        return x * m + y;
+    int convertToId(int x, int y, int n) {
+        return x * n + y;
     }
     
     // use convertToId method change 2D element into 1D union find array
@@ -82,7 +81,7 @@ class UnionFind {
         }
     }
     
-    public static int find(int x) {
+    int find(int x) {
         int parent = father.get(x);
         while(parent != father.get(parent)) {
             parent = father.get(parent);
@@ -97,7 +96,7 @@ class UnionFind {
         return parent;
     }
     
-    public static void union(int x, int y) {
+    void union(int x, int y) {
         int rootX = find(x);
         int rootY = find(y);
         if(rootX != rootY) {
