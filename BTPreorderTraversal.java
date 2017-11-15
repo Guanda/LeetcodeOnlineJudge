@@ -27,18 +27,15 @@ Analysis:
  *     TreeNode(int x) { val = x; }
  * }
  */
-class BTPreorderTraversal
-{
+class BTPreorderTraversal {
 	//Method 1
-	public List<Integer> preorderTraversal(TreeNode root)
-	{
+	public List<Integer> preorderTraversal(TreeNode root) {
 		List<Integer> result = new ArrayList<Integer>();
 		preorderTraversal(root, result);
 		return result;
 	}
 
-	public void preorderTraversal(TreeNode root, List<Integer> result)
-	{
+	public void preorderTraversal(TreeNode root, List<Integer> result) {
 		if(root == null)
 			return;
 		result.add(root.val);
@@ -48,19 +45,16 @@ class BTPreorderTraversal
 
 
 	//Method 2
-	public List<Integer> preorderTraversal(TreeNode root)
-	{
+	public List<Integer> preorderTraversal(TreeNode root) {
 		List<Integer> result = new ArrayList<Integer>();
 		if(root == null)
 			return result;
 
 		Stack<TreeNode> stack = new Stack<TreeNode>();
 		stack.push(root);
-		while(!stack.isEmpty())
-		{
-			TreeNode curr = stack.peek();
+		while(!stack.isEmpty()) {
+			TreeNode curr = stack.pop();
 			result.add(curr.val);
-			stack.pop();
 
 			//push right first, because we need pop left first
 			if(curr.right != null)

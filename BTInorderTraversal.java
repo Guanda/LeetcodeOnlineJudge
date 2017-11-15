@@ -25,6 +25,7 @@ Anaylsis:
  *     TreeNode(int x) { val = x; }
  * }
  */
+
 class BTInorderTraversal {
 	//Method 1: recursive
 	public List<Integer> inorderTraversal(TreeNode root) {
@@ -54,16 +55,14 @@ class BTInorderTraversal {
 
 		while(!stack.isEmpty() || p != null) {
 			//if it is not null, push to stack and go down to the left
-			if(p != null) {
+			while(p != null) {
 				stack.push(p);
 				p = p.left;
 			}
 			//if no left child, pop stack, process the node then let p point to the right
-			else {
-				TreeNode t = stack.pop();
-				result.add(t.val);
-				p = t.right;
-			}
+			TreeNode t = stack.pop();
+			result.add(t.val);
+			p = t.right;
 		}
 		return result;
 	}
