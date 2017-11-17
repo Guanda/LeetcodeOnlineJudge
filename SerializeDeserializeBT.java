@@ -114,21 +114,21 @@ class SerializeDeserializeBT {
             return null;
         }
         String[] vals = data.substring(1, data.length() - 1).split(",");
-        List<TreeNode> queue = new ArrayList<>();
+        List<TreeNode> list = new ArrayList<>();
         TreeNode root = new TreeNode(Integer.parseInt(vals[0]));
-        queue.add(root);
+        list.add(root);
         int index = 0;
         boolean isLeftChild = true;
         for(int i = 1; i < vals.length; i++) {
             if(!vals[i].equals("#")) {
                 TreeNode node = new TreeNode(Integer.parseInt(vals[i]));
                 if(isLeftChild) {
-                    queue.get(index).left = node;
+                    list.get(index).left = node;
                 }
                 else {
-                    queue.get(index).right = node;
+                    list.get(index).right = node;
                 }
-                queue.add(node);
+                list.add(node);
             }
             if(!isLeftChild) {
                 index++;

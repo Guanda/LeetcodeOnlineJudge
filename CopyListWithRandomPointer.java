@@ -5,15 +5,14 @@ to any node in the list or null.
 Return a deep copy of the list.
 
 Analysis:
-
 	Method 1:
 	Use hashmap to store the connection between node and copy node
 
 	Method 2:
 	The idea is to associate the original node with its copy node in a single linked list. In this way, 
 	we don't need extra space to keep track of the new nodes.
-
 */
+
 /**
  * Definition for singly-linked list with a random pointer.
  * class RandomListNode {
