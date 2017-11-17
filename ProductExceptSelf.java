@@ -21,13 +21,10 @@ Analysis:
 	And the most left and most right value are always 1.
 
 	We cannot just get all products and divided by each element, because we should consider 0.
-
 */
 
-public class ProductExceptSelf
-{
-	public int[] productExceptSelf(int[] nums)
-	{
+public class ProductExceptSelf {
+	public int[] productExceptSelf(int[] nums) {
 		int[] result = new int[nums.length];
 		result[0] = 1;
 		for(int i = 1; i < nums.length; i++) {
