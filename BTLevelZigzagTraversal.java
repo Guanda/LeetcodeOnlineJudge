@@ -21,7 +21,6 @@ Anaylsis:
 	order as we push in. Also, we need to check whether the level is odd level or even 
 	and when we read current level from right to left, we need to push right children 
 	and then left child for each node.
-
 */
 
 /**
@@ -33,10 +32,8 @@ Anaylsis:
  *     TreeNode(int x) { val = x; }
  * }
  */
-class BTLevelZigzagTraversal
-{
-	public ArrayList<ArrayList<Integer>> zigzagLevelOrder(TreeNode root)
-	{
+class BTLevelZigzagTraversal {
+	public ArrayList<ArrayList<Integer>> zigzagLevelOrder(TreeNode root) {
 		ArrayList<ArrayList<Integer>> resSet = new ArrayList<ArrayList<Integer>>();
 		boolean isOdd = false;
 		if(root == null)
@@ -45,25 +42,21 @@ class BTLevelZigzagTraversal
 		Stack<TreeNode> stack = new Stack<TreeNode>();
 		stack.push(root);
 
-		while(!stack.isEmpty())
-		{
+		while(!stack.isEmpty()) {
 			ArrayList<Integer> res = new ArrayList<Integer>();
 			Stack<TreeNode> stackTmp = new Stack<TreeNode>();
 
 			//go through one level
-			while(!stack.isEmpty())
-			{
+			while(!stack.isEmpty()) {
 				TreeNode curr = stack.pop();
 				res.add(curr.val);
-				if(isOdd)
-				{
+				if(isOdd) {
 					if(curr.right != null)
 						stackTmp.push(curr.right);
 					if(curr.left != null)
 						stackTmp.push(curr.left);
 				}
-				else
-				{
+				else {
 					if(curr.left != null)
 						stackTmp.push(curr.left);
 					if(curr.right != null)
