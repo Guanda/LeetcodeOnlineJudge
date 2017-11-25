@@ -12,6 +12,9 @@ Output: 9973
 Explanation: No swap.
 Note:
 The given number is in the range [0, 108]
+
+Analysis:
+	Time complexity should be O(n)
 */
 
 class MaximumSwap {
