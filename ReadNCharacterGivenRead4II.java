@@ -14,6 +14,8 @@ Analysis:
 	I used buffer pointer (buffPtr) and buffer Counter (buffCnt) to store the data 
 	received in previous calls. In the while loop, if buffPtr reaches current buffCnt, 
 	it will be set as zero to be ready to read new data.
+
+    reference: https://segmentfault.com/a/1190000003794420
 */
 
 class ReadNCharacterGivenRead4II extends Reader4 {

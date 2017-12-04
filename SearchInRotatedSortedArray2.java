@@ -13,37 +13,31 @@ are equal, move one more step to find out the not equal element, so we can find 
 
 */
 
-class SearchInRotatedSortedArray2
-{
-	public boolean search(int[] nums, int target)
-	{
+class SearchInRotatedSortedArray2 {
+	public boolean search(int[] nums, int target) {
 		int left = 0;
 		int right = nums.length - 1;
 
-		while(left <= right)
-		{
+		while(left <= right) {
 			int middle = (left + right) / 2;
 			if(nums[middle] == target)
 				return true;
 
 			//the first half is sorted
-			if(nums[left] < nums[middle])
-			{
+			if(nums[left] < nums[middle]) {
 				if(nums[left] <= target && target < nums[middle])
 					right = middle - 1;
 				else
 					left = middle + 1;
 			}
 			//the second half is sorted
-			else if(nums[left] > nums[middle])
-			{
+			else if(nums[left] > nums[middle]) {
 				if(nums[middle] < target && target <= nums[right])
 					left = middle + 1;
 				else
 					right = middle - 1;
 			}
-			else
-			{
+			else {
 				left++;
 			}
 		}
