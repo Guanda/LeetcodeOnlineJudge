@@ -24,18 +24,15 @@ The key point is after upside down, the original left child's left is its right 
 
 */
 
-class BTUpsideDown
-{
-	public TreeNode upsideDownBT(TreeNode root)
-	{
+class BTUpsideDown {
+	public TreeNode upsideDownBT(TreeNode root) {
 		if(root == null)
 			return root;
 
 		TreeNode parent = root;
 		TreeNode left = root.left;
 		TreeNode right = root.right;
-		if(left != null)
-		{
+		if(left != null) {
 			TreeNode newRoot = upsideDownBT(left);
 			left.left = right;
 			left.right = parent;
@@ -43,4 +40,27 @@ class BTUpsideDown
 		}
 		return root;
 	}
+
+	// Solution 2: iteration solution in blow link
+	// https://leetcode.com/problems/binary-tree-upside-down/discuss/49406/Java-recursive-(O(logn)-space)-and-iterative-solutions-(O(1)-space)-with-explanation-and-figure
+	public TreeNode upsideDownBinaryTree(TreeNode root) {
+        TreeNode curr = root;
+        TreeNode next = null;
+        TreeNode prev = null;
+        TreeNode temp = null;
+        
+        while(curr != null) {
+            next = curr.left;
+            
+            //swap node, use temp to keep previous right child
+            curr.left = temp;
+            temp = curr.right;
+            curr.right = prev;
+            
+            prev = curr;
+            curr = next;
+        }
+        
+        return prev;
+    }
 }
