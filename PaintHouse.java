@@ -35,4 +35,22 @@ class PaintHouse {
         
         return Math.min(costs[n][0], Math.min(costs[n][1], costs[n][2]));
     }
+
+    // same solution, different code
+    public int minCost(int[][] costs) {
+        if(costs.length == 0)
+            return 0;
+        int prevR = costs[0][0];
+        int prevB = costs[0][1];
+        int prevG = costs[0][2];
+        for(int i = 1; i < costs.length; i++){
+            int currR = Math.min(prevB, prevG) + costs[i][0];
+            int currB = Math.min(prevR, prevG) + costs[i][1];
+            int currG = Math.min(prevR, prevB) + costs[i][2];
+            prevR = currR;
+            prevB = currB;
+            prevG = currG;
+        }
+        return Math.min(Math.min(prevR, prevB), prevG);
+    }
 }
