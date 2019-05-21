@@ -86,6 +86,36 @@ class GraphValidTree {
         }
         return true;
     }
+
+    // Another Union Find solution without using UnionFind class
+    public boolean validTree(int n, int[][] edges) {
+        // initialize n isolate islands
+        int[] nums = new int[n];
+        Arrays.fill(nums, -1);
+        
+        // perform union find
+        for(int i = 0; i < edges.length; i++){
+            int x = find(nums, edges[i][0]);
+            int y = find(nums, edges[i][1]);
+            
+            // if two vertices happen to be in the same set
+            // then there is a cycle
+            if(x == y)
+                return false;
+            
+            // union
+            nums[x] = y;
+        }
+        
+        // also need to check if one node connect with none
+        return edges.length == n - 1;
+    }
+    
+    int find(int[] nums, int i){
+        if(nums[i] == -1)
+            return i;
+        return find(nums, nums[i]);
+    }
 }
 
 class UnionFind {
@@ -110,6 +140,26 @@ class UnionFind {
         int rootY = find(y);
         if(rootX != rootY) {
             father[rootX] = rootY;
+        }
+    }
+}
+
+// Or another UnionFind
+class UnionFind {    
+    public UnionFind() {}
+    
+    public int find(int[] parent, int x) {
+        if(parent[x] == -1) {
+            return x;
+        }
+        return find(parent, parent[x]);
+    }
+    
+    public void union(int[] parent, int x, int y) {
+        int rootX = find(parent, x);
+        int rootY = find(parent, y);
+        if(rootX != rootY) {
+            parent[rootX] = rootY;
         }
     }
 }
