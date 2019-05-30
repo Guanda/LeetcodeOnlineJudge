@@ -22,39 +22,31 @@ Anaylsis:
 	will take 20 bits. Make sure every time operation shift left 2.
 */
 
-class RepeatedDNASequences
-{
-	public List<String> findRepeatedDnaSequences(String s)
-	{	
+class RepeatedDNASequences{
+	public List<String> findRepeatedDnaSequences(String s){	
 		List<String> result = new ArrayList<String>();
 		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 
-		for(int i = 0; i <= s.length() - 10; i++)
-		{
+		for(int i = 0; i <= s.length() - 10; i++){
 			String sub = s.substring(i, i+10);
 			int key = getKey(sub);
-			if(map.containsKey(key))
-			{
+			if(map.containsKey(key)){
 				map.put(key, map.get(key)+1);
 				if(map.get(key) == 2)
 					result.add(sub);
 			}
-			else
-			{
+			else{
 				map.put(key, 1);
 			}
 		}
 		return result;
 	}
 
-	public int getKey(String s)
-	{
+	public int getKey(String s){
 		int result = 0;
-		for(int i = s.length()-1; i >= 0; i--)
-		{
+		for(int i = s.length()-1; i >= 0; i--){
 			int b = 0;
-			switch (s.charAt(i))
-			{
+			switch (s.charAt(i)){
 				case 'A':
 				b |= 0;
 				break;

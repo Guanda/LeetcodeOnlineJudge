@@ -9,7 +9,8 @@ b) Delete a character
 c) Replace a character
 
 Analysis:
-	Very classic dp problem
+	Very classic dp problem: 
+    f(i, j) := minimum cost (or steps) required to convert first i characters of word1 to first j characters of word2
     -If last characters of two strings are same, nothing much to do. Ignore last characters and get count 
      for remaining strings. So we recur for lengths m-1 and n-1.
     -Else (If last characters are not same), we consider all operations on ‘str1’, consider all three operations 
