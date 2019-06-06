@@ -53,7 +53,7 @@ class TextJustification {
 			}
 
 			StringBuilder builder = new StringBuilder();
-			//the diff is how many spack bucket in each line, in example, it is 2 which is 3-0-1.
+			//the diff is how many space bucket in each line, in example, it is 2 which is 3-0-1.
 			int diff = last - start - 1;
 			//if last line or number of words in the line is 1, left-justified
 			if(last == words.length || diff == 0) {
