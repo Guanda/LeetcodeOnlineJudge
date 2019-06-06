@@ -15,10 +15,8 @@ Anaylsis:
 
 */
 
-class ReverseWords
-{
-    public String reverseWords(String s) 
-    {
+class ReverseWords{
+    public String reverseWords(String s) {
 		if(s == null || s.length() == 0){
 			return "";
 		}

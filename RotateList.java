@@ -19,19 +19,16 @@ Before cut, make it a loop
  *     ListNode(int x) { val = x; }
  * }
  */
-class RotateList
-{
-	public ListNode rotateRight(ListNode head, int k)
-	{
+class RotateList{
+	public ListNode rotateRight(ListNode head, int k){
 		if(head == null || k == 0)
-            		return head;
+            return head;
 
 		//find the length of list
 		//len start from 1 because curr.next!=null
 		int len = 1;
 		ListNode curr = head;
-		while(curr.next != null)
-		{
+		while(curr.next != null){
 			len++;
 			curr = curr.next;
 		}
@@ -43,8 +40,7 @@ class RotateList
 		//find the n-to-the-end, where is also the cur point
 		//consider the case that k>len
 		k = len - k % len;
-		while(k > 0)
-		{
+		while(k > 0){
 			newHead = newHead.next;
 			k--;
 		}

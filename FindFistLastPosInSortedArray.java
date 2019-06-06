@@ -18,28 +18,22 @@ And we can try to find the left border of target + 1. And check if it exists to 
 
 */
 
-class SearchRange
-{
+class SearchRange{
 	//Method 1: normal search
-	public int[] searchRange(int[] A, int target)
-	{
+	public int[] searchRange(int[] A, int target){
 		int[] result = new int[2];
 		int p1 = -1;
 		int p2 = -1;
         
-		for(int i = 0; i <= A.length - 1; i++)
-		{
-			if(A[i] == target)
-			{
+		for(int i = 0; i <= A.length - 1; i++){
+			if(A[i] == target){
 				p1 = i;
 				break;
 			}
 		}
 
-		for(int i = A.length - 1; i >= 0; i--)
-		{
-			if(A[i] == target)
-			{
+		for(int i = A.length - 1; i >= 0; i--){
+			if(A[i] == target){
 				p2 = i;
 				break;
 			}
@@ -52,27 +46,22 @@ class SearchRange
 	}
 
 	//Method 2: Binary search
-	public int[] searchRangeBetter(int[] A, int target)
-	{
+	public int[] searchRangeBetter(int[] A, int target){
 		int[] range = {-1, -1};
 		int low = 0;
 		int high = A.length - 1;
 
-		while(low <= high)
-		{
+		while(low <= high){
 			int mid = (low + high) / 2;
-			if(A[mid] == target)
-			{
-				if(mid == 0 || A[mid - 1] < target)
-				{
+			if(A[mid] == target){
+				if(mid == 0 || A[mid - 1] < target){
 					//find the beginning
 					range[0] = mid;
 					low = mid;
 					high = A.length - 1;
 				}
 
-				if(mid == A.length - 1 || A[mid + 1] > target)
-				{
+				if(mid == A.length - 1 || A[mid + 1] > target){
 					//find the ending
 					range[1] = mid;
 					low = 0;
@@ -86,12 +75,10 @@ class SearchRange
 				else
 					low = mid + 1;
 			}
-			else if(A[mid] < target)
-			{
+			else if(A[mid] < target){
 				low = mid + 1;
 			}
-			else
-			{
+			else{
 				high = mid - 1;
 			}
 		}
