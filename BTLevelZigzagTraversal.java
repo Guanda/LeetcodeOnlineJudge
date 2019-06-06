@@ -17,7 +17,7 @@ return its zigzag level order traversal as:
 ]
 
 Anaylsis:
-	We need a LIFO stack for each level so that it could return nodes in a reverse 
+	We need a stack for each level so that it could return nodes in a reverse 
 	order as we push in. Also, we need to check whether the level is odd level or even 
 	and when we read current level from right to left, we need to push right children 
 	and then left child for each node.

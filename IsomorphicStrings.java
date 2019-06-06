@@ -14,7 +14,7 @@ Note:
 You may assume both s and t have the same length.
 
 Analysis:
-	Use two maps to keep the reflect relection. One store s, the other store t
+	Use two maps to keep the reflect reflection. One store s, the other store t
 */
 
 class IsomorphicStrings {
